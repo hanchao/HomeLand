@@ -7,8 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D606635818D69C12004E0A7A /* MeasureLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D606635718D69C12004E0A7A /* MeasureLayer.m */; };
+		D606636118D6C6A2004E0A7A /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = D606635E18D6C6A2004E0A7A /* Track.m */; };
+		D606636218D6C6A2004E0A7A /* TrackPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D606636018D6C6A2004E0A7A /* TrackPoint.m */; };
+		D606639518D6C705004E0A7A /* GPXAuthor.m in Sources */ = {isa = PBXBuildFile; fileRef = D606636918D6C705004E0A7A /* GPXAuthor.m */; };
+		D606639618D6C705004E0A7A /* GPXBounds.m in Sources */ = {isa = PBXBuildFile; fileRef = D606636B18D6C705004E0A7A /* GPXBounds.m */; };
+		D606639718D6C705004E0A7A /* GPXConst.m in Sources */ = {isa = PBXBuildFile; fileRef = D606636D18D6C705004E0A7A /* GPXConst.m */; };
+		D606639818D6C705004E0A7A /* GPXCopyright.m in Sources */ = {isa = PBXBuildFile; fileRef = D606636F18D6C705004E0A7A /* GPXCopyright.m */; };
+		D606639918D6C705004E0A7A /* GPXElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D606637118D6C705004E0A7A /* GPXElement.m */; };
+		D606639A18D6C705004E0A7A /* GPXEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = D606637418D6C705004E0A7A /* GPXEmail.m */; };
+		D606639B18D6C705004E0A7A /* GPXExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D606637618D6C705004E0A7A /* GPXExtensions.m */; };
+		D606639C18D6C705004E0A7A /* GPXLink.m in Sources */ = {isa = PBXBuildFile; fileRef = D606637818D6C705004E0A7A /* GPXLink.m */; };
+		D606639D18D6C705004E0A7A /* GPXMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = D606637A18D6C705004E0A7A /* GPXMetadata.m */; };
+		D606639E18D6C705004E0A7A /* GPXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D606637C18D6C705004E0A7A /* GPXParser.m */; };
+		D606639F18D6C705004E0A7A /* GPXPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = D606637E18D6C705004E0A7A /* GPXPerson.m */; };
+		D60663A018D6C705004E0A7A /* GPXPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D606638018D6C705004E0A7A /* GPXPoint.m */; };
+		D60663A118D6C705004E0A7A /* GPXPointSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = D606638218D6C705004E0A7A /* GPXPointSegment.m */; };
+		D60663A218D6C705004E0A7A /* GPXRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = D606638418D6C705004E0A7A /* GPXRoot.m */; };
+		D60663A318D6C705004E0A7A /* GPXRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = D606638618D6C705004E0A7A /* GPXRoute.m */; };
+		D60663A418D6C705004E0A7A /* GPXRoutePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D606638818D6C705004E0A7A /* GPXRoutePoint.m */; };
+		D60663A518D6C705004E0A7A /* GPXTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = D606638A18D6C705004E0A7A /* GPXTrack.m */; };
+		D60663A618D6C705004E0A7A /* GPXTrackPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D606638C18D6C705004E0A7A /* GPXTrackPoint.m */; };
+		D60663A718D6C705004E0A7A /* GPXTrackSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = D606638E18D6C705004E0A7A /* GPXTrackSegment.m */; };
+		D60663A818D6C705004E0A7A /* GPXType.m in Sources */ = {isa = PBXBuildFile; fileRef = D606639018D6C705004E0A7A /* GPXType.m */; };
+		D60663A918D6C705004E0A7A /* GPXWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D606639218D6C705004E0A7A /* GPXWaypoint.m */; };
+		D60663AA18D6C705004E0A7A /* GPXXML.m in Sources */ = {isa = PBXBuildFile; fileRef = D606639418D6C705004E0A7A /* GPXXML.m */; };
+		D60663AD18D6C9C1004E0A7A /* GPSLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D60663AC18D6C9C1004E0A7A /* GPSLayer.m */; };
+		D62583A318D5240C00564A9D /* liblibspatialite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6603FB918C710E700C1E1EA /* liblibspatialite.a */; };
+		D63134E518C996C1003DD1C8 /* LayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63134E418C996C1003DD1C8 /* LayerController.m */; };
+		D6603FA718C703A300C1E1EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6603FA618C703A300C1E1EA /* Images.xcassets */; };
+		D6603FAE18C7083F00C1E1EA /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = D6603FAD18C7083F00C1E1EA /* Projects.m */; };
+		D6603FB118C70C7D00C1E1EA /* ProjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6603FB018C70C7D00C1E1EA /* ProjectController.m */; };
+		D6603FC018C714FF00C1E1EA /* libproj.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6603FBD18C710E700C1E1EA /* libproj.a */; };
+		D6603FC218C7171C00C1E1EA /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6603FC118C7171C00C1E1EA /* libiconv.dylib */; };
 		D66A276918C43370008B4CFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D66A276818C43370008B4CFC /* Foundation.framework */; };
-		D66A276B18C43370008B4CFC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D66A276A18C43370008B4CFC /* CoreGraphics.framework */; };
 		D66A276D18C43370008B4CFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D66A276C18C43370008B4CFC /* UIKit.framework */; };
 		D66A277318C43370008B4CFC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D66A277118C43370008B4CFC /* InfoPlist.strings */; };
 		D66A277518C43370008B4CFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D66A277418C43370008B4CFC /* main.m */; };
@@ -16,16 +48,126 @@
 		D66A277C18C43370008B4CFC /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D66A277A18C43370008B4CFC /* Main_iPhone.storyboard */; };
 		D66A277F18C43370008B4CFC /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D66A277D18C43370008B4CFC /* Main_iPad.storyboard */; };
 		D66A278218C43370008B4CFC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D66A278118C43370008B4CFC /* ViewController.m */; };
-		D66A278418C43370008B4CFC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66A278318C43370008B4CFC /* Images.xcassets */; };
 		D66A278B18C43371008B4CFC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D66A278A18C43371008B4CFC /* XCTest.framework */; };
 		D66A278C18C43371008B4CFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D66A276818C43370008B4CFC /* Foundation.framework */; };
 		D66A278D18C43371008B4CFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D66A276C18C43370008B4CFC /* UIKit.framework */; };
 		D66A279518C43371008B4CFC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D66A279318C43371008B4CFC /* InfoPlist.strings */; };
 		D66A279718C43371008B4CFC /* HomeLandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D66A279618C43371008B4CFC /* HomeLandTests.m */; };
 		D66A27A118C433DD008B4CFC /* ArcGIS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D66A27A018C433DD008B4CFC /* ArcGIS.framework */; };
+		D67F9F3418C8706E000AF822 /* libgeos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6603FBB18C710E700C1E1EA /* libgeos.a */; };
+		D6854A5C18D73120008E638A /* Project.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6854A5B18D73120008E638A /* Project.mm */; };
+		D6854B6018D731AC008E638A /* 001打开地图.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B0B18D731AC008E638A /* 001打开地图.png */; };
+		D6854B6118D731AC008E638A /* 001打开地图@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B0C18D731AC008E638A /* 001打开地图@2x.png */; };
+		D6854B6218D731AC008E638A /* 002图层管理.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B0D18D731AC008E638A /* 002图层管理.png */; };
+		D6854B6318D731AC008E638A /* 002图层管理@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B0E18D731AC008E638A /* 002图层管理@2x.png */; };
+		D6854B6418D731AC008E638A /* 003照片采集.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B0F18D731AC008E638A /* 003照片采集.png */; };
+		D6854B6518D731AC008E638A /* 003照片采集@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1018D731AC008E638A /* 003照片采集@2x.png */; };
+		D6854B6618D731AC008E638A /* 004浏览照片.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1118D731AC008E638A /* 004浏览照片.png */; };
+		D6854B6718D731AC008E638A /* 004浏览照片@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1218D731AC008E638A /* 004浏览照片@2x.png */; };
+		D6854B6818D731AC008E638A /* 005图斑采集.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1318D731AC008E638A /* 005图斑采集.png */; };
+		D6854B6918D731AC008E638A /* 005图斑采集@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1418D731AC008E638A /* 005图斑采集@2x.png */; };
+		D6854B6A18D731AC008E638A /* 006图斑查找.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1518D731AC008E638A /* 006图斑查找.png */; };
+		D6854B6B18D731AC008E638A /* 006图斑查找@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1618D731AC008E638A /* 006图斑查找@2x.png */; };
+		D6854B6C18D731AC008E638A /* 007图斑管理.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1718D731AC008E638A /* 007图斑管理.png */; };
+		D6854B6D18D731AC008E638A /* 007图斑管理@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1818D731AC008E638A /* 007图斑管理@2x.png */; };
+		D6854B6E18D731AC008E638A /* 008量算.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1918D731AC008E638A /* 008量算.png */; };
+		D6854B6F18D731AC008E638A /* 008量算@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1A18D731AC008E638A /* 008量算@2x.png */; };
+		D6854B7018D731AC008E638A /* 009导出数据.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1B18D731AC008E638A /* 009导出数据.png */; };
+		D6854B7118D731AC008E638A /* 009导出数据@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1C18D731AC008E638A /* 009导出数据@2x.png */; };
+		D6854B7218D731AC008E638A /* 010点.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1D18D731AC008E638A /* 010点.png */; };
+		D6854B7318D731AC008E638A /* 010点@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1E18D731AC008E638A /* 010点@2x.png */; };
+		D6854B7418D731AC008E638A /* 011线.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B1F18D731AC008E638A /* 011线.png */; };
+		D6854B7518D731AC008E638A /* 011线@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2018D731AC008E638A /* 011线@2x.png */; };
+		D6854B7618D731AC008E638A /* 012面.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2118D731AC008E638A /* 012面.png */; };
+		D6854B7718D731AC008E638A /* 012面@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2218D731AC008E638A /* 012面@2x.png */; };
+		D6854B7818D731AC008E638A /* 013GPS采集.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2318D731AC008E638A /* 013GPS采集.png */; };
+		D6854B7918D731AC008E638A /* 013GPS采集@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2418D731AC008E638A /* 013GPS采集@2x.png */; };
+		D6854B7A18D731AC008E638A /* 014自动采点.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2518D731AC008E638A /* 014自动采点.png */; };
+		D6854B7B18D731AC008E638A /* 014自动采点@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2618D731AC008E638A /* 014自动采点@2x.png */; };
+		D6854B7C18D731AC008E638A /* 015回退.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2718D731AC008E638A /* 015回退.png */; };
+		D6854B7D18D731AC008E638A /* 015回退@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2818D731AC008E638A /* 015回退@2x.png */; };
+		D6854B7E18D731AC008E638A /* 016前进.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2918D731AC008E638A /* 016前进.png */; };
+		D6854B7F18D731AC008E638A /* 016前进@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2A18D731AC008E638A /* 016前进@2x.png */; };
+		D6854B8018D731AC008E638A /* 017保存.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2B18D731AC008E638A /* 017保存.png */; };
+		D6854B8118D731AC008E638A /* 017保存@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2C18D731AC008E638A /* 017保存@2x.png */; };
+		D6854B8218D731AC008E638A /* 018清除编辑.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2D18D731AC008E638A /* 018清除编辑.png */; };
+		D6854B8318D731AC008E638A /* 018清除编辑@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2E18D731AC008E638A /* 018清除编辑@2x.png */; };
+		D6854B8418D731AC008E638A /* 019删除.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B2F18D731AC008E638A /* 019删除.png */; };
+		D6854B8518D731AC008E638A /* 019删除@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3018D731AC008E638A /* 019删除@2x.png */; };
+		D6854B8618D731AC008E638A /* 020移动.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3118D731AC008E638A /* 020移动.png */; };
+		D6854B8718D731AC008E638A /* 020移动@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3218D731AC008E638A /* 020移动@2x.png */; };
+		D6854B8818D731AC008E638A /* 021属性.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3318D731AC008E638A /* 021属性.png */; };
+		D6854B8918D731AC008E638A /* 021属性@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3418D731AC008E638A /* 021属性@2x.png */; };
+		D6854B8A18D731AC008E638A /* 022可见.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3518D731AC008E638A /* 022可见.png */; };
+		D6854B8B18D731AC008E638A /* 023长度.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3618D731AC008E638A /* 023长度.png */; };
+		D6854B8C18D731AC008E638A /* 023长度@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3718D731AC008E638A /* 023长度@2x.png */; };
+		D6854B8D18D731AC008E638A /* 024面积.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3818D731AC008E638A /* 024面积.png */; };
+		D6854B8E18D731AC008E638A /* 024面积@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3918D731AC008E638A /* 024面积@2x.png */; };
+		D6854B8F18D731AC008E638A /* 025回退.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3A18D731AC008E638A /* 025回退.png */; };
+		D6854B9018D731AC008E638A /* 025回退@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3B18D731AC008E638A /* 025回退@2x.png */; };
+		D6854B9118D731AC008E638A /* 026前进.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3C18D731AC008E638A /* 026前进.png */; };
+		D6854B9218D731AC008E638A /* 026前进@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3D18D731AC008E638A /* 026前进@2x.png */; };
+		D6854B9318D731AC008E638A /* 027清除.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3E18D731AC008E638A /* 027清除.png */; };
+		D6854B9418D731AC008E638A /* 027清除@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B3F18D731AC008E638A /* 027清除@2x.png */; };
+		D6854B9518D731AC008E638A /* 028搜索.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4018D731AC008E638A /* 028搜索.png */; };
+		D6854B9618D731AC008E638A /* 029选择.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4118D731AC008E638A /* 029选择.png */; };
+		D6854B9718D731AC008E638A /* 030记录轨迹.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4218D731AC008E638A /* 030记录轨迹.png */; };
+		D6854B9818D731AC008E638A /* 030记录轨迹@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4318D731AC008E638A /* 030记录轨迹@2x.png */; };
+		D6854B9918D731AC008E638A /* 031当前位置.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4418D731AC008E638A /* 031当前位置.png */; };
+		D6854B9A18D731AC008E638A /* 031当前位置@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4518D731AC008E638A /* 031当前位置@2x.png */; };
+		D6854B9B18D731AC008E638A /* 032全幅显示.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4618D731AC008E638A /* 032全幅显示.png */; };
+		D6854B9C18D731AC008E638A /* 032全幅显示@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4718D731AC008E638A /* 032全幅显示@2x.png */; };
+		D6854B9D18D731AC008E638A /* 033定位.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4818D731AC008E638A /* 033定位.png */; };
+		D6854B9E18D731AC008E638A /* 034保存（长）.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4918D731AC008E638A /* 034保存（长）.png */; };
+		D6854B9F18D731AC008E638A /* 035删除（长）.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4A18D731AC008E638A /* 035删除（长）.png */; };
+		D6854BA018D731AC008E638A /* 036图层长条按钮.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4B18D731AC008E638A /* 036图层长条按钮.png */; };
+		D6854BA118D731AC008E638A /* 037记录长条按钮.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4C18D731AC008E638A /* 037记录长条按钮.png */; };
+		D6854BA218D731AC008E638A /* 布局示意图001主界面.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4D18D731AC008E638A /* 布局示意图001主界面.jpg */; };
+		D6854BA318D731AC008E638A /* 布局示意图002图斑采集界面.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4E18D731AC008E638A /* 布局示意图002图斑采集界面.jpg */; };
+		D6854BA418D731AC008E638A /* 布局示意图003图层管理界面.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B4F18D731AC008E638A /* 布局示意图003图层管理界面.jpg */; };
+		D6854BA518D731AC008E638A /* 布局示意图004量算界面.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5018D731AC008E638A /* 布局示意图004量算界面.jpg */; };
+		D6854BA618D731AC008E638A /* 布局示意图005图斑查找界面.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5118D731AC008E638A /* 布局示意图005图斑查找界面.jpg */; };
+		D6854BA718D731AC008E638A /* 布局示意图006照片浏览界面.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5218D731AC008E638A /* 布局示意图006照片浏览界面.jpg */; };
+		D6854BA818D731AC008E638A /* 布局示意图007图斑管理界面.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5318D731AC008E638A /* 布局示意图007图斑管理界面.jpg */; };
+		D6854BA918D731AC008E638A /* 布局示意图008图斑详情界面.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5418D731AC008E638A /* 布局示意图008图斑详情界面.jpg */; };
+		D6854BAA18D731AC008E638A /* 桌面图标120.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5518D731AC008E638A /* 桌面图标120.png */; };
+		D6854BAB18D731AC008E638A /* 桌面图标152.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5618D731AC008E638A /* 桌面图标152.png */; };
+		D6854BAC18D731AC008E638A /* 桌面图标76.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5718D731AC008E638A /* 桌面图标76.png */; };
+		D6854BAD18D731AC008E638A /* 欢迎画面横1024.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5818D731AC008E638A /* 欢迎画面横1024.jpg */; };
+		D6854BAE18D731AC008E638A /* 欢迎画面横1024.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5918D731AC008E638A /* 欢迎画面横1024.png */; };
+		D6854BAF18D731AC008E638A /* 欢迎画面横2048.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5A18D731AC008E638A /* 欢迎画面横2048.jpg */; };
+		D6854BB018D731AC008E638A /* 欢迎画面横2048.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5B18D731AC008E638A /* 欢迎画面横2048.png */; };
+		D6854BB118D731AC008E638A /* 欢迎画面竖1024.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5C18D731AC008E638A /* 欢迎画面竖1024.jpg */; };
+		D6854BB218D731AC008E638A /* 欢迎画面竖1024.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5D18D731AC008E638A /* 欢迎画面竖1024.png */; };
+		D6854BB318D731AC008E638A /* 欢迎画面竖2048.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5E18D731AC008E638A /* 欢迎画面竖2048.jpg */; };
+		D6854BB418D731AC008E638A /* 欢迎画面竖2048.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5F18D731AC008E638A /* 欢迎画面竖2048.png */; };
+		D6C3607B18C5B6D900D9A5F8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3607A18C5B6D900D9A5F8 /* MediaPlayer.framework */; };
+		D6C3607D18C5B6E400D9A5F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3607C18C5B6E400D9A5F8 /* CoreLocation.framework */; };
+		D6C3608518C5B77700D9A5F8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3608418C5B77700D9A5F8 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D6603FB818C710E700C1E1EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6603FB218C710E500C1E1EA /* libspatialite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F73F8761566E66900408390;
+			remoteInfo = libspatialite;
+		};
+		D6603FBA18C710E700C1E1EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6603FB218C710E500C1E1EA /* libspatialite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F73FE921566EE4200408390;
+			remoteInfo = geos;
+		};
+		D6603FBC18C710E700C1E1EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6603FB218C710E500C1E1EA /* libspatialite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F7304811566EEEA00408390;
+			remoteInfo = proj;
+		};
 		D66A278E18C43371008B4CFC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D66A275D18C43370008B4CFC /* Project object */;
@@ -36,7 +178,70 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D66A276518C43370008B4CFC /* HomeLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D606635618D69C12004E0A7A /* MeasureLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureLayer.h; sourceTree = "<group>"; };
+		D606635718D69C12004E0A7A /* MeasureLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureLayer.m; sourceTree = "<group>"; };
+		D606635D18D6C6A2004E0A7A /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		D606635E18D6C6A2004E0A7A /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
+		D606635F18D6C6A2004E0A7A /* TrackPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackPoint.h; sourceTree = "<group>"; };
+		D606636018D6C6A2004E0A7A /* TrackPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackPoint.m; sourceTree = "<group>"; };
+		D606636718D6C705004E0A7A /* GPX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPX.h; path = GPX/GPX.h; sourceTree = "<group>"; };
+		D606636818D6C705004E0A7A /* GPXAuthor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXAuthor.h; path = GPX/GPXAuthor.h; sourceTree = "<group>"; };
+		D606636918D6C705004E0A7A /* GPXAuthor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXAuthor.m; path = GPX/GPXAuthor.m; sourceTree = "<group>"; };
+		D606636A18D6C705004E0A7A /* GPXBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXBounds.h; path = GPX/GPXBounds.h; sourceTree = "<group>"; };
+		D606636B18D6C705004E0A7A /* GPXBounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXBounds.m; path = GPX/GPXBounds.m; sourceTree = "<group>"; };
+		D606636C18D6C705004E0A7A /* GPXConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXConst.h; path = GPX/GPXConst.h; sourceTree = "<group>"; };
+		D606636D18D6C705004E0A7A /* GPXConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXConst.m; path = GPX/GPXConst.m; sourceTree = "<group>"; };
+		D606636E18D6C705004E0A7A /* GPXCopyright.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXCopyright.h; path = GPX/GPXCopyright.h; sourceTree = "<group>"; };
+		D606636F18D6C705004E0A7A /* GPXCopyright.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXCopyright.m; path = GPX/GPXCopyright.m; sourceTree = "<group>"; };
+		D606637018D6C705004E0A7A /* GPXElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXElement.h; path = GPX/GPXElement.h; sourceTree = "<group>"; };
+		D606637118D6C705004E0A7A /* GPXElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXElement.m; path = GPX/GPXElement.m; sourceTree = "<group>"; };
+		D606637218D6C705004E0A7A /* GPXElementSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXElementSubclass.h; path = GPX/GPXElementSubclass.h; sourceTree = "<group>"; };
+		D606637318D6C705004E0A7A /* GPXEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXEmail.h; path = GPX/GPXEmail.h; sourceTree = "<group>"; };
+		D606637418D6C705004E0A7A /* GPXEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXEmail.m; path = GPX/GPXEmail.m; sourceTree = "<group>"; };
+		D606637518D6C705004E0A7A /* GPXExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXExtensions.h; path = GPX/GPXExtensions.h; sourceTree = "<group>"; };
+		D606637618D6C705004E0A7A /* GPXExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXExtensions.m; path = GPX/GPXExtensions.m; sourceTree = "<group>"; };
+		D606637718D6C705004E0A7A /* GPXLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXLink.h; path = GPX/GPXLink.h; sourceTree = "<group>"; };
+		D606637818D6C705004E0A7A /* GPXLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXLink.m; path = GPX/GPXLink.m; sourceTree = "<group>"; };
+		D606637918D6C705004E0A7A /* GPXMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXMetadata.h; path = GPX/GPXMetadata.h; sourceTree = "<group>"; };
+		D606637A18D6C705004E0A7A /* GPXMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXMetadata.m; path = GPX/GPXMetadata.m; sourceTree = "<group>"; };
+		D606637B18D6C705004E0A7A /* GPXParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXParser.h; path = GPX/GPXParser.h; sourceTree = "<group>"; };
+		D606637C18D6C705004E0A7A /* GPXParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXParser.m; path = GPX/GPXParser.m; sourceTree = "<group>"; };
+		D606637D18D6C705004E0A7A /* GPXPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXPerson.h; path = GPX/GPXPerson.h; sourceTree = "<group>"; };
+		D606637E18D6C705004E0A7A /* GPXPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXPerson.m; path = GPX/GPXPerson.m; sourceTree = "<group>"; };
+		D606637F18D6C705004E0A7A /* GPXPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXPoint.h; path = GPX/GPXPoint.h; sourceTree = "<group>"; };
+		D606638018D6C705004E0A7A /* GPXPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXPoint.m; path = GPX/GPXPoint.m; sourceTree = "<group>"; };
+		D606638118D6C705004E0A7A /* GPXPointSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXPointSegment.h; path = GPX/GPXPointSegment.h; sourceTree = "<group>"; };
+		D606638218D6C705004E0A7A /* GPXPointSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXPointSegment.m; path = GPX/GPXPointSegment.m; sourceTree = "<group>"; };
+		D606638318D6C705004E0A7A /* GPXRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXRoot.h; path = GPX/GPXRoot.h; sourceTree = "<group>"; };
+		D606638418D6C705004E0A7A /* GPXRoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXRoot.m; path = GPX/GPXRoot.m; sourceTree = "<group>"; };
+		D606638518D6C705004E0A7A /* GPXRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXRoute.h; path = GPX/GPXRoute.h; sourceTree = "<group>"; };
+		D606638618D6C705004E0A7A /* GPXRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXRoute.m; path = GPX/GPXRoute.m; sourceTree = "<group>"; };
+		D606638718D6C705004E0A7A /* GPXRoutePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXRoutePoint.h; path = GPX/GPXRoutePoint.h; sourceTree = "<group>"; };
+		D606638818D6C705004E0A7A /* GPXRoutePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXRoutePoint.m; path = GPX/GPXRoutePoint.m; sourceTree = "<group>"; };
+		D606638918D6C705004E0A7A /* GPXTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXTrack.h; path = GPX/GPXTrack.h; sourceTree = "<group>"; };
+		D606638A18D6C705004E0A7A /* GPXTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXTrack.m; path = GPX/GPXTrack.m; sourceTree = "<group>"; };
+		D606638B18D6C705004E0A7A /* GPXTrackPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXTrackPoint.h; path = GPX/GPXTrackPoint.h; sourceTree = "<group>"; };
+		D606638C18D6C705004E0A7A /* GPXTrackPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXTrackPoint.m; path = GPX/GPXTrackPoint.m; sourceTree = "<group>"; };
+		D606638D18D6C705004E0A7A /* GPXTrackSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXTrackSegment.h; path = GPX/GPXTrackSegment.h; sourceTree = "<group>"; };
+		D606638E18D6C705004E0A7A /* GPXTrackSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXTrackSegment.m; path = GPX/GPXTrackSegment.m; sourceTree = "<group>"; };
+		D606638F18D6C705004E0A7A /* GPXType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXType.h; path = GPX/GPXType.h; sourceTree = "<group>"; };
+		D606639018D6C705004E0A7A /* GPXType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXType.m; path = GPX/GPXType.m; sourceTree = "<group>"; };
+		D606639118D6C705004E0A7A /* GPXWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXWaypoint.h; path = GPX/GPXWaypoint.h; sourceTree = "<group>"; };
+		D606639218D6C705004E0A7A /* GPXWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXWaypoint.m; path = GPX/GPXWaypoint.m; sourceTree = "<group>"; };
+		D606639318D6C705004E0A7A /* GPXXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPXXML.h; path = GPX/GPXXML.h; sourceTree = "<group>"; };
+		D606639418D6C705004E0A7A /* GPXXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXXML.m; path = GPX/GPXXML.m; sourceTree = "<group>"; };
+		D60663AB18D6C9C1004E0A7A /* GPSLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSLayer.h; sourceTree = "<group>"; };
+		D60663AC18D6C9C1004E0A7A /* GPSLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSLayer.m; sourceTree = "<group>"; };
+		D63134E318C996C1003DD1C8 /* LayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerController.h; sourceTree = "<group>"; };
+		D63134E418C996C1003DD1C8 /* LayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerController.m; sourceTree = "<group>"; };
+		D6603FA618C703A300C1E1EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D6603FAC18C7083F00C1E1EA /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
+		D6603FAD18C7083F00C1E1EA /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
+		D6603FAF18C70C7D00C1E1EA /* ProjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectController.h; sourceTree = "<group>"; };
+		D6603FB018C70C7D00C1E1EA /* ProjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectController.m; sourceTree = "<group>"; };
+		D6603FB218C710E500C1E1EA /* libspatialite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libspatialite.xcodeproj; path = libspatialite/libspatialite.xcodeproj; sourceTree = "<group>"; };
+		D6603FC118C7171C00C1E1EA /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		D66A276518C43370008B4CFC /* 卫片宝.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "卫片宝.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D66A276818C43370008B4CFC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D66A276A18C43370008B4CFC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D66A276C18C43370008B4CFC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -50,13 +255,105 @@
 		D66A277E18C43370008B4CFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		D66A278018C43370008B4CFC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D66A278118C43370008B4CFC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		D66A278318C43370008B4CFC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D66A278918C43371008B4CFC /* HomeLandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeLandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D66A278A18C43371008B4CFC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D66A279218C43371008B4CFC /* HomeLandTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HomeLandTests-Info.plist"; sourceTree = "<group>"; };
 		D66A279418C43371008B4CFC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D66A279618C43371008B4CFC /* HomeLandTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeLandTests.m; sourceTree = "<group>"; };
 		D66A27A018C433DD008B4CFC /* ArcGIS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArcGIS.framework; path = ../../../Library/SDKs/ArcGIS/iOS/ArcGIS.framework; sourceTree = "<group>"; };
+		D6854A5A18D73120008E638A /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
+		D6854A5B18D73120008E638A /* Project.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Project.mm; sourceTree = "<group>"; };
+		D6854B0B18D731AC008E638A /* 001打开地图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "001打开地图.png"; sourceTree = "<group>"; };
+		D6854B0C18D731AC008E638A /* 001打开地图@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "001打开地图@2x.png"; sourceTree = "<group>"; };
+		D6854B0D18D731AC008E638A /* 002图层管理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "002图层管理.png"; sourceTree = "<group>"; };
+		D6854B0E18D731AC008E638A /* 002图层管理@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "002图层管理@2x.png"; sourceTree = "<group>"; };
+		D6854B0F18D731AC008E638A /* 003照片采集.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "003照片采集.png"; sourceTree = "<group>"; };
+		D6854B1018D731AC008E638A /* 003照片采集@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "003照片采集@2x.png"; sourceTree = "<group>"; };
+		D6854B1118D731AC008E638A /* 004浏览照片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "004浏览照片.png"; sourceTree = "<group>"; };
+		D6854B1218D731AC008E638A /* 004浏览照片@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "004浏览照片@2x.png"; sourceTree = "<group>"; };
+		D6854B1318D731AC008E638A /* 005图斑采集.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "005图斑采集.png"; sourceTree = "<group>"; };
+		D6854B1418D731AC008E638A /* 005图斑采集@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "005图斑采集@2x.png"; sourceTree = "<group>"; };
+		D6854B1518D731AC008E638A /* 006图斑查找.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "006图斑查找.png"; sourceTree = "<group>"; };
+		D6854B1618D731AC008E638A /* 006图斑查找@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "006图斑查找@2x.png"; sourceTree = "<group>"; };
+		D6854B1718D731AC008E638A /* 007图斑管理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "007图斑管理.png"; sourceTree = "<group>"; };
+		D6854B1818D731AC008E638A /* 007图斑管理@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "007图斑管理@2x.png"; sourceTree = "<group>"; };
+		D6854B1918D731AC008E638A /* 008量算.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "008量算.png"; sourceTree = "<group>"; };
+		D6854B1A18D731AC008E638A /* 008量算@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "008量算@2x.png"; sourceTree = "<group>"; };
+		D6854B1B18D731AC008E638A /* 009导出数据.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "009导出数据.png"; sourceTree = "<group>"; };
+		D6854B1C18D731AC008E638A /* 009导出数据@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "009导出数据@2x.png"; sourceTree = "<group>"; };
+		D6854B1D18D731AC008E638A /* 010点.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "010点.png"; sourceTree = "<group>"; };
+		D6854B1E18D731AC008E638A /* 010点@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "010点@2x.png"; sourceTree = "<group>"; };
+		D6854B1F18D731AC008E638A /* 011线.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "011线.png"; sourceTree = "<group>"; };
+		D6854B2018D731AC008E638A /* 011线@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "011线@2x.png"; sourceTree = "<group>"; };
+		D6854B2118D731AC008E638A /* 012面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "012面.png"; sourceTree = "<group>"; };
+		D6854B2218D731AC008E638A /* 012面@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "012面@2x.png"; sourceTree = "<group>"; };
+		D6854B2318D731AC008E638A /* 013GPS采集.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "013GPS采集.png"; sourceTree = "<group>"; };
+		D6854B2418D731AC008E638A /* 013GPS采集@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "013GPS采集@2x.png"; sourceTree = "<group>"; };
+		D6854B2518D731AC008E638A /* 014自动采点.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "014自动采点.png"; sourceTree = "<group>"; };
+		D6854B2618D731AC008E638A /* 014自动采点@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "014自动采点@2x.png"; sourceTree = "<group>"; };
+		D6854B2718D731AC008E638A /* 015回退.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "015回退.png"; sourceTree = "<group>"; };
+		D6854B2818D731AC008E638A /* 015回退@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "015回退@2x.png"; sourceTree = "<group>"; };
+		D6854B2918D731AC008E638A /* 016前进.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "016前进.png"; sourceTree = "<group>"; };
+		D6854B2A18D731AC008E638A /* 016前进@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "016前进@2x.png"; sourceTree = "<group>"; };
+		D6854B2B18D731AC008E638A /* 017保存.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "017保存.png"; sourceTree = "<group>"; };
+		D6854B2C18D731AC008E638A /* 017保存@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "017保存@2x.png"; sourceTree = "<group>"; };
+		D6854B2D18D731AC008E638A /* 018清除编辑.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "018清除编辑.png"; sourceTree = "<group>"; };
+		D6854B2E18D731AC008E638A /* 018清除编辑@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "018清除编辑@2x.png"; sourceTree = "<group>"; };
+		D6854B2F18D731AC008E638A /* 019删除.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "019删除.png"; sourceTree = "<group>"; };
+		D6854B3018D731AC008E638A /* 019删除@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "019删除@2x.png"; sourceTree = "<group>"; };
+		D6854B3118D731AC008E638A /* 020移动.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "020移动.png"; sourceTree = "<group>"; };
+		D6854B3218D731AC008E638A /* 020移动@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "020移动@2x.png"; sourceTree = "<group>"; };
+		D6854B3318D731AC008E638A /* 021属性.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "021属性.png"; sourceTree = "<group>"; };
+		D6854B3418D731AC008E638A /* 021属性@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "021属性@2x.png"; sourceTree = "<group>"; };
+		D6854B3518D731AC008E638A /* 022可见.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "022可见.png"; sourceTree = "<group>"; };
+		D6854B3618D731AC008E638A /* 023长度.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "023长度.png"; sourceTree = "<group>"; };
+		D6854B3718D731AC008E638A /* 023长度@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "023长度@2x.png"; sourceTree = "<group>"; };
+		D6854B3818D731AC008E638A /* 024面积.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "024面积.png"; sourceTree = "<group>"; };
+		D6854B3918D731AC008E638A /* 024面积@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "024面积@2x.png"; sourceTree = "<group>"; };
+		D6854B3A18D731AC008E638A /* 025回退.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "025回退.png"; sourceTree = "<group>"; };
+		D6854B3B18D731AC008E638A /* 025回退@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "025回退@2x.png"; sourceTree = "<group>"; };
+		D6854B3C18D731AC008E638A /* 026前进.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "026前进.png"; sourceTree = "<group>"; };
+		D6854B3D18D731AC008E638A /* 026前进@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "026前进@2x.png"; sourceTree = "<group>"; };
+		D6854B3E18D731AC008E638A /* 027清除.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "027清除.png"; sourceTree = "<group>"; };
+		D6854B3F18D731AC008E638A /* 027清除@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "027清除@2x.png"; sourceTree = "<group>"; };
+		D6854B4018D731AC008E638A /* 028搜索.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "028搜索.png"; sourceTree = "<group>"; };
+		D6854B4118D731AC008E638A /* 029选择.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "029选择.png"; sourceTree = "<group>"; };
+		D6854B4218D731AC008E638A /* 030记录轨迹.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "030记录轨迹.png"; sourceTree = "<group>"; };
+		D6854B4318D731AC008E638A /* 030记录轨迹@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "030记录轨迹@2x.png"; sourceTree = "<group>"; };
+		D6854B4418D731AC008E638A /* 031当前位置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "031当前位置.png"; sourceTree = "<group>"; };
+		D6854B4518D731AC008E638A /* 031当前位置@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "031当前位置@2x.png"; sourceTree = "<group>"; };
+		D6854B4618D731AC008E638A /* 032全幅显示.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "032全幅显示.png"; sourceTree = "<group>"; };
+		D6854B4718D731AC008E638A /* 032全幅显示@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "032全幅显示@2x.png"; sourceTree = "<group>"; };
+		D6854B4818D731AC008E638A /* 033定位.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "033定位.png"; sourceTree = "<group>"; };
+		D6854B4918D731AC008E638A /* 034保存（长）.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "034保存（长）.png"; sourceTree = "<group>"; };
+		D6854B4A18D731AC008E638A /* 035删除（长）.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "035删除（长）.png"; sourceTree = "<group>"; };
+		D6854B4B18D731AC008E638A /* 036图层长条按钮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "036图层长条按钮.png"; sourceTree = "<group>"; };
+		D6854B4C18D731AC008E638A /* 037记录长条按钮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "037记录长条按钮.png"; sourceTree = "<group>"; };
+		D6854B4D18D731AC008E638A /* 布局示意图001主界面.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "布局示意图001主界面.jpg"; sourceTree = "<group>"; };
+		D6854B4E18D731AC008E638A /* 布局示意图002图斑采集界面.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "布局示意图002图斑采集界面.jpg"; sourceTree = "<group>"; };
+		D6854B4F18D731AC008E638A /* 布局示意图003图层管理界面.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "布局示意图003图层管理界面.jpg"; sourceTree = "<group>"; };
+		D6854B5018D731AC008E638A /* 布局示意图004量算界面.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "布局示意图004量算界面.jpg"; sourceTree = "<group>"; };
+		D6854B5118D731AC008E638A /* 布局示意图005图斑查找界面.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "布局示意图005图斑查找界面.jpg"; sourceTree = "<group>"; };
+		D6854B5218D731AC008E638A /* 布局示意图006照片浏览界面.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "布局示意图006照片浏览界面.jpg"; sourceTree = "<group>"; };
+		D6854B5318D731AC008E638A /* 布局示意图007图斑管理界面.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "布局示意图007图斑管理界面.jpg"; sourceTree = "<group>"; };
+		D6854B5418D731AC008E638A /* 布局示意图008图斑详情界面.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "布局示意图008图斑详情界面.jpg"; sourceTree = "<group>"; };
+		D6854B5518D731AC008E638A /* 桌面图标120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桌面图标120.png"; sourceTree = "<group>"; };
+		D6854B5618D731AC008E638A /* 桌面图标152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桌面图标152.png"; sourceTree = "<group>"; };
+		D6854B5718D731AC008E638A /* 桌面图标76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桌面图标76.png"; sourceTree = "<group>"; };
+		D6854B5818D731AC008E638A /* 欢迎画面横1024.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "欢迎画面横1024.jpg"; sourceTree = "<group>"; };
+		D6854B5918D731AC008E638A /* 欢迎画面横1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "欢迎画面横1024.png"; sourceTree = "<group>"; };
+		D6854B5A18D731AC008E638A /* 欢迎画面横2048.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "欢迎画面横2048.jpg"; sourceTree = "<group>"; };
+		D6854B5B18D731AC008E638A /* 欢迎画面横2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "欢迎画面横2048.png"; sourceTree = "<group>"; };
+		D6854B5C18D731AC008E638A /* 欢迎画面竖1024.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "欢迎画面竖1024.jpg"; sourceTree = "<group>"; };
+		D6854B5D18D731AC008E638A /* 欢迎画面竖1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "欢迎画面竖1024.png"; sourceTree = "<group>"; };
+		D6854B5E18D731AC008E638A /* 欢迎画面竖2048.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "欢迎画面竖2048.jpg"; sourceTree = "<group>"; };
+		D6854B5F18D731AC008E638A /* 欢迎画面竖2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "欢迎画面竖2048.png"; sourceTree = "<group>"; };
+		D6C3607A18C5B6D900D9A5F8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		D6C3607C18C5B6E400D9A5F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D6C3607E18C5B6ED00D9A5F8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D6C3608018C5B6F800D9A5F8 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		D6C3608218C5B71800D9A5F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D6C3608418C5B77700D9A5F8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +361,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D62583A318D5240C00564A9D /* liblibspatialite.a in Frameworks */,
+				D67F9F3418C8706E000AF822 /* libgeos.a in Frameworks */,
+				D6603FC218C7171C00C1E1EA /* libiconv.dylib in Frameworks */,
+				D6603FC018C714FF00C1E1EA /* libproj.a in Frameworks */,
+				D6C3608518C5B77700D9A5F8 /* MobileCoreServices.framework in Frameworks */,
+				D6C3607D18C5B6E400D9A5F8 /* CoreLocation.framework in Frameworks */,
+				D6C3607B18C5B6D900D9A5F8 /* MediaPlayer.framework in Frameworks */,
 				D66A27A118C433DD008B4CFC /* ArcGIS.framework in Frameworks */,
-				D66A276B18C43370008B4CFC /* CoreGraphics.framework in Frameworks */,
 				D66A276D18C43370008B4CFC /* UIKit.framework in Frameworks */,
 				D66A276918C43370008B4CFC /* Foundation.framework in Frameworks */,
 			);
@@ -84,6 +387,88 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D606636618D6C6C5004E0A7A /* GPX */ = {
+			isa = PBXGroup;
+			children = (
+				D606636718D6C705004E0A7A /* GPX.h */,
+				D606636818D6C705004E0A7A /* GPXAuthor.h */,
+				D606636918D6C705004E0A7A /* GPXAuthor.m */,
+				D606636A18D6C705004E0A7A /* GPXBounds.h */,
+				D606636B18D6C705004E0A7A /* GPXBounds.m */,
+				D606636C18D6C705004E0A7A /* GPXConst.h */,
+				D606636D18D6C705004E0A7A /* GPXConst.m */,
+				D606636E18D6C705004E0A7A /* GPXCopyright.h */,
+				D606636F18D6C705004E0A7A /* GPXCopyright.m */,
+				D606637018D6C705004E0A7A /* GPXElement.h */,
+				D606637118D6C705004E0A7A /* GPXElement.m */,
+				D606637218D6C705004E0A7A /* GPXElementSubclass.h */,
+				D606637318D6C705004E0A7A /* GPXEmail.h */,
+				D606637418D6C705004E0A7A /* GPXEmail.m */,
+				D606637518D6C705004E0A7A /* GPXExtensions.h */,
+				D606637618D6C705004E0A7A /* GPXExtensions.m */,
+				D606637718D6C705004E0A7A /* GPXLink.h */,
+				D606637818D6C705004E0A7A /* GPXLink.m */,
+				D606637918D6C705004E0A7A /* GPXMetadata.h */,
+				D606637A18D6C705004E0A7A /* GPXMetadata.m */,
+				D606637B18D6C705004E0A7A /* GPXParser.h */,
+				D606637C18D6C705004E0A7A /* GPXParser.m */,
+				D606637D18D6C705004E0A7A /* GPXPerson.h */,
+				D606637E18D6C705004E0A7A /* GPXPerson.m */,
+				D606637F18D6C705004E0A7A /* GPXPoint.h */,
+				D606638018D6C705004E0A7A /* GPXPoint.m */,
+				D606638118D6C705004E0A7A /* GPXPointSegment.h */,
+				D606638218D6C705004E0A7A /* GPXPointSegment.m */,
+				D606638318D6C705004E0A7A /* GPXRoot.h */,
+				D606638418D6C705004E0A7A /* GPXRoot.m */,
+				D606638518D6C705004E0A7A /* GPXRoute.h */,
+				D606638618D6C705004E0A7A /* GPXRoute.m */,
+				D606638718D6C705004E0A7A /* GPXRoutePoint.h */,
+				D606638818D6C705004E0A7A /* GPXRoutePoint.m */,
+				D606638918D6C705004E0A7A /* GPXTrack.h */,
+				D606638A18D6C705004E0A7A /* GPXTrack.m */,
+				D606638B18D6C705004E0A7A /* GPXTrackPoint.h */,
+				D606638C18D6C705004E0A7A /* GPXTrackPoint.m */,
+				D606638D18D6C705004E0A7A /* GPXTrackSegment.h */,
+				D606638E18D6C705004E0A7A /* GPXTrackSegment.m */,
+				D606638F18D6C705004E0A7A /* GPXType.h */,
+				D606639018D6C705004E0A7A /* GPXType.m */,
+				D606639118D6C705004E0A7A /* GPXWaypoint.h */,
+				D606639218D6C705004E0A7A /* GPXWaypoint.m */,
+				D606639318D6C705004E0A7A /* GPXXML.h */,
+				D606639418D6C705004E0A7A /* GPXXML.m */,
+			);
+			name = GPX;
+			sourceTree = "<group>";
+		};
+		D6603FAB18C7081D00C1E1EA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D6854A5A18D73120008E638A /* Project.h */,
+				D6854A5B18D73120008E638A /* Project.mm */,
+				D606635D18D6C6A2004E0A7A /* Track.h */,
+				D606635E18D6C6A2004E0A7A /* Track.m */,
+				D606635F18D6C6A2004E0A7A /* TrackPoint.h */,
+				D606636018D6C6A2004E0A7A /* TrackPoint.m */,
+				D6603FAC18C7083F00C1E1EA /* Projects.h */,
+				D6603FAD18C7083F00C1E1EA /* Projects.m */,
+				D606635618D69C12004E0A7A /* MeasureLayer.h */,
+				D606635718D69C12004E0A7A /* MeasureLayer.m */,
+				D60663AB18D6C9C1004E0A7A /* GPSLayer.h */,
+				D60663AC18D6C9C1004E0A7A /* GPSLayer.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		D6603FB318C710E500C1E1EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6603FB918C710E700C1E1EA /* liblibspatialite.a */,
+				D6603FBB18C710E700C1E1EA /* libgeos.a */,
+				D6603FBD18C710E700C1E1EA /* libproj.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D66A275C18C43370008B4CFC = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +482,7 @@
 		D66A276618C43370008B4CFC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D66A276518C43370008B4CFC /* HomeLand.app */,
+				D66A276518C43370008B4CFC /* 卫片宝.app */,
 				D66A278918C43371008B4CFC /* HomeLandTests.xctest */,
 			);
 			name = Products;
@@ -106,6 +491,14 @@
 		D66A276718C43370008B4CFC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6603FC118C7171C00C1E1EA /* libiconv.dylib */,
+				D6603FB218C710E500C1E1EA /* libspatialite.xcodeproj */,
+				D6C3608418C5B77700D9A5F8 /* MobileCoreServices.framework */,
+				D6C3608218C5B71800D9A5F8 /* QuartzCore.framework */,
+				D6C3608018C5B6F800D9A5F8 /* CoreImage.framework */,
+				D6C3607E18C5B6ED00D9A5F8 /* CoreMedia.framework */,
+				D6C3607C18C5B6E400D9A5F8 /* CoreLocation.framework */,
+				D6C3607A18C5B6D900D9A5F8 /* MediaPlayer.framework */,
 				D66A27A018C433DD008B4CFC /* ArcGIS.framework */,
 				D66A276818C43370008B4CFC /* Foundation.framework */,
 				D66A276A18C43370008B4CFC /* CoreGraphics.framework */,
@@ -118,13 +511,19 @@
 		D66A276E18C43370008B4CFC /* HomeLand */ = {
 			isa = PBXGroup;
 			children = (
+				D606636618D6C6C5004E0A7A /* GPX */,
+				D6603FAB18C7081D00C1E1EA /* Core */,
 				D66A277718C43370008B4CFC /* AppDelegate.h */,
 				D66A277818C43370008B4CFC /* AppDelegate.m */,
 				D66A277A18C43370008B4CFC /* Main_iPhone.storyboard */,
 				D66A277D18C43370008B4CFC /* Main_iPad.storyboard */,
 				D66A278018C43370008B4CFC /* ViewController.h */,
 				D66A278118C43370008B4CFC /* ViewController.m */,
-				D66A278318C43370008B4CFC /* Images.xcassets */,
+				D6603FAF18C70C7D00C1E1EA /* ProjectController.h */,
+				D6603FB018C70C7D00C1E1EA /* ProjectController.m */,
+				D63134E318C996C1003DD1C8 /* LayerController.h */,
+				D63134E418C996C1003DD1C8 /* LayerController.m */,
+				D6603FA618C703A300C1E1EA /* Images.xcassets */,
 				D66A276F18C43370008B4CFC /* Supporting Files */,
 			);
 			path = HomeLand;
@@ -133,6 +532,7 @@
 		D66A276F18C43370008B4CFC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D6854B0918D731AC008E638A /* image */,
 				D66A277018C43370008B4CFC /* HomeLand-Info.plist */,
 				D66A277118C43370008B4CFC /* InfoPlist.strings */,
 				D66A277418C43370008B4CFC /* main.m */,
@@ -159,12 +559,112 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D6854B0918D731AC008E638A /* image */ = {
+			isa = PBXGroup;
+			children = (
+				D6854B0A18D731AC008E638A /* button */,
+				D6854B4D18D731AC008E638A /* 布局示意图001主界面.jpg */,
+				D6854B4E18D731AC008E638A /* 布局示意图002图斑采集界面.jpg */,
+				D6854B4F18D731AC008E638A /* 布局示意图003图层管理界面.jpg */,
+				D6854B5018D731AC008E638A /* 布局示意图004量算界面.jpg */,
+				D6854B5118D731AC008E638A /* 布局示意图005图斑查找界面.jpg */,
+				D6854B5218D731AC008E638A /* 布局示意图006照片浏览界面.jpg */,
+				D6854B5318D731AC008E638A /* 布局示意图007图斑管理界面.jpg */,
+				D6854B5418D731AC008E638A /* 布局示意图008图斑详情界面.jpg */,
+				D6854B5518D731AC008E638A /* 桌面图标120.png */,
+				D6854B5618D731AC008E638A /* 桌面图标152.png */,
+				D6854B5718D731AC008E638A /* 桌面图标76.png */,
+				D6854B5818D731AC008E638A /* 欢迎画面横1024.jpg */,
+				D6854B5918D731AC008E638A /* 欢迎画面横1024.png */,
+				D6854B5A18D731AC008E638A /* 欢迎画面横2048.jpg */,
+				D6854B5B18D731AC008E638A /* 欢迎画面横2048.png */,
+				D6854B5C18D731AC008E638A /* 欢迎画面竖1024.jpg */,
+				D6854B5D18D731AC008E638A /* 欢迎画面竖1024.png */,
+				D6854B5E18D731AC008E638A /* 欢迎画面竖2048.jpg */,
+				D6854B5F18D731AC008E638A /* 欢迎画面竖2048.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		D6854B0A18D731AC008E638A /* button */ = {
+			isa = PBXGroup;
+			children = (
+				D6854B0B18D731AC008E638A /* 001打开地图.png */,
+				D6854B0C18D731AC008E638A /* 001打开地图@2x.png */,
+				D6854B0D18D731AC008E638A /* 002图层管理.png */,
+				D6854B0E18D731AC008E638A /* 002图层管理@2x.png */,
+				D6854B0F18D731AC008E638A /* 003照片采集.png */,
+				D6854B1018D731AC008E638A /* 003照片采集@2x.png */,
+				D6854B1118D731AC008E638A /* 004浏览照片.png */,
+				D6854B1218D731AC008E638A /* 004浏览照片@2x.png */,
+				D6854B1318D731AC008E638A /* 005图斑采集.png */,
+				D6854B1418D731AC008E638A /* 005图斑采集@2x.png */,
+				D6854B1518D731AC008E638A /* 006图斑查找.png */,
+				D6854B1618D731AC008E638A /* 006图斑查找@2x.png */,
+				D6854B1718D731AC008E638A /* 007图斑管理.png */,
+				D6854B1818D731AC008E638A /* 007图斑管理@2x.png */,
+				D6854B1918D731AC008E638A /* 008量算.png */,
+				D6854B1A18D731AC008E638A /* 008量算@2x.png */,
+				D6854B1B18D731AC008E638A /* 009导出数据.png */,
+				D6854B1C18D731AC008E638A /* 009导出数据@2x.png */,
+				D6854B1D18D731AC008E638A /* 010点.png */,
+				D6854B1E18D731AC008E638A /* 010点@2x.png */,
+				D6854B1F18D731AC008E638A /* 011线.png */,
+				D6854B2018D731AC008E638A /* 011线@2x.png */,
+				D6854B2118D731AC008E638A /* 012面.png */,
+				D6854B2218D731AC008E638A /* 012面@2x.png */,
+				D6854B2318D731AC008E638A /* 013GPS采集.png */,
+				D6854B2418D731AC008E638A /* 013GPS采集@2x.png */,
+				D6854B2518D731AC008E638A /* 014自动采点.png */,
+				D6854B2618D731AC008E638A /* 014自动采点@2x.png */,
+				D6854B2718D731AC008E638A /* 015回退.png */,
+				D6854B2818D731AC008E638A /* 015回退@2x.png */,
+				D6854B2918D731AC008E638A /* 016前进.png */,
+				D6854B2A18D731AC008E638A /* 016前进@2x.png */,
+				D6854B2B18D731AC008E638A /* 017保存.png */,
+				D6854B2C18D731AC008E638A /* 017保存@2x.png */,
+				D6854B2D18D731AC008E638A /* 018清除编辑.png */,
+				D6854B2E18D731AC008E638A /* 018清除编辑@2x.png */,
+				D6854B2F18D731AC008E638A /* 019删除.png */,
+				D6854B3018D731AC008E638A /* 019删除@2x.png */,
+				D6854B3118D731AC008E638A /* 020移动.png */,
+				D6854B3218D731AC008E638A /* 020移动@2x.png */,
+				D6854B3318D731AC008E638A /* 021属性.png */,
+				D6854B3418D731AC008E638A /* 021属性@2x.png */,
+				D6854B3518D731AC008E638A /* 022可见.png */,
+				D6854B3618D731AC008E638A /* 023长度.png */,
+				D6854B3718D731AC008E638A /* 023长度@2x.png */,
+				D6854B3818D731AC008E638A /* 024面积.png */,
+				D6854B3918D731AC008E638A /* 024面积@2x.png */,
+				D6854B3A18D731AC008E638A /* 025回退.png */,
+				D6854B3B18D731AC008E638A /* 025回退@2x.png */,
+				D6854B3C18D731AC008E638A /* 026前进.png */,
+				D6854B3D18D731AC008E638A /* 026前进@2x.png */,
+				D6854B3E18D731AC008E638A /* 027清除.png */,
+				D6854B3F18D731AC008E638A /* 027清除@2x.png */,
+				D6854B4018D731AC008E638A /* 028搜索.png */,
+				D6854B4118D731AC008E638A /* 029选择.png */,
+				D6854B4218D731AC008E638A /* 030记录轨迹.png */,
+				D6854B4318D731AC008E638A /* 030记录轨迹@2x.png */,
+				D6854B4418D731AC008E638A /* 031当前位置.png */,
+				D6854B4518D731AC008E638A /* 031当前位置@2x.png */,
+				D6854B4618D731AC008E638A /* 032全幅显示.png */,
+				D6854B4718D731AC008E638A /* 032全幅显示@2x.png */,
+				D6854B4818D731AC008E638A /* 033定位.png */,
+				D6854B4918D731AC008E638A /* 034保存（长）.png */,
+				D6854B4A18D731AC008E638A /* 035删除（长）.png */,
+				D6854B4B18D731AC008E638A /* 036图层长条按钮.png */,
+				D6854B4C18D731AC008E638A /* 037记录长条按钮.png */,
+			);
+			path = button;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D66A276418C43370008B4CFC /* HomeLand */ = {
+		D66A276418C43370008B4CFC /* 卫片宝 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D66A279A18C43371008B4CFC /* Build configuration list for PBXNativeTarget "HomeLand" */;
+			buildConfigurationList = D66A279A18C43371008B4CFC /* Build configuration list for PBXNativeTarget "卫片宝" */;
 			buildPhases = (
 				D66A276118C43370008B4CFC /* Sources */,
 				D66A276218C43370008B4CFC /* Frameworks */,
@@ -174,9 +674,9 @@
 			);
 			dependencies = (
 			);
-			name = HomeLand;
+			name = "卫片宝";
 			productName = HomeLand;
-			productReference = D66A276518C43370008B4CFC /* HomeLand.app */;
+			productReference = D66A276518C43370008B4CFC /* 卫片宝.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D66A278818C43371008B4CFC /* HomeLandTests */ = {
@@ -222,23 +722,138 @@
 			mainGroup = D66A275C18C43370008B4CFC;
 			productRefGroup = D66A276618C43370008B4CFC /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D6603FB318C710E500C1E1EA /* Products */;
+					ProjectRef = D6603FB218C710E500C1E1EA /* libspatialite.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				D66A276418C43370008B4CFC /* HomeLand */,
+				D66A276418C43370008B4CFC /* 卫片宝 */,
 				D66A278818C43371008B4CFC /* HomeLandTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D6603FB918C710E700C1E1EA /* liblibspatialite.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibspatialite.a;
+			remoteRef = D6603FB818C710E700C1E1EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6603FBB18C710E700C1E1EA /* libgeos.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libgeos.a;
+			remoteRef = D6603FBA18C710E700C1E1EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D6603FBD18C710E700C1E1EA /* libproj.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libproj.a;
+			remoteRef = D6603FBC18C710E700C1E1EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D66A276318C43370008B4CFC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6854B8418D731AC008E638A /* 019删除.png in Resources */,
+				D6854B7618D731AC008E638A /* 012面.png in Resources */,
+				D6854B6718D731AC008E638A /* 004浏览照片@2x.png in Resources */,
+				D6854B7218D731AC008E638A /* 010点.png in Resources */,
+				D6854BA718D731AC008E638A /* 布局示意图006照片浏览界面.jpg in Resources */,
+				D6854B9418D731AC008E638A /* 027清除@2x.png in Resources */,
+				D6854B8218D731AC008E638A /* 018清除编辑.png in Resources */,
+				D6854B8918D731AC008E638A /* 021属性@2x.png in Resources */,
+				D6854BA318D731AC008E638A /* 布局示意图002图斑采集界面.jpg in Resources */,
+				D6854B9F18D731AC008E638A /* 035删除（长）.png in Resources */,
+				D6854B8B18D731AC008E638A /* 023长度.png in Resources */,
+				D6854BA018D731AC008E638A /* 036图层长条按钮.png in Resources */,
+				D6854B7318D731AC008E638A /* 010点@2x.png in Resources */,
 				D66A277F18C43370008B4CFC /* Main_iPad.storyboard in Resources */,
-				D66A278418C43370008B4CFC /* Images.xcassets in Resources */,
+				D6854B8F18D731AC008E638A /* 025回退.png in Resources */,
+				D6854B9A18D731AC008E638A /* 031当前位置@2x.png in Resources */,
+				D6854B9718D731AC008E638A /* 030记录轨迹.png in Resources */,
+				D6854B9E18D731AC008E638A /* 034保存（长）.png in Resources */,
+				D6854B6A18D731AC008E638A /* 006图斑查找.png in Resources */,
+				D6854B7818D731AC008E638A /* 013GPS采集.png in Resources */,
+				D6854B7018D731AC008E638A /* 009导出数据.png in Resources */,
+				D6854B9018D731AC008E638A /* 025回退@2x.png in Resources */,
+				D6854B8718D731AC008E638A /* 020移动@2x.png in Resources */,
+				D6854B9C18D731AC008E638A /* 032全幅显示@2x.png in Resources */,
+				D6854B6B18D731AC008E638A /* 006图斑查找@2x.png in Resources */,
+				D6854B7418D731AC008E638A /* 011线.png in Resources */,
+				D6854BA818D731AC008E638A /* 布局示意图007图斑管理界面.jpg in Resources */,
+				D6854B6418D731AC008E638A /* 003照片采集.png in Resources */,
+				D6854B7E18D731AC008E638A /* 016前进.png in Resources */,
+				D6854B8D18D731AC008E638A /* 024面积.png in Resources */,
+				D6854B6118D731AC008E638A /* 001打开地图@2x.png in Resources */,
+				D6854B9218D731AC008E638A /* 026前进@2x.png in Resources */,
+				D6854BAC18D731AC008E638A /* 桌面图标76.png in Resources */,
+				D6854B6E18D731AC008E638A /* 008量算.png in Resources */,
+				D6854B8018D731AC008E638A /* 017保存.png in Resources */,
+				D6854B6018D731AC008E638A /* 001打开地图.png in Resources */,
+				D6854BAE18D731AC008E638A /* 欢迎画面横1024.png in Resources */,
+				D6854B9118D731AC008E638A /* 026前进.png in Resources */,
+				D6854B6218D731AC008E638A /* 002图层管理.png in Resources */,
+				D6854BAD18D731AC008E638A /* 欢迎画面横1024.jpg in Resources */,
+				D6854B6918D731AC008E638A /* 005图斑采集@2x.png in Resources */,
+				D6854BAF18D731AC008E638A /* 欢迎画面横2048.jpg in Resources */,
+				D6854BA218D731AC008E638A /* 布局示意图001主界面.jpg in Resources */,
+				D6854B6818D731AC008E638A /* 005图斑采集.png in Resources */,
+				D6854B9D18D731AC008E638A /* 033定位.png in Resources */,
+				D6854B6F18D731AC008E638A /* 008量算@2x.png in Resources */,
+				D6854B7C18D731AC008E638A /* 015回退.png in Resources */,
+				D6854BB418D731AC008E638A /* 欢迎画面竖2048.png in Resources */,
+				D6854BA618D731AC008E638A /* 布局示意图005图斑查找界面.jpg in Resources */,
+				D6854B7F18D731AC008E638A /* 016前进@2x.png in Resources */,
+				D6854BA918D731AC008E638A /* 布局示意图008图斑详情界面.jpg in Resources */,
+				D6854B7D18D731AC008E638A /* 015回退@2x.png in Resources */,
+				D6854B7B18D731AC008E638A /* 014自动采点@2x.png in Resources */,
+				D6854B6D18D731AC008E638A /* 007图斑管理@2x.png in Resources */,
+				D6854B6618D731AC008E638A /* 004浏览照片.png in Resources */,
+				D6854B8118D731AC008E638A /* 017保存@2x.png in Resources */,
+				D6854B8318D731AC008E638A /* 018清除编辑@2x.png in Resources */,
+				D6854B6518D731AC008E638A /* 003照片采集@2x.png in Resources */,
+				D6854B7518D731AC008E638A /* 011线@2x.png in Resources */,
+				D6854B8818D731AC008E638A /* 021属性.png in Resources */,
+				D6854BAA18D731AC008E638A /* 桌面图标120.png in Resources */,
+				D6854B7A18D731AC008E638A /* 014自动采点.png in Resources */,
+				D6854BA118D731AC008E638A /* 037记录长条按钮.png in Resources */,
+				D6854B8518D731AC008E638A /* 019删除@2x.png in Resources */,
+				D6854BB218D731AC008E638A /* 欢迎画面竖1024.png in Resources */,
+				D6854B7118D731AC008E638A /* 009导出数据@2x.png in Resources */,
+				D6854B6318D731AC008E638A /* 002图层管理@2x.png in Resources */,
+				D6854B9518D731AC008E638A /* 028搜索.png in Resources */,
+				D6854BA518D731AC008E638A /* 布局示意图004量算界面.jpg in Resources */,
+				D6603FA718C703A300C1E1EA /* Images.xcassets in Resources */,
+				D6854BB318D731AC008E638A /* 欢迎画面竖2048.jpg in Resources */,
+				D6854BB018D731AC008E638A /* 欢迎画面横2048.png in Resources */,
+				D6854B9318D731AC008E638A /* 027清除.png in Resources */,
+				D6854B8E18D731AC008E638A /* 024面积@2x.png in Resources */,
+				D6854B6C18D731AC008E638A /* 007图斑管理.png in Resources */,
+				D6854B8C18D731AC008E638A /* 023长度@2x.png in Resources */,
+				D6854B9818D731AC008E638A /* 030记录轨迹@2x.png in Resources */,
+				D6854B7718D731AC008E638A /* 012面@2x.png in Resources */,
+				D6854B9B18D731AC008E638A /* 032全幅显示.png in Resources */,
+				D6854BA418D731AC008E638A /* 布局示意图003图层管理界面.jpg in Resources */,
+				D6854B8618D731AC008E638A /* 020移动.png in Resources */,
+				D6854BAB18D731AC008E638A /* 桌面图标152.png in Resources */,
 				D66A277C18C43370008B4CFC /* Main_iPhone.storyboard in Resources */,
 				D66A277318C43370008B4CFC /* InfoPlist.strings in Resources */,
+				D6854B9618D731AC008E638A /* 029选择.png in Resources */,
+				D6854BB118D731AC008E638A /* 欢迎画面竖1024.jpg in Resources */,
+				D6854B8A18D731AC008E638A /* 022可见.png in Resources */,
+				D6854B7918D731AC008E638A /* 013GPS采集@2x.png in Resources */,
+				D6854B9918D731AC008E638A /* 031当前位置.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,9 +872,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D606639618D6C705004E0A7A /* GPXBounds.m in Sources */,
+				D606636118D6C6A2004E0A7A /* Track.m in Sources */,
+				D60663A018D6C705004E0A7A /* GPXPoint.m in Sources */,
+				D60663AA18D6C705004E0A7A /* GPXXML.m in Sources */,
+				D60663A918D6C705004E0A7A /* GPXWaypoint.m in Sources */,
+				D606635818D69C12004E0A7A /* MeasureLayer.m in Sources */,
+				D606639818D6C705004E0A7A /* GPXCopyright.m in Sources */,
+				D60663AD18D6C9C1004E0A7A /* GPSLayer.m in Sources */,
+				D606639918D6C705004E0A7A /* GPXElement.m in Sources */,
+				D606636218D6C6A2004E0A7A /* TrackPoint.m in Sources */,
+				D60663A718D6C705004E0A7A /* GPXTrackSegment.m in Sources */,
+				D6603FB118C70C7D00C1E1EA /* ProjectController.m in Sources */,
+				D606639718D6C705004E0A7A /* GPXConst.m in Sources */,
+				D6603FAE18C7083F00C1E1EA /* Projects.m in Sources */,
+				D63134E518C996C1003DD1C8 /* LayerController.m in Sources */,
+				D6854A5C18D73120008E638A /* Project.mm in Sources */,
+				D606639E18D6C705004E0A7A /* GPXParser.m in Sources */,
+				D60663A618D6C705004E0A7A /* GPXTrackPoint.m in Sources */,
 				D66A278218C43370008B4CFC /* ViewController.m in Sources */,
+				D606639D18D6C705004E0A7A /* GPXMetadata.m in Sources */,
+				D60663A418D6C705004E0A7A /* GPXRoutePoint.m in Sources */,
+				D606639518D6C705004E0A7A /* GPXAuthor.m in Sources */,
+				D606639A18D6C705004E0A7A /* GPXEmail.m in Sources */,
+				D60663A118D6C705004E0A7A /* GPXPointSegment.m in Sources */,
+				D606639B18D6C705004E0A7A /* GPXExtensions.m in Sources */,
+				D606639F18D6C705004E0A7A /* GPXPerson.m in Sources */,
 				D66A277918C43370008B4CFC /* AppDelegate.m in Sources */,
 				D66A277518C43370008B4CFC /* main.m in Sources */,
+				D60663A318D6C705004E0A7A /* GPXRoute.m in Sources */,
+				D606639C18D6C705004E0A7A /* GPXLink.m in Sources */,
+				D60663A218D6C705004E0A7A /* GPXRoot.m in Sources */,
+				D60663A518D6C705004E0A7A /* GPXTrack.m in Sources */,
+				D60663A818D6C705004E0A7A /* GPXType.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +921,7 @@
 /* Begin PBXTargetDependency section */
 		D66A278F18C43371008B4CFC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D66A276418C43370008B4CFC /* HomeLand */;
+			target = D66A276418C43370008B4CFC /* 卫片宝 */;
 			targetProxy = D66A278E18C43371008B4CFC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -396,10 +1041,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libc++";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/SDKs/ArcGIS/iOS",
 				);
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HomeLand/HomeLand-Prefix.pch";
 				INFOPLIST_FILE = "HomeLand/HomeLand-Info.plist";
@@ -413,10 +1061,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libc++";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/SDKs/ArcGIS/iOS",
 				);
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HomeLand/HomeLand-Prefix.pch";
 				INFOPLIST_FILE = "HomeLand/HomeLand-Info.plist";
@@ -479,13 +1130,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D66A279A18C43371008B4CFC /* Build configuration list for PBXNativeTarget "HomeLand" */ = {
+		D66A279A18C43371008B4CFC /* Build configuration list for PBXNativeTarget "卫片宝" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D66A279B18C43371008B4CFC /* Debug */,
 				D66A279C18C43371008B4CFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D66A279D18C43371008B4CFC /* Build configuration list for PBXNativeTarget "HomeLandTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +1146,7 @@
 				D66A279F18C43371008B4CFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

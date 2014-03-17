@@ -7,7 +7,59 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ArcGIS/ArcGIS.h>
+#import "Project.h"
+#import "Projects.h"
+#import "GPX/GPX.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate,CLLocationManagerDelegate,AGSMapViewLayerDelegate,AGSMapViewTouchDelegate>
+{
+    NSArray* _buttonTitle;
+    CLLocationManager *_locationManager;
+}
+@property (strong, nonatomic) IBOutlet AGSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UITableView *rightBarView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *MeasureSegCrl;
+@property (weak, nonatomic) IBOutlet UIView *measureView;
+@property (weak, nonatomic) IBOutlet UIView *editView;
+@property (weak, nonatomic) IBOutlet UILabel *measureout;
+
+@property (weak, nonatomic) IBOutlet UISwitch *gpsSwitch;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *edittype;
+@property (weak, nonatomic) IBOutlet UILabel *mapScaleLabel;
+- (IBAction)gpsloggerTouch:(id)sender;
+- (IBAction)leftButtonTouch:(id)sender;
+- (IBAction)measureErea:(id)sender;
+- (IBAction)measureLine:(id)sender;
+- (IBAction)measure:(id)sender;
+- (IBAction)measureRedo:(id)sender;
+- (IBAction)measureUndo:(id)sender;
+- (IBAction)measureClear:(id)sender;
+- (IBAction)editpoint:(id)sender;
+- (IBAction)editline:(id)sender;
+- (IBAction)editRegion:(id)sender;
+- (IBAction)editDeleteSelect:(id)sender;
+- (IBAction)editMoveSelect:(id)sender;
+- (IBAction)editProperty:(id)sender;
+
+
+- (IBAction)viewAll:(id)sender;
+- (IBAction)goMyPos:(id)sender;
+- (IBAction)opengps:(id)sender;
+- (IBAction)edittype:(id)sender;
+- (IBAction)gpsinput:(id)sender;
+- (IBAction)autoinput:(id)sender;
+- (IBAction)editredo:(id)sender;
+- (IBAction)editundo:(id)sender;
+- (IBAction)editsave:(id)sender;
+- (IBAction)editclear:(id)sender;
+- (IBAction)openProjecTouch:(id)sender;
+- (IBAction)LayerManageTouch:(id)sender;
+- (IBAction)photographTouch:(id)sender;
+- (IBAction)photoManageTouch:(id)sender;
+- (IBAction)DataInputTouch:(id)sender;
+- (IBAction)DataSearchTouch:(id)sender;
+- (IBAction)DataManageTouch:(id)sender;
+- (IBAction)MeasureTouch:(id)sender;
 
 @end

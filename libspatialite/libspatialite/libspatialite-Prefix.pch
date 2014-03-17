@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'libspatialite' target in the 'libspatialite' project
+//
+
+#ifdef __OBJC__
+#endif
+
+#define VERSION "3.0.1"
