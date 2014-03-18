@@ -152,7 +152,8 @@
 }
 
 - (IBAction)viewAll:(id)sender {
-    //self.mapView.
+    AGSEnvelope *fullEnvelope = self.mapView.baseLayer.fullEnvelope;
+    [self.mapView zoomToEnvelope:fullEnvelope animated:YES];
 }
 
 - (IBAction)goMyPos:(id)sender {
@@ -296,16 +297,10 @@
     
     AGSPoint *point = [[AGSPoint alloc] initWithX:x y:y spatialReference:[AGSSpatialReference wgs84SpatialReference]];
     
-    [[Projects sharedProjects].curProject addPhote:image atPoint:point];
-    
-
-    
-    
-//    NSURL *saveURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:_fileName];
-//    
-//    [imageData writeToURL:saveURL atomically:YES];
-    
-    
+    Photo * photo = [[Photo alloc] init];
+    photo.image = image;
+    photo.point = point;
+    [[Projects sharedProjects].curProject addPhoto:photo];
 }
 
 -(void) openProject

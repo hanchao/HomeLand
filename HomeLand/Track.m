@@ -12,8 +12,8 @@
 
 @implementation Track
 
-@dynamic created;
-@dynamic trackpoints;
+@synthesize created;
+@synthesize trackpoints;
 
 - (void)addTrackpointsObject:(TrackPoint *)value
 {

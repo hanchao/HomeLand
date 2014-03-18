@@ -11,6 +11,7 @@
 #import "../libspatialite/headers/spatialite/gaiageo.h"
 #import "../libspatialite/headers/spatialite.h"
 #import <ArcGIS/ArcGIS.h>
+#import "Photo.h"
 //#import "GPX/GPX.h"
 
 @interface Project : NSObject
@@ -30,7 +31,10 @@
 -(BOOL) close;
 
 -(BOOL) addGeometry:(AGSGeometry*)geometry;
--(BOOL) addPhote:(UIImage*)image atPoint:(AGSPoint *)point;
+
+-(BOOL) addPhoto:(Photo*)photo;
+-(NSInteger) photoCount;
+-(NSMutableArray*) allPhoto;
 
 -(BOOL) saveTrack:(NSString *)gpx Name:(NSString *)name;
 

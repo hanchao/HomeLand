@@ -141,6 +141,8 @@
 		D6854BB218D731AC008E638A /* 欢迎画面竖1024.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5D18D731AC008E638A /* 欢迎画面竖1024.png */; };
 		D6854BB318D731AC008E638A /* 欢迎画面竖2048.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5E18D731AC008E638A /* 欢迎画面竖2048.jpg */; };
 		D6854BB418D731AC008E638A /* 欢迎画面竖2048.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5F18D731AC008E638A /* 欢迎画面竖2048.png */; };
+		D6854BB718D824F7008E638A /* ImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6854BB618D824F7008E638A /* ImageController.m */; };
+		D6854BBA18D833DE008E638A /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = D6854BB918D833DE008E638A /* Photo.m */; };
 		D6C3607B18C5B6D900D9A5F8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3607A18C5B6D900D9A5F8 /* MediaPlayer.framework */; };
 		D6C3607D18C5B6E400D9A5F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3607C18C5B6E400D9A5F8 /* CoreLocation.framework */; };
 		D6C3608518C5B77700D9A5F8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3608418C5B77700D9A5F8 /* MobileCoreServices.framework */; };
@@ -348,6 +350,10 @@
 		D6854B5D18D731AC008E638A /* 欢迎画面竖1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "欢迎画面竖1024.png"; sourceTree = "<group>"; };
 		D6854B5E18D731AC008E638A /* 欢迎画面竖2048.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "欢迎画面竖2048.jpg"; sourceTree = "<group>"; };
 		D6854B5F18D731AC008E638A /* 欢迎画面竖2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "欢迎画面竖2048.png"; sourceTree = "<group>"; };
+		D6854BB518D824F7008E638A /* ImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageController.h; sourceTree = "<group>"; };
+		D6854BB618D824F7008E638A /* ImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageController.m; sourceTree = "<group>"; };
+		D6854BB818D833DE008E638A /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		D6854BB918D833DE008E638A /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		D6C3607A18C5B6D900D9A5F8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		D6C3607C18C5B6E400D9A5F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D6C3607E18C5B6ED00D9A5F8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -445,6 +451,8 @@
 			children = (
 				D6854A5A18D73120008E638A /* Project.h */,
 				D6854A5B18D73120008E638A /* Project.mm */,
+				D6854BB818D833DE008E638A /* Photo.h */,
+				D6854BB918D833DE008E638A /* Photo.m */,
 				D606635D18D6C6A2004E0A7A /* Track.h */,
 				D606635E18D6C6A2004E0A7A /* Track.m */,
 				D606635F18D6C6A2004E0A7A /* TrackPoint.h */,
@@ -523,6 +531,8 @@
 				D6603FB018C70C7D00C1E1EA /* ProjectController.m */,
 				D63134E318C996C1003DD1C8 /* LayerController.h */,
 				D63134E418C996C1003DD1C8 /* LayerController.m */,
+				D6854BB518D824F7008E638A /* ImageController.h */,
+				D6854BB618D824F7008E638A /* ImageController.m */,
 				D6603FA618C703A300C1E1EA /* Images.xcassets */,
 				D66A276F18C43370008B4CFC /* Supporting Files */,
 			);
@@ -895,10 +905,12 @@
 				D60663A418D6C705004E0A7A /* GPXRoutePoint.m in Sources */,
 				D606639518D6C705004E0A7A /* GPXAuthor.m in Sources */,
 				D606639A18D6C705004E0A7A /* GPXEmail.m in Sources */,
+				D6854BB718D824F7008E638A /* ImageController.m in Sources */,
 				D60663A118D6C705004E0A7A /* GPXPointSegment.m in Sources */,
 				D606639B18D6C705004E0A7A /* GPXExtensions.m in Sources */,
 				D606639F18D6C705004E0A7A /* GPXPerson.m in Sources */,
 				D66A277918C43370008B4CFC /* AppDelegate.m in Sources */,
+				D6854BBA18D833DE008E638A /* Photo.m in Sources */,
 				D66A277518C43370008B4CFC /* main.m in Sources */,
 				D60663A318D6C705004E0A7A /* GPXRoute.m in Sources */,
 				D606639C18D6C705004E0A7A /* GPXLink.m in Sources */,

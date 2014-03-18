@@ -66,6 +66,8 @@
 
 - (BOOL) createProject:(NSString *) name
 {
+    [self.curProject close];
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     // 工程目录
     NSString *projectDirectory = self.projectDirectory;
@@ -94,6 +96,8 @@
 
 - (BOOL) openProject:(NSString *) name
 {
+    [self.curProject close];
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     // 工程目录
     NSString *projectDirectory = self.projectDirectory;

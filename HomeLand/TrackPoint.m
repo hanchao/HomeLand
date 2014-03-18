@@ -12,10 +12,10 @@
 
 @implementation TrackPoint
 
-@dynamic longitude;
-@dynamic latitude;
-@dynamic created;
-@dynamic altitude;
+@synthesize longitude;
+@synthesize latitude;
+@synthesize created;
+@synthesize altitude;
 
 
 - (CLLocationCoordinate2D)coordinate

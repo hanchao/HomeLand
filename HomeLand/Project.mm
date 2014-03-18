@@ -414,7 +414,7 @@
     if (ret != SQLITE_OK)
     {
         /* an error occurred */
-        printf ("CREATE TABLE 'test' error: %s\n", err_msg);
+        printf ("CREATE TABLE 'Photo' error: %s\n", err_msg);
         sqlite3_free (err_msg);
         return FALSE;
     }
@@ -425,7 +425,7 @@
      */
     strcpy (sql, "SELECT AddGeometryColumn('");
     strcat (sql, "Photo");
-    strcat (sql, "', 'geom', 3003, 'POINT', 2)");
+    strcat (sql, "', 'geom', 4326, 'POINT', 2)");
 
     
     ret = sqlite3_exec (_handle, sql, NULL, NULL, &err_msg);
@@ -437,7 +437,16 @@
         return FALSE;
     }
     
-    
+    strcpy (sql, "alter TABLE Photo add filename varchar ( 256 )");
+    ret = sqlite3_exec (_handle, sql, NULL, NULL, &err_msg);
+    if (ret != SQLITE_OK)
+    {
+        /* an error occurred */
+        printf ("alter error: %s\n", err_msg);
+        sqlite3_free (err_msg);
+        return FALSE;
+    }
+            
     /*
      and finally we'll enable this geo-column to have a Spatial Index based on R*Tree
      */
@@ -702,20 +711,217 @@
     return TRUE;
 }
 
--(BOOL) addPhote:(UIImage*)image atPoint:(AGSPoint *)point
+-(BOOL) addPhoto:(Photo*)photo
 {
     NSDate *date = [NSDate date];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyyMMddHHmmss"];
     
+    NSString *shortFileName = [formatter stringFromDate:date];
+    
     NSString *photoDir = [path stringByAppendingPathComponent:@"Photo"];
-    NSString *photoFilePath = [photoDir stringByAppendingPathComponent:[formatter stringFromDate:date]];
+    NSString *photoFilePath = [photoDir stringByAppendingPathComponent:shortFileName];
     NSString *fileName = [photoFilePath stringByAppendingPathExtension:@"jpg"];
     
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
+    NSData *imageData = UIImageJPEGRepresentation(photo.image, 0.8);
     
-    return [imageData writeToFile:fileName atomically:YES];
+    if(![imageData writeToFile:fileName atomically:YES])
+    {
+        return FALSE;
+    }
+    
+    int ret = 0;
+    char *err_msg = NULL;
+    char sql[256];
+    
+    sqlite3_stmt *stmt;
+    
+    gaiaGeomCollPtr geo = NULL;
+    unsigned char *blob;
+    int blob_size;
+    
+    
+    
+    /* preparing the geometry to insert */
+    geo = gaiaAllocGeomColl ();
+    geo->Srid = 4326;
+    
+    gaiaAddPointToGeomColl (geo, photo.point.x, photo.point.y);
+    
+    strcpy (sql, "INSERT INTO ");
+    strcat (sql, "Photo");
+    strcat (sql, " (id, geom, filename) VALUES (?, ?, ?)");
+    ret = sqlite3_prepare_v2 (_handle, sql, strlen (sql), &stmt, NULL);
+    if (ret != SQLITE_OK)
+    {
+        /* an error occurred */
+        printf ("INSERT SQL error: %s\n", sqlite3_errmsg (_handle));
+        return FALSE;
+    }
+    
+    
+    /* transforming this geometry into the SpatiaLite BLOB format */
+    gaiaToSpatiaLiteBlobWkb (geo, &blob, &blob_size);
+    
+    /* we can now destroy the geometry object */
+    gaiaFreeGeomColl (geo);
+    
+    /* resetting Prepared Statement and bindings */
+    sqlite3_reset (stmt);
+    sqlite3_clear_bindings (stmt);
+    
+    /* binding parameters to Prepared Statement */
+    //sqlite3_bind_int64 (stmt, 1, pk);
+    sqlite3_bind_blob (stmt, 2, blob, blob_size, free);
+    sqlite3_bind_text (stmt, 3, shortFileName.UTF8String, shortFileName.length,SQLITE_STATIC);
+    
+    /* performing actual row insert */
+    ret = sqlite3_step (stmt);
+    if (ret == SQLITE_DONE || ret == SQLITE_ROW)
+        ;
+    else
+    {
+        /* an unexpected error occurred */
+        printf ("sqlite3_step() error: %s\n",
+                sqlite3_errmsg (_handle));
+        sqlite3_finalize (stmt);
+        return FALSE;
+    }
+    
+    /* we have now to finalize the query [memory cleanup] */
+    sqlite3_finalize (stmt);
+    
+    return TRUE;
+}
+
+-(NSInteger) photoCount
+{
+    int ret = 0;
+    char *err_msg = NULL;
+    char sql[256];
+    
+    sqlite3_stmt *stmt;
+    
+    strcpy (sql, "select count(*) from Photo");
+    ret = sqlite3_prepare_v2 (_handle, sql, strlen (sql), &stmt, NULL);
+    if (ret != SQLITE_OK)
+    {
+        /* an error occurred */
+        printf ("INSERT SQL error: %s\n", sqlite3_errmsg (_handle));
+        return 0;
+    }
+    
+    ret = sqlite3_step (stmt);
+    if (ret != SQLITE_ROW)
+    {
+        return 0;
+    }
+    
+    return sqlite3_column_int (stmt, 0);
+}
+
+-(NSMutableArray*) allPhoto
+{
+    int ret = 0;
+    char *err_msg = NULL;
+    char sql[256];
+    
+    sqlite3_stmt *stmt;
+    
+    gaiaGeomCollPtr geom;
+    int ic;
+    int n_rows;
+    int n_columns;
+    int row_no;
+    const unsigned char *blob;
+    int blob_size;
+    int geom_type;
+    
+    strcpy (sql, "SELECT geom, filename FROM Photo");
+    
+    ret = sqlite3_prepare_v2 (_handle, sql, strlen (sql), &stmt, NULL);
+    if (ret != SQLITE_OK)
+    {
+        /* some error occurred */
+		printf ("query#2 SQL error: %s\n", sqlite3_errmsg (_handle));
+		return nil;
+    }
+    
+    NSMutableArray *photos = [[NSMutableArray alloc] init];
+    
+    while (1)
+    {
+        /* this is an infinite loop, intended to fetch any row */
+        
+        /* we are now trying to fetch the next available row */
+		ret = sqlite3_step (stmt);
+		if (ret == SQLITE_DONE)
+        {
+            /* there are no more rows to fetch - we can stop looping */
+            break;
+        }
+		if (ret == SQLITE_ROW)
+        {
+            /* ok, we've just fetched a valid row to process */
+            row_no++;
+            printf ("row #%d\n", row_no);
+            
+            Photo * photo = [[Photo alloc] init];
+            
+            blob = (unsigned char *)sqlite3_column_blob (stmt, 0);
+            blob_size = sqlite3_column_bytes (stmt, 0);
+            
+            /* checking if this BLOB actually is a GEOMETRY */
+            geom =
+            gaiaFromSpatiaLiteBlobWkb (blob,
+                                       blob_size);
+            if (!geom)
+            {
+                /* for sure this one is not a GEOMETRY */
+                printf ("BLOB [%d bytes]", blob_size);
+            }
+            else
+            {
+                AGSGeometry* geometry;
+                geom_type = gaiaGeometryType (geom);
+                if (geom_type == GAIA_UNKNOWN)
+                    printf ("EMPTY or NULL GEOMETRY");
+                else
+                {
+                    if (geom_type == GAIA_POINT)
+                    {
+
+                        photo.point = [[AGSPoint alloc] initWithX:geom->FirstPoint->X y:geom->FirstPoint->Y spatialReference:nil];
+                    }
+                }
+            }
+
+            
+            const char *pFileName = (const char *)sqlite3_column_text (stmt, 1);
+            photo.fileName = [NSString stringWithUTF8String:pFileName];
+      
+            NSString *photoDir = [path stringByAppendingPathComponent:@"Photo"];
+            NSString *photoFilePath = [photoDir stringByAppendingPathComponent:photo.fileName];
+            NSString *fileName = [photoFilePath stringByAppendingPathExtension:@"jpg"];
+            
+            photo.image = [UIImage imageWithContentsOfFile: fileName];
+            
+            [photos addObject:photo];
+        }
+		else
+        {
+            /* some unexpected error occurred */
+            printf ("sqlite3_step() error: %s\n",
+                    sqlite3_errmsg (_handle));
+            sqlite3_finalize (stmt);
+            return nil;
+        }
+    }
+    /* we have now to finalize the query [memory cleanup] */
+    sqlite3_finalize (stmt);
+    
+    return photos;
 }
 
 -(BOOL) saveTrack:(NSString *)gpx Name:(NSString *)name
