@@ -18,16 +18,21 @@
     CLLocationManager *_locationManager;
 }
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
-@property (weak, nonatomic) IBOutlet UITableView *rightBarView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *MeasureSegCrl;
 @property (weak, nonatomic) IBOutlet UIView *measureView;
 @property (weak, nonatomic) IBOutlet UIView *editView;
 @property (weak, nonatomic) IBOutlet UILabel *measureout;
-
-@property (weak, nonatomic) IBOutlet UISwitch *gpsSwitch;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *edittype;
 @property (weak, nonatomic) IBOutlet UILabel *mapScaleLabel;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchbar;
+@property (weak, nonatomic) IBOutlet UIButton *measurebutton;
+@property (weak, nonatomic) IBOutlet UIButton *editbutton;
+@property (weak, nonatomic) IBOutlet UIButton *measureareabutton;
+@property (weak, nonatomic) IBOutlet UIButton *measurelinebutton;
+@property (weak, nonatomic) IBOutlet UIButton *editpointbutton;
+@property (weak, nonatomic) IBOutlet UIButton *editlinebutton;
+@property (weak, nonatomic) IBOutlet UIButton *editregionbutton;
+@property (weak, nonatomic) IBOutlet UIButton *editautoinput;
+
+
 - (IBAction)gpsloggerTouch:(id)sender;
 - (IBAction)leftButtonTouch:(id)sender;
 - (IBAction)measureErea:(id)sender;

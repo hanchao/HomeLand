@@ -168,6 +168,7 @@
                                         <state key="normal" image="023长度.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" image="长度点击效果.png"/>
                                         <connections>
                                             <action selector="measureLine:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QbW-dj-i1G"/>
                                         </connections>
@@ -178,6 +179,7 @@
                                         <state key="normal" image="024面积.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" image="面积点击效果.png"/>
                                         <connections>
                                             <action selector="measureErea:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lyb-a9-7SH"/>
                                         </connections>
@@ -193,11 +195,12 @@
                                     <action selector="viewAll:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WXY-Ka-0H5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9k-xn-9B4">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9k-xn-9B4">
                                 <rect key="frame" x="14" y="658" width="97" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" image="030记录轨迹.png"/>
+                                <state key="selected" image="记录轨迹点击效果.png"/>
                                 <connections>
                                     <action selector="gpsloggerTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4JX-qN-naB"/>
                                 </connections>
@@ -221,6 +224,8 @@
                                         <state key="normal" title="GPS采集" image="013GPS采集.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" image="自动采点点击效果.png"/>
+                                        <state key="highlighted" image="自动采点点击效果.png"/>
                                         <connections>
                                             <action selector="gpsinput:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Bv-up-xb2"/>
                                         </connections>
@@ -231,6 +236,7 @@
                                         <state key="normal" title="自动采集" image="014自动采点.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" image="自动采点点击效果.png"/>
                                         <connections>
                                             <action selector="autoinput:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5lK-Jg-0R3"/>
                                         </connections>
@@ -282,6 +288,7 @@
                                         <state key="normal" image="010点.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" image="点点击效果.png"/>
                                         <connections>
                                             <action selector="editpoint:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d4M-4q-ZB3"/>
                                         </connections>
@@ -292,6 +299,7 @@
                                         <state key="normal" image="011线.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" image="线点击效果.png"/>
                                         <connections>
                                             <action selector="editline:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G8g-QW-ZR5"/>
                                         </connections>
@@ -306,7 +314,7 @@
                                             <action selector="editRegion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D6B-bX-NST"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0Y-TQ-TQC">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0Y-TQ-TQC">
                                         <rect key="frame" x="0.0" y="5" width="83" height="83"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="019删除.png">
@@ -316,7 +324,7 @@
                                             <action selector="editDeleteSelect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7hR-28-PDo"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z15-xJ-MLo">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z15-xJ-MLo">
                                         <rect key="frame" x="91" y="5" width="83" height="83"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="020移动.png">
@@ -326,7 +334,7 @@
                                             <action selector="editMoveSelect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VLI-ul-hwu"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaA-A2-DQq">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaA-A2-DQq">
                                         <rect key="frame" x="182" y="5" width="83" height="83"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="021属性.png">
@@ -387,6 +395,7 @@
                                 <state key="normal" image="005图斑采集.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="图斑采集点击效果.png"/>
                                 <connections>
                                     <action selector="DataInputTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b5d-jt-dFB"/>
                                 </connections>
@@ -408,6 +417,7 @@
                                 <state key="normal" image="008量算.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="量算点击效果.png"/>
                                 <connections>
                                     <action selector="MeasureTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4me-SG-Gj8"/>
                                 </connections>
@@ -463,9 +473,17 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="editView" destination="QZS-24-fTL" id="95A-ng-erP"/>
+                        <outlet property="editautoinput" destination="XX9-cf-lOh" id="cVb-P0-ksg"/>
+                        <outlet property="editbutton" destination="KWT-DZ-TwJ" id="jrX-VO-qPE"/>
+                        <outlet property="editlinebutton" destination="QLq-RK-lSr" id="1iz-Pd-WhE"/>
+                        <outlet property="editpointbutton" destination="cSx-QF-xGz" id="WaX-Xx-siK"/>
+                        <outlet property="editregionbutton" destination="6yI-ML-oDO" id="hZS-7f-Avs"/>
                         <outlet property="mapScaleLabel" destination="Qqp-S4-uXJ" id="eOd-3W-WJk"/>
                         <outlet property="mapView" destination="8bC-Xf-vdC" id="ZNA-gB-8r8"/>
                         <outlet property="measureView" destination="YGP-Cc-EOr" id="oWC-EF-bcK"/>
+                        <outlet property="measureareabutton" destination="6YJ-QK-d31" id="rWN-0x-UQt"/>
+                        <outlet property="measurebutton" destination="niD-25-fo2" id="52A-gw-WjL"/>
+                        <outlet property="measurelinebutton" destination="wl4-1w-JeU" id="VKa-W6-H8G"/>
                         <outlet property="measureout" destination="h9q-MB-Jfu" id="Vkb-zg-zrv"/>
                         <outlet property="searchbar" destination="XFb-aX-Tvg" id="Pb1-Ph-ec1"/>
                     </connections>
@@ -745,6 +763,14 @@
         <image name="030记录轨迹.png" width="97" height="50"/>
         <image name="031当前位置.png" width="97" height="50"/>
         <image name="032全幅显示.png" width="97" height="50"/>
+        <image name="图斑采集点击效果.png" width="83" height="83"/>
+        <image name="点点击效果.png" width="83" height="83"/>
+        <image name="线点击效果.png" width="83" height="83"/>
+        <image name="自动采点点击效果.png" width="83" height="83"/>
+        <image name="记录轨迹点击效果.png" width="97" height="50"/>
+        <image name="量算点击效果.png" width="83" height="83"/>
+        <image name="长度点击效果.png" width="83" height="83"/>
+        <image name="面积点击效果.png" width="83" height="83"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>

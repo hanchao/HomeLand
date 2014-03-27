@@ -275,19 +275,26 @@
                     case SQLITE_INTEGER:
                         printf ("%d", sqlite3_column_int (stmt, ic));
                         value = [NSString stringWithFormat:@"%d",sqlite3_column_int (stmt, ic)];
-                        [dict setObject:value forKey:key];
+                        
+                        if (value != nil) {
+                            [dict setObject:value forKey:key];
+                        }
                         break;
                     case SQLITE_FLOAT:
                         printf ("%1.4f",
                                 sqlite3_column_double (stmt, ic));
                         value = [NSString stringWithFormat:@"%f",sqlite3_column_double (stmt, ic)];
-                        [dict setObject:value forKey:key];
+                        if (value != nil) {
+                            [dict setObject:value forKey:key];
+                        }
                         break;
                     case SQLITE_TEXT:
                         printf ("'%s'",
                                 sqlite3_column_text (stmt, ic));
-                        value = [NSString stringWithFormat:@"%s",sqlite3_column_text (stmt, ic)];
-                        [dict setObject:value forKey:key];
+                        value = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, ic)];
+                        if (value != nil) {
+                            [dict setObject:value forKey:key];
+                        }
                         break;
                     case SQLITE_BLOB:
                         blob = (unsigned char *)sqlite3_column_blob (stmt, ic);
@@ -943,7 +950,9 @@
     {
         NSString *value = [graphic.allAttributes objectForKey:key];
         
-        sqlite3_bind_text (stmt, index, value.UTF8String,value.length, SQLITE_STATIC);
+        const char *pData = value.UTF8String;
+        sqlite3_bind_text (stmt, index, pData,strlen(pData), SQLITE_STATIC);
+        
         index ++;
     }
     /* performing actual row insert */
@@ -1108,8 +1117,8 @@
     for (id key in [graphic.allAttributes allKeys])
     {
         NSString *value = [graphic.allAttributes objectForKey:key];
-        
-        sqlite3_bind_text (stmt, index, value.UTF8String,value.length, SQLITE_STATIC);
+        const char *pData = value.UTF8String;
+        sqlite3_bind_text (stmt, index, pData,strlen(pData), SQLITE_STATIC);
         index ++;
     }
     /* performing actual row insert */
@@ -1189,7 +1198,7 @@
     return TRUE;
 }
 
--(BOOL) addPhoto:(Photo*)photo
+-(NSString *) addPhoto:(Photo*)photo
 {
     NSDate *date = [NSDate date];
     
@@ -1206,7 +1215,7 @@
     
     if(![imageData writeToFile:fileName atomically:YES])
     {
-        return FALSE;
+        return nil;
     }
     
     int ret = 0;
@@ -1264,13 +1273,13 @@
         printf ("sqlite3_step() error: %s\n",
                 sqlite3_errmsg (_handle));
         sqlite3_finalize (stmt);
-        return FALSE;
+        return nil;
     }
     
     /* we have now to finalize the query [memory cleanup] */
     sqlite3_finalize (stmt);
     
-    return TRUE;
+    return shortFileName;
 }
 
 -(NSMutableArray*) search:(NSString *)key

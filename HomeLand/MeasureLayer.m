@@ -37,6 +37,11 @@
     [super clear];
 }
 
+- (BOOL) isMeasure
+{
+    return self.geometry != nil;
+}
+
 -(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features
 {
     [super mapView:mapView didClickAtPoint:screen mapPoint:mappoint features:features];

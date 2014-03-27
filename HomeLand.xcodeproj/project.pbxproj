@@ -33,6 +33,24 @@
 		D60663A918D6C705004E0A7A /* GPXWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D606639218D6C705004E0A7A /* GPXWaypoint.m */; };
 		D60663AA18D6C705004E0A7A /* GPXXML.m in Sources */ = {isa = PBXBuildFile; fileRef = D606639418D6C705004E0A7A /* GPXXML.m */; };
 		D60663AD18D6C9C1004E0A7A /* GPSLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D60663AC18D6C9C1004E0A7A /* GPSLayer.m */; };
+		D62130C718E3C6D50061A10A /* 点点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130B518E3C6D40061A10A /* 点点击效果.png */; };
+		D62130C818E3C6D50061A10A /* 点点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130B618E3C6D40061A10A /* 点点击效果@2x.png */; };
+		D62130C918E3C6D50061A10A /* 记录轨迹点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130B718E3C6D50061A10A /* 记录轨迹点击效果.png */; };
+		D62130CA18E3C6D50061A10A /* 记录轨迹点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130B818E3C6D50061A10A /* 记录轨迹点击效果@2x.png */; };
+		D62130CB18E3C6D50061A10A /* 量算点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130B918E3C6D50061A10A /* 量算点击效果.png */; };
+		D62130CC18E3C6D50061A10A /* 量算点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130BA18E3C6D50061A10A /* 量算点击效果@2x.png */; };
+		D62130CD18E3C6D50061A10A /* 面积点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130BB18E3C6D50061A10A /* 面积点击效果.png */; };
+		D62130CE18E3C6D50061A10A /* 面积点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130BC18E3C6D50061A10A /* 面积点击效果@2x.png */; };
+		D62130CF18E3C6D50061A10A /* 图斑采集点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130BD18E3C6D50061A10A /* 图斑采集点击效果.png */; };
+		D62130D018E3C6D50061A10A /* 图斑采集点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130BE18E3C6D50061A10A /* 图斑采集点击效果@2x.png */; };
+		D62130D118E3C6D50061A10A /* 线点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130BF18E3C6D50061A10A /* 线点击效果.png */; };
+		D62130D218E3C6D50061A10A /* 线点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130C018E3C6D50061A10A /* 线点击效果@2x.png */; };
+		D62130D318E3C6D50061A10A /* 移动点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130C118E3C6D50061A10A /* 移动点击效果.png */; };
+		D62130D418E3C6D50061A10A /* 移动点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130C218E3C6D50061A10A /* 移动点击效果@2x.png */; };
+		D62130D518E3C6D50061A10A /* 长度点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130C318E3C6D50061A10A /* 长度点击效果.png */; };
+		D62130D618E3C6D50061A10A /* 长度点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130C418E3C6D50061A10A /* 长度点击效果@2x.png */; };
+		D62130D718E3C6D50061A10A /* 自动采点点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130C518E3C6D50061A10A /* 自动采点点击效果.png */; };
+		D62130D818E3C6D50061A10A /* 自动采点点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130C618E3C6D50061A10A /* 自动采点点击效果@2x.png */; };
 		D623C37218E1369F0007656E /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D623C37118E1369F0007656E /* RecordController.m */; };
 		D623C37818E13B180007656E /* ManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D623C37718E13B180007656E /* ManageController.m */; };
 		D623C37B18E13C7F0007656E /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D623C37918E13C7F0007656E /* Main_iPad.storyboard */; };
@@ -239,6 +257,24 @@
 		D606639418D6C705004E0A7A /* GPXXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXXML.m; path = GPX/GPXXML.m; sourceTree = "<group>"; };
 		D60663AB18D6C9C1004E0A7A /* GPSLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSLayer.h; sourceTree = "<group>"; };
 		D60663AC18D6C9C1004E0A7A /* GPSLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSLayer.m; sourceTree = "<group>"; };
+		D62130B518E3C6D40061A10A /* 点点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "点点击效果.png"; sourceTree = "<group>"; };
+		D62130B618E3C6D40061A10A /* 点点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "点点击效果@2x.png"; sourceTree = "<group>"; };
+		D62130B718E3C6D50061A10A /* 记录轨迹点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "记录轨迹点击效果.png"; sourceTree = "<group>"; };
+		D62130B818E3C6D50061A10A /* 记录轨迹点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "记录轨迹点击效果@2x.png"; sourceTree = "<group>"; };
+		D62130B918E3C6D50061A10A /* 量算点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "量算点击效果.png"; sourceTree = "<group>"; };
+		D62130BA18E3C6D50061A10A /* 量算点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "量算点击效果@2x.png"; sourceTree = "<group>"; };
+		D62130BB18E3C6D50061A10A /* 面积点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面积点击效果.png"; sourceTree = "<group>"; };
+		D62130BC18E3C6D50061A10A /* 面积点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面积点击效果@2x.png"; sourceTree = "<group>"; };
+		D62130BD18E3C6D50061A10A /* 图斑采集点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图斑采集点击效果.png"; sourceTree = "<group>"; };
+		D62130BE18E3C6D50061A10A /* 图斑采集点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图斑采集点击效果@2x.png"; sourceTree = "<group>"; };
+		D62130BF18E3C6D50061A10A /* 线点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "线点击效果.png"; sourceTree = "<group>"; };
+		D62130C018E3C6D50061A10A /* 线点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "线点击效果@2x.png"; sourceTree = "<group>"; };
+		D62130C118E3C6D50061A10A /* 移动点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "移动点击效果.png"; sourceTree = "<group>"; };
+		D62130C218E3C6D50061A10A /* 移动点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "移动点击效果@2x.png"; sourceTree = "<group>"; };
+		D62130C318E3C6D50061A10A /* 长度点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "长度点击效果.png"; sourceTree = "<group>"; };
+		D62130C418E3C6D50061A10A /* 长度点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "长度点击效果@2x.png"; sourceTree = "<group>"; };
+		D62130C518E3C6D50061A10A /* 自动采点点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自动采点点击效果.png"; sourceTree = "<group>"; };
+		D62130C618E3C6D50061A10A /* 自动采点点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自动采点点击效果@2x.png"; sourceTree = "<group>"; };
 		D623C37018E1369F0007656E /* RecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordController.h; sourceTree = "<group>"; };
 		D623C37118E1369F0007656E /* RecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordController.m; sourceTree = "<group>"; };
 		D623C37618E13B180007656E /* ManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageController.h; sourceTree = "<group>"; };
@@ -624,6 +660,24 @@
 		D6854B0A18D731AC008E638A /* button */ = {
 			isa = PBXGroup;
 			children = (
+				D62130B518E3C6D40061A10A /* 点点击效果.png */,
+				D62130B618E3C6D40061A10A /* 点点击效果@2x.png */,
+				D62130B718E3C6D50061A10A /* 记录轨迹点击效果.png */,
+				D62130B818E3C6D50061A10A /* 记录轨迹点击效果@2x.png */,
+				D62130B918E3C6D50061A10A /* 量算点击效果.png */,
+				D62130BA18E3C6D50061A10A /* 量算点击效果@2x.png */,
+				D62130BB18E3C6D50061A10A /* 面积点击效果.png */,
+				D62130BC18E3C6D50061A10A /* 面积点击效果@2x.png */,
+				D62130BD18E3C6D50061A10A /* 图斑采集点击效果.png */,
+				D62130BE18E3C6D50061A10A /* 图斑采集点击效果@2x.png */,
+				D62130BF18E3C6D50061A10A /* 线点击效果.png */,
+				D62130C018E3C6D50061A10A /* 线点击效果@2x.png */,
+				D62130C118E3C6D50061A10A /* 移动点击效果.png */,
+				D62130C218E3C6D50061A10A /* 移动点击效果@2x.png */,
+				D62130C318E3C6D50061A10A /* 长度点击效果.png */,
+				D62130C418E3C6D50061A10A /* 长度点击效果@2x.png */,
+				D62130C518E3C6D50061A10A /* 自动采点点击效果.png */,
+				D62130C618E3C6D50061A10A /* 自动采点点击效果@2x.png */,
 				D6854B0B18D731AC008E638A /* 001打开地图.png */,
 				D6854B0C18D731AC008E638A /* 001打开地图@2x.png */,
 				D6854B0D18D731AC008E638A /* 002图层管理.png */,
@@ -809,19 +863,26 @@
 			files = (
 				D6854B8418D731AC008E638A /* 019删除.png in Resources */,
 				D6854B7618D731AC008E638A /* 012面.png in Resources */,
+				D62130D518E3C6D50061A10A /* 长度点击效果.png in Resources */,
 				D6854B6718D731AC008E638A /* 004浏览照片@2x.png in Resources */,
 				D6854B7218D731AC008E638A /* 010点.png in Resources */,
+				D62130D818E3C6D50061A10A /* 自动采点点击效果@2x.png in Resources */,
 				D6854BA718D731AC008E638A /* 布局示意图006照片浏览界面.jpg in Resources */,
 				D6854B9418D731AC008E638A /* 027清除@2x.png in Resources */,
+				D62130CD18E3C6D50061A10A /* 面积点击效果.png in Resources */,
 				D6854B8218D731AC008E638A /* 018清除编辑.png in Resources */,
 				D6854B8918D731AC008E638A /* 021属性@2x.png in Resources */,
 				D6854BA318D731AC008E638A /* 布局示意图002图斑采集界面.jpg in Resources */,
+				D62130CA18E3C6D50061A10A /* 记录轨迹点击效果@2x.png in Resources */,
+				D62130D018E3C6D50061A10A /* 图斑采集点击效果@2x.png in Resources */,
 				D6854B9F18D731AC008E638A /* 035删除（长）.png in Resources */,
 				D6854B8B18D731AC008E638A /* 023长度.png in Resources */,
 				D6854BA018D731AC008E638A /* 036图层长条按钮.png in Resources */,
+				D62130C818E3C6D50061A10A /* 点点击效果@2x.png in Resources */,
 				D6854B7318D731AC008E638A /* 010点@2x.png in Resources */,
 				D6854B8F18D731AC008E638A /* 025回退.png in Resources */,
 				D6854B9A18D731AC008E638A /* 031当前位置@2x.png in Resources */,
+				D62130D118E3C6D50061A10A /* 线点击效果.png in Resources */,
 				D623C37B18E13C7F0007656E /* Main_iPad.storyboard in Resources */,
 				D6854B9718D731AC008E638A /* 030记录轨迹.png in Resources */,
 				D6854B9E18D731AC008E638A /* 034保存（长）.png in Resources */,
@@ -830,39 +891,49 @@
 				D6854B7018D731AC008E638A /* 009导出数据.png in Resources */,
 				D6854B9018D731AC008E638A /* 025回退@2x.png in Resources */,
 				D6854B8718D731AC008E638A /* 020移动@2x.png in Resources */,
+				D62130CC18E3C6D50061A10A /* 量算点击效果@2x.png in Resources */,
 				D6854B9C18D731AC008E638A /* 032全幅显示@2x.png in Resources */,
 				D6854B6B18D731AC008E638A /* 006图斑查找@2x.png in Resources */,
 				D6854B7418D731AC008E638A /* 011线.png in Resources */,
 				D6854BA818D731AC008E638A /* 布局示意图007图斑管理界面.jpg in Resources */,
 				D6854B6418D731AC008E638A /* 003照片采集.png in Resources */,
 				D6854B7E18D731AC008E638A /* 016前进.png in Resources */,
+				D62130CB18E3C6D50061A10A /* 量算点击效果.png in Resources */,
 				D6854B8D18D731AC008E638A /* 024面积.png in Resources */,
 				D6854B6118D731AC008E638A /* 001打开地图@2x.png in Resources */,
+				D62130D218E3C6D50061A10A /* 线点击效果@2x.png in Resources */,
 				D6854B9218D731AC008E638A /* 026前进@2x.png in Resources */,
 				D6854BAC18D731AC008E638A /* 桌面图标76.png in Resources */,
 				D6854B6E18D731AC008E638A /* 008量算.png in Resources */,
 				D6854B8018D731AC008E638A /* 017保存.png in Resources */,
 				D6854B6018D731AC008E638A /* 001打开地图.png in Resources */,
+				D62130C918E3C6D50061A10A /* 记录轨迹点击效果.png in Resources */,
 				D6854BAE18D731AC008E638A /* 欢迎画面横1024.png in Resources */,
 				D6854B9118D731AC008E638A /* 026前进.png in Resources */,
 				D6854B6218D731AC008E638A /* 002图层管理.png in Resources */,
 				D6854BAD18D731AC008E638A /* 欢迎画面横1024.jpg in Resources */,
 				D6854B6918D731AC008E638A /* 005图斑采集@2x.png in Resources */,
+				D62130D718E3C6D50061A10A /* 自动采点点击效果.png in Resources */,
 				D6854BAF18D731AC008E638A /* 欢迎画面横2048.jpg in Resources */,
 				D6854BA218D731AC008E638A /* 布局示意图001主界面.jpg in Resources */,
 				D6854B6818D731AC008E638A /* 005图斑采集.png in Resources */,
+				D62130D418E3C6D50061A10A /* 移动点击效果@2x.png in Resources */,
 				D6854B9D18D731AC008E638A /* 033定位.png in Resources */,
 				D6854B6F18D731AC008E638A /* 008量算@2x.png in Resources */,
 				D6854B7C18D731AC008E638A /* 015回退.png in Resources */,
 				D6854BB418D731AC008E638A /* 欢迎画面竖2048.png in Resources */,
 				D6854BA618D731AC008E638A /* 布局示意图005图斑查找界面.jpg in Resources */,
+				D62130C718E3C6D50061A10A /* 点点击效果.png in Resources */,
 				D6854B7F18D731AC008E638A /* 016前进@2x.png in Resources */,
 				D6854BA918D731AC008E638A /* 布局示意图008图斑详情界面.jpg in Resources */,
 				D6854B7D18D731AC008E638A /* 015回退@2x.png in Resources */,
+				D62130CF18E3C6D50061A10A /* 图斑采集点击效果.png in Resources */,
 				D6854B7B18D731AC008E638A /* 014自动采点@2x.png in Resources */,
 				D6854B6D18D731AC008E638A /* 007图斑管理@2x.png in Resources */,
 				D6854B6618D731AC008E638A /* 004浏览照片.png in Resources */,
+				D62130CE18E3C6D50061A10A /* 面积点击效果@2x.png in Resources */,
 				D6854B8118D731AC008E638A /* 017保存@2x.png in Resources */,
+				D62130D618E3C6D50061A10A /* 长度点击效果@2x.png in Resources */,
 				D6854B8318D731AC008E638A /* 018清除编辑@2x.png in Resources */,
 				D6854B6518D731AC008E638A /* 003照片采集@2x.png in Resources */,
 				D6854B7518D731AC008E638A /* 011线@2x.png in Resources */,
@@ -873,6 +944,7 @@
 				D6854B8518D731AC008E638A /* 019删除@2x.png in Resources */,
 				D6854BB218D731AC008E638A /* 欢迎画面竖1024.png in Resources */,
 				D6854B7118D731AC008E638A /* 009导出数据@2x.png in Resources */,
+				D62130D318E3C6D50061A10A /* 移动点击效果.png in Resources */,
 				D6854B6318D731AC008E638A /* 002图层管理@2x.png in Resources */,
 				D6854B9518D731AC008E638A /* 028搜索.png in Resources */,
 				D6854BA518D731AC008E638A /* 布局示意图004量算界面.jpg in Resources */,

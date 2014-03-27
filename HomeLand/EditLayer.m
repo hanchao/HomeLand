@@ -45,28 +45,8 @@
     AGSGeometryEngine *geometryEngine = [[AGSGeometryEngine alloc] init];
     AGSPoint *pointMap = (AGSPoint *)[geometryEngine projectGeometry:point toSpatialReference:srMap];
     
-    AGSGeometryType geometryType = AGSGeometryTypeForGeometry(self.geometry);
-    
-    if (geometryType == AGSGeometryTypePoint)
-    {
-//        AGSMutablePoint *point = (AGSMutablePoint *)self.geometry;
-//        [point updateWithX:pointMap.x y:pointMap.y];
-        self.geometry = pointMap;
-    }
-    else if(geometryType == AGSGeometryTypePolyline)
-    {
-        AGSMutablePolyline *line = (AGSMutablePolyline *)self.geometry;
-        [line addPointToPath:[[AGSPoint alloc] initWithX:pointMap.x  y:pointMap.y spatialReference:nil]];
-        self.geometry = line;
-    }
-    else if(geometryType == AGSGeometryTypePolygon)
-    {
-        AGSMutablePolygon *region = (AGSMutablePolygon *)self.geometry;
-        [region addPointToRing:[[AGSPoint alloc] initWithX:pointMap.x  y:pointMap.y spatialReference:nil]];
-        self.geometry = region;
-    }
-
-    
+    //add to last
+    [self insertVertex:pointMap inPart:0 atIndex:-1];
     
 }
 

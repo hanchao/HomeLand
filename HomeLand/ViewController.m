@@ -55,12 +55,24 @@
                                    options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                    context:NULL];
     
+    [self.editView addObserver:self
+                    forKeyPath:@"hidden"
+                       options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                       context:NULL];
+    
+    [self.measureView addObserver:self
+                    forKeyPath:@"hidden"
+                       options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                       context:NULL];
+    
     
     self.mapView.layerDelegate = self;
     self.mapView.touchDelegate = self;
     
     self.mapView.allowCallout = true;
     self.mapView.callout.delegate = self;
+    
+    //self.measurebutton.selected = YES;
 }
 
 - (void)mapViewDidLoad:(AGSMapView *)mapView {
@@ -74,6 +86,14 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = TRUE;
+    
+    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+    if (sketchLayer.geometry == nil) {
+        self.editpointbutton.selected = NO;
+        self.editlinebutton.selected = NO;
+        self.editregionbutton.selected = NO;
+        self.editautoinput.selected = NO;
+    }
 }
 
 # pragma table
@@ -89,10 +109,10 @@
     UIButton *button = (UIButton *)sender;
     if (gpsLayer.enableLogger) {
         [gpsLayer stopLogger];
-        button.highlighted = FALSE;
+        button.selected = NO;
     }else{
         [gpsLayer startLogger];
-        button.highlighted = TRUE;
+        button.selected = YES;
     }
 }
 
@@ -103,8 +123,8 @@
     [measureLayer setMeasureType:AGSGeometryTypePolygon];
     _mapView.touchDelegate=measureLayer;
     
-    UIButton *button = (UIButton *)sender;
-    button.highlighted = TRUE;
+    self.measurelinebutton.selected = NO;
+    self.measureareabutton.selected = YES;
 }
 
 - (IBAction)measureLine:(id)sender {
@@ -113,13 +133,10 @@
     [measureLayer setMeasureType:AGSGeometryTypePolyline];
     _mapView.touchDelegate=measureLayer;
     
-    UIButton *button = (UIButton *)sender;
-    button.highlighted = TRUE;
+    self.measurelinebutton.selected = YES;
+    self.measureareabutton.selected = NO;
 }
 
-- (IBAction)measure:(id)sender {
-    
-}
 
 - (IBAction)measureRedo:(id)sender {
     MeasureLayer *measureLayer = (MeasureLayer *)[self.mapView mapLayerForName:@"Measure layer"];
@@ -142,6 +159,10 @@
     //点
     sketchLayer.geometry = [[AGSMutablePoint alloc] initWithX:NAN y:NAN spatialReference:_mapView.spatialReference];
     _mapView.touchDelegate=sketchLayer;
+    
+    self.editpointbutton.selected = YES;
+    self.editlinebutton.selected = NO;
+    self.editregionbutton.selected = NO;
 }
 
 - (IBAction)editline:(id)sender {
@@ -149,6 +170,10 @@
     //线
     sketchLayer.geometry = [[AGSMutablePolyline alloc] initWithSpatialReference:_mapView.spatialReference];
     _mapView.touchDelegate=sketchLayer;
+    
+    self.editpointbutton.selected = NO;
+    self.editlinebutton.selected = YES;
+    self.editregionbutton.selected = NO;
 }
 
 - (IBAction)editRegion:(id)sender {
@@ -156,6 +181,10 @@
     //面
     sketchLayer.geometry = [[AGSMutablePolygon alloc] initWithSpatialReference:_mapView.spatialReference];
     _mapView.touchDelegate=sketchLayer;
+    
+    self.editpointbutton.selected = NO;
+    self.editlinebutton.selected = NO;
+    self.editregionbutton.selected = YES;
 }
 
 - (IBAction)editDeleteSelect:(id)sender {
@@ -208,6 +237,8 @@
 - (IBAction)autoinput:(id)sender {
     EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
     sketchLayer.autoInput = !sketchLayer.autoInput;
+    
+    self.editautoinput.selected = sketchLayer.autoInput;
 }
 
 - (IBAction)editredo:(id)sender {
@@ -386,20 +417,28 @@
     if (!self.editView.hidden) {
         self.editView.hidden = true;
         EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+        sketchLayer.autoInput = NO;
         self.mapView.touchDelegate=nil;
         sketchLayer.geometry=nil;
         [sketchLayer clear];
+        
+        self.editpointbutton.selected = NO;
+        self.editlinebutton.selected = NO;
+        self.editregionbutton.selected = NO;
+        self.editautoinput.selected = NO;
     }
     self.measureView.hidden = !self.measureView.hidden;
     if (!self.measureView.hidden) {
         
     }else{
         MeasureLayer *measureLayer = (MeasureLayer *)[self.mapView mapLayerForName:@"Measure layer"];
-        [measureLayer.undoManager undo];
         self.mapView.touchDelegate=nil;
         measureLayer.geometry=nil;
         [measureLayer clear];
         self.measureout.hidden = true;
+        
+        self.measurelinebutton.selected = NO;
+        self.measureareabutton.selected = NO;
     }
 }
 
@@ -407,21 +446,29 @@
 {
     if (!self.measureView.hidden) {
         self.measureView.hidden = true;
-            MeasureLayer *measureLayer = (MeasureLayer *)[self.mapView mapLayerForName:@"Measure layer"];
-            [measureLayer.undoManager undo];
-            self.mapView.touchDelegate=nil;
-            measureLayer.geometry=nil;
-            [measureLayer clear];
+        MeasureLayer *measureLayer = (MeasureLayer *)[self.mapView mapLayerForName:@"Measure layer"];
+
+        self.mapView.touchDelegate=nil;
+        measureLayer.geometry=nil;
+        [measureLayer clear];
+        
+        self.measurelinebutton.selected = NO;
+        self.measureareabutton.selected = NO;
     }
     self.editView.hidden = !self.editView.hidden;
     if (!self.editView.hidden) {
         
     }else{
         EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
-        [sketchLayer.undoManager undo];
+        sketchLayer.autoInput = NO;
         self.mapView.touchDelegate=nil;
         sketchLayer.geometry=nil;
         [sketchLayer clear];
+        
+        self.editpointbutton.selected = NO;
+        self.editlinebutton.selected = NO;
+        self.editregionbutton.selected = NO;
+        self.editautoinput.selected = NO;
     }
 }
 
@@ -431,27 +478,25 @@
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-    NSString *scaleInfo;
-    if (self.mapView.mapScale > 10000) {
-        scaleInfo = [[NSString alloc] initWithFormat:@"1:%.02f万",self.mapView.mapScale/10000];
-//    }else if (self.mapView.mapScale > 1000) {
-//        scaleInfo = [[NSString alloc] initWithFormat:@"1:%.02f千",self.mapView.mapScale/1000];
-    }else{
-        scaleInfo = [[NSString alloc] initWithFormat:@"1:%.02f",self.mapView.mapScale];
+    if ([keyPath compare:@"hidden"] == NSOrderedSame && object == self.editView) {
+        self.editbutton.selected = ![[change objectForKey:NSKeyValueChangeNewKey] boolValue];
+    }else if ([keyPath compare:@"hidden"] == NSOrderedSame && object == self.measureView) {
+        self.measurebutton.selected = ![[change objectForKey:NSKeyValueChangeNewKey] boolValue];
+    }else if ([keyPath compare:@"mapScale"] == NSOrderedSame && object == self.mapView){
+        NSString *scaleInfo;
+        if (self.mapView.mapScale > 10000) {
+            scaleInfo = [[NSString alloc] initWithFormat:@"1:%.02f万",self.mapView.mapScale/10000];
+        }else{
+            scaleInfo = [[NSString alloc] initWithFormat:@"1:%.02f",self.mapView.mapScale];
+        }
+        self.mapScaleLabel.text = scaleInfo;
     }
-    self.mapScaleLabel.text = scaleInfo;
 }
 
 -(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint graphics:(NSDictionary *)graphics
 {
     NSLog(@"didClickAtPoint");
-//        if (graphics.allValues.count>0) {
-//            NSArray *layer = (NSArray *)[graphics.allValues objectAtIndex:0];
-//            if (layer.count>0) {
-//                AGSGraphic *graphic = (AGSGraphic *)[layer objectAtIndex:0];
-//                //self.geometry = graphic.geometry;
-//            }
-//        }
+
 }
 
 
@@ -464,17 +509,13 @@
         return NO;
     }
     
-	self.mapView.callout.title = (NSString*)[feature attributeForKey:@"name"];
-	//self.mapView.callout.detail =(NSString*)[feature attributeForKey:@"Address"];
-	//self.mapView.callout.image = [UIImage imageNamed:@"<my_image.png>"];
+    MeasureLayer *measureLayer = (MeasureLayer *)[self.mapView mapLayerForName:@"Measure layer"];
+    if (measureLayer.isMeasure) {
+        return NO;
+    }
     
-//    if(self.editView.hidden == NO)
-//    {
-//        EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
-//        //线
-//        sketchLayer.geometry = feature;
-//        _mapView.touchDelegate=sketchLayer;
-//    }
+	self.mapView.callout.title = (NSString*)[feature attributeForKey:@"name"];
+
 	return YES;
 }
 - (void)didClickAccessoryButtonForCallout:(AGSCallout *)callout

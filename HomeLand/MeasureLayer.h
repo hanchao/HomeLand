@@ -15,6 +15,7 @@
 
 - (void) setMeasureType:(AGSGeometryType)geometryType;
 - (void) clear;
+- (BOOL) isMeasure;
 
 -(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features;
 

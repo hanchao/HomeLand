@@ -269,14 +269,36 @@
 -(void)saveImage:(UIImage *)image
 {
     _image = image;
-//    double x = self.mapView.locationDisplay.mapLocation.x;
-//    double y = self.mapView.locationDisplay.mapLocation.y;
-//    
-//    AGSPoint *point = [[AGSPoint alloc] initWithX:x y:y spatialReference:[AGSSpatialReference wgs84SpatialReference]];
-//    
-//    Photo * photo = [[Photo alloc] init];
-//    photo.image = image;
-//    photo.point = point;
-//    [[Projects sharedProjects].curProject addPhoto:photo];
+    
+    int count = [self.tableview numberOfRowsInSection:0];
+    
+    for (int i=0; i<count; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        //NSIndexPath *indexPath = [NSIndexPath alloc] init
+        UITableViewCell *cell = [self.tableview cellForRowAtIndexPath:indexPath];
+        
+        UILabel* label = (UILabel*) [cell viewWithTag: 100];
+        UITextField* testField = (UITextField*) [cell viewWithTag: 300];
+        
+        //NSLog(@"Key:%@,Value:%@",[Projects enname:label.text],testField.text);
+        if ([label.text compare:@"照片"] == NSOrderedSame) {
+
+            double x = [Projects sharedProjects].curProject.mapView.locationDisplay.mapLocation.x;
+            double y = [Projects sharedProjects].curProject.mapView.locationDisplay.mapLocation.y;
+            
+            AGSPoint *point = [[AGSPoint alloc] initWithX:x y:y spatialReference:[AGSSpatialReference wgs84SpatialReference]];
+            
+            Photo * photo = [[Photo alloc] init];
+            photo.image = image;
+            photo.point = point;
+            NSString *filename = [[Projects sharedProjects].curProject addPhoto:photo];
+            
+            testField.text = filename;
+        }
+        
+        
+    }
+    
+
 }
 @end

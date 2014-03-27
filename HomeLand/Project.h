@@ -38,7 +38,7 @@
 
 -(NSMutableArray*) search:(NSString *)key;
 
--(BOOL) addPhoto:(Photo*)photo;
+-(NSString *) addPhoto:(Photo*)photo;
 -(NSInteger) photoCount;
 -(NSMutableArray*) allPhoto;
 

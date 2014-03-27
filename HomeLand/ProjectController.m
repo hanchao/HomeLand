@@ -20,9 +20,6 @@
     UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createProject:)];
     button.title = @"新建";
     self.navigationItem.rightBarButtonItem = button;
-    
-//    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editProject:)];
-//    self.navigationItem.rightBarButtonItem = button;
 }
 
 - (void)viewWillAppear:(BOOL)animated
