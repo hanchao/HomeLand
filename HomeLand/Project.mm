@@ -10,6 +10,8 @@
 #import "Projects.h"
 #import "MeasureLayer.h"
 #import "GPSLayer.h"
+#import "EditLayer.h"
+#import "FieldInfo.h"
 
 @implementation Project
 
@@ -85,7 +87,7 @@
     strcpy (sql, "CREATE TABLE ");
     strcat (sql, name.UTF8String);
     strcat (sql, " (");
-    strcat (sql, "id INTEGER NOT NULL PRIMARY KEY)");
+    strcat (sql, "id INTEGER NOT NULL PRIMARY KEY, name varchar ( 256 ) ,time timestamp, photoname varchar ( 256 ), field1 varchar ( 256 ),field2 varchar ( 256 ),field3 varchar ( 256 ) )");
     ret = sqlite3_exec (_handle, sql, NULL, NULL, &err_msg);
     if (ret != SQLITE_OK)
     {
@@ -118,6 +120,16 @@
     {
         /* an error occurred */
         printf ("AddGeometryColumn() error: %s\n", err_msg);
+        sqlite3_free (err_msg);
+        return FALSE;
+    }
+    
+    strcpy (sql, "alter TABLE Photo add filename varchar ( 256 )");
+    ret = sqlite3_exec (_handle, sql, NULL, NULL, &err_msg);
+    if (ret != SQLITE_OK)
+    {
+        /* an error occurred */
+        printf ("alter error: %s\n", err_msg);
         sqlite3_free (err_msg);
         return FALSE;
     }
@@ -177,6 +189,12 @@
     
     
     AGSGraphicsLayer *graphicsLayer= [[AGSGraphicsLayer alloc] init];
+    
+    AGSCalloutTemplate* calloutTemplate = [[AGSCalloutTemplate alloc] init] ;
+    calloutTemplate.titleTemplate = @"${NAME}"; //show the value for attribute key 'CITY_NAME'
+    calloutTemplate.detailTemplate = @"${POPULATION}"; //show the value for attribute key 'POPULATION'
+    graphicsLayer.calloutDelegate = calloutTemplate;
+    
     [self.mapView addMapLayer:graphicsLayer withName:name];
     
     AGSSymbol *symbol;
@@ -232,7 +250,8 @@
             row_no++;
             printf ("row #%d\n", row_no);
             
-            
+            AGSGeometry* geometry;
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
             for (ic = 0; ic < n_columns; ic++)
 			{
                 /*
@@ -245,6 +264,9 @@
                  */
 			    printf ("\t%-10s = ",
                         sqlite3_column_name (stmt, ic));
+                
+                NSString *key = [NSString stringWithFormat:@"%s",sqlite3_column_name (stmt, ic)];
+                NSString *value;
 			    switch (sqlite3_column_type (stmt, ic))
                 {
                     case SQLITE_NULL:
@@ -252,14 +274,20 @@
                         break;
                     case SQLITE_INTEGER:
                         printf ("%d", sqlite3_column_int (stmt, ic));
+                        value = [NSString stringWithFormat:@"%d",sqlite3_column_int (stmt, ic)];
+                        [dict setObject:value forKey:key];
                         break;
                     case SQLITE_FLOAT:
                         printf ("%1.4f",
                                 sqlite3_column_double (stmt, ic));
+                        value = [NSString stringWithFormat:@"%f",sqlite3_column_double (stmt, ic)];
+                        [dict setObject:value forKey:key];
                         break;
                     case SQLITE_TEXT:
                         printf ("'%s'",
                                 sqlite3_column_text (stmt, ic));
+                        value = [NSString stringWithFormat:@"%s",sqlite3_column_text (stmt, ic)];
+                        [dict setObject:value forKey:key];
                         break;
                     case SQLITE_BLOB:
                         blob = (unsigned char *)sqlite3_column_blob (stmt, ic);
@@ -276,7 +304,7 @@
                         }
                         else
                         {
-                            AGSGeometry* geometry;
+                            
                             geom_type = gaiaGeometryType (geom);
                             if (geom_type == GAIA_UNKNOWN)
                                 printf ("EMPTY or NULL GEOMETRY");
@@ -362,9 +390,7 @@
 //#endif /* GEOS enabled/disabled */
                                 }
                                 
-                                AGSGraphic*graphic = [AGSGraphic graphicWithGeometry:geometry symbol:symbol attributes:nil];
-                                [graphicsLayer addGraphic:graphic];
-                                [graphicsLayer refresh];
+
                             }
                             /* we have now to free the GEOMETRY */
                             gaiaFreeGeomColl (geom);
@@ -373,13 +399,19 @@
                         break;
                 };
 			    printf ("\n");
+   
+                
 			}
             
-            if (row_no >= 5)
-			{
-                /* we'll exit the loop after the first 5 rows - this is only a demo :-) */
-			    break;
-			}
+            AGSGraphic*graphic = [AGSGraphic graphicWithGeometry:geometry symbol:symbol attributes:dict];
+            [graphicsLayer addGraphic:graphic];
+            [graphicsLayer refresh];
+            
+//            if (row_no >= 5)
+//			{
+//                /* we'll exit the loop after the first 5 rows - this is only a demo :-) */
+//			    break;
+//			}
         }
 		else
         {
@@ -516,7 +548,7 @@
     AGSTiledMapServiceLayer *tiledLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:url];
     [self.mapView addMapLayer:tiledLayer withName:@"Basemap Tiled Layer"];
     
-    AGSSketchGraphicsLayer *sketchLayer= [[AGSSketchGraphicsLayer alloc] initWithGeometry:nil];
+    EditLayer *sketchLayer= [[EditLayer alloc] initWithGeometry:nil];
     [self.mapView addMapLayer:sketchLayer withName:@"Sketch layer"];
     
     MeasureLayer *measureLayer= [[MeasureLayer alloc] init];
@@ -571,6 +603,72 @@
         _handle = NULL;
     }
     return TRUE;
+}
+
+-(NSMutableArray*) allFieldInfo:(AGSGeometryType)geometryType
+{
+    int ret = 0;
+    char *err_msg = NULL;
+    char sql[256];
+    
+    NSString *layername;
+    
+    AGSSymbol *symbol;
+    if (geometryType == AGSGeometryTypePoint) {
+        
+        layername = @"Point";
+    }
+    else if(geometryType == AGSGeometryTypePolyline)
+    {
+        layername = @"Line";
+    }
+    else if(geometryType == AGSGeometryTypePolygon)
+    {
+        layername = @"Region";
+    }
+    
+    strcpy (sql, "select * from ");
+    strcat (sql, layername.UTF8String);
+    strcat (sql, " where 0=1");
+    
+    sqlite3_stmt *stmt = NULL;
+    const char *tail=NULL;
+    int ret_code = sqlite3_prepare_v2(_handle, sql, -1, &stmt, &tail);
+    if(ret_code!=SQLITE_OK)
+    {
+        if(stmt)
+            sqlite3_finalize(stmt);
+        return nil;
+    }
+    
+    NSMutableArray *fieldInfos = [[NSMutableArray alloc] init];
+    
+    int col_count = sqlite3_column_count(stmt);
+    
+    for(int col=0;col<col_count;col++)
+    {
+        FieldInfo *fieldInfo = [[FieldInfo alloc] init];
+        int coldatatype = sqlite3_column_type(stmt, col);
+    
+        const char* colname = sqlite3_column_name(stmt, col);
+        
+        //int col_size = sqlite3_column_bytes(m_stmt, col);
+        
+        if(strcmp(colname, "geom") == 0)
+        {
+            continue;
+        }
+        fieldInfo.type = coldatatype;
+        fieldInfo.name = [NSString stringWithUTF8String:colname];
+        
+        [fieldInfos addObject:fieldInfo];
+    }
+    
+    
+    if(stmt)
+        sqlite3_finalize(stmt);
+    
+    return fieldInfos;
 }
 
 -(BOOL) addGeometry:(AGSGeometry*)geometry
@@ -711,6 +809,386 @@
     return TRUE;
 }
 
+-(BOOL) addGraphic:(AGSGraphic*)graphic
+{
+    int ret = 0;
+    char *err_msg = NULL;
+    char sql[256];
+    
+    sqlite3_stmt *stmt;
+    
+    gaiaGeomCollPtr geo = NULL;
+    unsigned char *blob;
+    int blob_size;
+    
+    
+    
+    /* preparing the geometry to insert */
+    geo = gaiaAllocGeomColl ();
+    geo->Srid = 4326;
+    
+    AGSGeometryType geometryType = AGSGeometryTypeForGeometry(graphic.geometry);
+    
+    NSString *layername;
+    
+    AGSSymbol *symbol;
+    if (geometryType == AGSGeometryTypePoint) {
+        
+        layername = @"Point";
+        
+        AGSSimpleMarkerSymbol* myMarkerSymbol = [AGSSimpleMarkerSymbol simpleMarkerSymbol];
+        myMarkerSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
+        
+        symbol = myMarkerSymbol;
+        
+        //geometry
+        AGSPoint *point = (AGSPoint *)graphic.geometry;
+        gaiaAddPointToGeomColl (geo, point.x, point.y);
+    }
+    else if(geometryType == AGSGeometryTypePolyline)
+    {
+        layername = @"Line";
+        AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
+        myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
+        //线的边框还是“线”
+        AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
+        myOutlineSymbol.color = [UIColor redColor];
+        myOutlineSymbol.width = 2;
+        //set the outline property to myOutlineSymbol
+        myFillSymbol.outline = myOutlineSymbol;
+        
+        symbol = myFillSymbol;
+        
+        AGSPolyline *line = (AGSPolyline *)graphic.geometry;
+        gaiaLinestringPtr lineprt;
+        lineprt = gaiaAddLinestringToGeomColl (geo, line.numPoints);
+        for(int i =0;i<line.numPoints;i++)
+        {
+            AGSPoint * point = [line pointOnPath:0 atIndex:i];
+            gaiaSetPoint (lineprt->Coords, i, point.x, point.y);
+        }
+    }
+    else if(geometryType == AGSGeometryTypePolygon)
+    {
+        layername = @"Region";
+        AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
+        myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
+        //线的边框还是“线”
+        AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
+        myOutlineSymbol.color = [UIColor redColor];
+        myOutlineSymbol.width = 2;
+        //set the outline property to myOutlineSymbol
+        myFillSymbol.outline = myOutlineSymbol;
+        
+        symbol = myFillSymbol;
+        
+        AGSPolygon *polygon = (AGSPolygon *)graphic.geometry;
+        gaiaPolygonPtr polygonptr;
+        polygonptr = gaiaAddPolygonToGeomColl (geo, polygon.numPoints,0);
+        for(int i =0;i<polygon.numPoints;i++)
+        {
+            AGSPoint * point = [polygon pointOnRing:0 atIndex:i];
+            gaiaSetPoint (polygonptr->Exterior->Coords, i, point.x, point.y);
+        }
+    }
+    
+
+    
+    
+    strcpy (sql, "INSERT INTO ");
+    strcat (sql, layername.UTF8String);
+    //strcat (sql, " (id, geom) VALUES (?, ?)");
+    
+    NSString *fieldname = @"id, geom";
+    NSString *fieldvalue = @"?,?";
+    for (id key in [graphic.allAttributes allKeys]) {
+        //NSLog(@"Key:%@,Value:%@",key,[graphic.allAttributes objectForKey:key]);
+        fieldname = [fieldname stringByAppendingFormat:@",%@",key];
+        fieldvalue = [fieldvalue stringByAppendingString:@",?"];
+    
+    }
+    
+    strcat(sql, " (");
+    strcat (sql, fieldname.UTF8String);
+    strcat(sql, ") VALUES (");
+    strcat (sql, fieldvalue.UTF8String);
+    strcat(sql, ")");
+    
+    
+    ret = sqlite3_prepare_v2 (_handle, sql, strlen (sql), &stmt, NULL);
+    if (ret != SQLITE_OK)
+    {
+        /* an error occurred */
+        printf ("INSERT SQL error: %s\n", sqlite3_errmsg (_handle));
+        return FALSE;
+    }
+    
+    
+    /* transforming this geometry into the SpatiaLite BLOB format */
+    gaiaToSpatiaLiteBlobWkb (geo, &blob, &blob_size);
+    
+    /* we can now destroy the geometry object */
+    gaiaFreeGeomColl (geo);
+    
+    /* resetting Prepared Statement and bindings */
+    sqlite3_reset (stmt);
+    sqlite3_clear_bindings (stmt);
+    
+    /* binding parameters to Prepared Statement */
+    //sqlite3_bind_int64 (stmt, 1, pk);
+    sqlite3_bind_blob (stmt, 2, blob, blob_size, free);
+    
+    int index = 3;
+    for (id key in [graphic.allAttributes allKeys])
+    {
+        NSString *value = [graphic.allAttributes objectForKey:key];
+        
+        sqlite3_bind_text (stmt, index, value.UTF8String,value.length, SQLITE_STATIC);
+        index ++;
+    }
+    /* performing actual row insert */
+    ret = sqlite3_step (stmt);
+    if (ret == SQLITE_DONE || ret == SQLITE_ROW)
+        ;
+    else
+    {
+        /* an unexpected error occurred */
+        printf ("sqlite3_step() error: %s\n",
+                sqlite3_errmsg (_handle));
+        sqlite3_finalize (stmt);
+        return FALSE;
+    }
+    
+    /* we have now to finalize the query [memory cleanup] */
+    sqlite3_finalize (stmt);
+    
+    
+    graphic.symbol = symbol;
+    
+    AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)[self.mapView mapLayerForName:layername];
+    
+    
+    
+    [graphicsLayer addGraphic:graphic];
+    [graphicsLayer refresh];
+    
+    return true;
+}
+
+-(BOOL) saveGraphic:(AGSGraphic*)graphic
+{
+    int ret = 0;
+    char *err_msg = NULL;
+    char sql[256];
+    
+    sqlite3_stmt *stmt;
+    
+    gaiaGeomCollPtr geo = NULL;
+    unsigned char *blob;
+    int blob_size;
+    
+    
+    
+    /* preparing the geometry to insert */
+    geo = gaiaAllocGeomColl ();
+    geo->Srid = 4326;
+    
+    AGSGeometryType geometryType = AGSGeometryTypeForGeometry(graphic.geometry);
+    
+    NSString *layername;
+    
+    AGSSymbol *symbol;
+    if (geometryType == AGSGeometryTypePoint) {
+        
+        layername = @"Point";
+        
+        AGSSimpleMarkerSymbol* myMarkerSymbol = [AGSSimpleMarkerSymbol simpleMarkerSymbol];
+        myMarkerSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
+        
+        symbol = myMarkerSymbol;
+        
+        //geometry
+        AGSPoint *point = (AGSPoint *)graphic.geometry;
+        gaiaAddPointToGeomColl (geo, point.x, point.y);
+    }
+    else if(geometryType == AGSGeometryTypePolyline)
+    {
+        layername = @"Line";
+        AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
+        myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
+        //线的边框还是“线”
+        AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
+        myOutlineSymbol.color = [UIColor redColor];
+        myOutlineSymbol.width = 2;
+        //set the outline property to myOutlineSymbol
+        myFillSymbol.outline = myOutlineSymbol;
+        
+        symbol = myFillSymbol;
+        
+        AGSPolyline *line = (AGSPolyline *)graphic.geometry;
+        gaiaLinestringPtr lineprt;
+        lineprt = gaiaAddLinestringToGeomColl (geo, line.numPoints);
+        for(int i =0;i<line.numPoints;i++)
+        {
+            AGSPoint * point = [line pointOnPath:0 atIndex:i];
+            gaiaSetPoint (lineprt->Coords, i, point.x, point.y);
+        }
+    }
+    else if(geometryType == AGSGeometryTypePolygon)
+    {
+        layername = @"Region";
+        AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
+        myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
+        //线的边框还是“线”
+        AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
+        myOutlineSymbol.color = [UIColor redColor];
+        myOutlineSymbol.width = 2;
+        //set the outline property to myOutlineSymbol
+        myFillSymbol.outline = myOutlineSymbol;
+        
+        symbol = myFillSymbol;
+        
+        AGSPolygon *polygon = (AGSPolygon *)graphic.geometry;
+        gaiaPolygonPtr polygonptr;
+        polygonptr = gaiaAddPolygonToGeomColl (geo, polygon.numPoints,0);
+        for(int i =0;i<polygon.numPoints;i++)
+        {
+            AGSPoint * point = [polygon pointOnRing:0 atIndex:i];
+            gaiaSetPoint (polygonptr->Exterior->Coords, i, point.x, point.y);
+        }
+    }
+    
+    
+    
+    //UPDATE Person SET Address = 'Zhongshan 23', City = 'Nanjing' WHERE LastName = 'Wilson'
+    strcpy (sql, "UPDATE ");
+    strcat (sql, layername.UTF8String);
+    strcat (sql, " SET geom = ?,");
+    
+
+    for (id key in [graphic.allAttributes allKeys]) {
+        //NSLog(@"Key:%@,Value:%@",key,[graphic.allAttributes objectForKey:key]);
+        //fieldname = [fieldname stringByAppendingFormat:@",%@",key];
+        //fieldvalue = [fieldvalue stringByAppendingString:@",?"];
+        
+        strcat(sql, [NSString stringWithFormat:@"%@",key].UTF8String);
+        strcat(sql, " = ?,");
+    }
+    sql[strlen(sql)-1] = '\0';
+    
+    strcat(sql, " WHERE id = ");
+    char szid[256];
+    int gid = [graphic attributeAsIntForKey:@"id" exists:nil];
+    sprintf(szid,"%d",gid);
+    strcat(sql, szid);
+    
+    ret = sqlite3_prepare_v2 (_handle, sql, strlen (sql), &stmt, NULL);
+    if (ret != SQLITE_OK)
+    {
+        /* an error occurred */
+        printf ("INSERT SQL error: %s\n", sqlite3_errmsg (_handle));
+        return FALSE;
+    }
+    
+    
+    /* transforming this geometry into the SpatiaLite BLOB format */
+    gaiaToSpatiaLiteBlobWkb (geo, &blob, &blob_size);
+    
+    /* we can now destroy the geometry object */
+    gaiaFreeGeomColl (geo);
+    
+    /* resetting Prepared Statement and bindings */
+    sqlite3_reset (stmt);
+    sqlite3_clear_bindings (stmt);
+    
+    /* binding parameters to Prepared Statement */
+    sqlite3_bind_blob (stmt, 1, blob, blob_size, free);
+    
+    int index = 2;
+    for (id key in [graphic.allAttributes allKeys])
+    {
+        NSString *value = [graphic.allAttributes objectForKey:key];
+        
+        sqlite3_bind_text (stmt, index, value.UTF8String,value.length, SQLITE_STATIC);
+        index ++;
+    }
+    /* performing actual row insert */
+    ret = sqlite3_step (stmt);
+    if (ret == SQLITE_DONE || ret == SQLITE_ROW)
+        ;
+    else
+    {
+        /* an unexpected error occurred */
+        printf ("sqlite3_step() error: %s\n",
+                sqlite3_errmsg (_handle));
+        sqlite3_finalize (stmt);
+        return FALSE;
+    }
+    
+    /* we have now to finalize the query [memory cleanup] */
+    sqlite3_finalize (stmt);
+    
+    
+//    graphic.symbol = symbol;
+//    
+//    AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)[self.mapView mapLayerForName:layername];
+//    
+//    
+//    
+//    [graphicsLayer addGraphic:graphic];
+//    [graphicsLayer refresh];
+    return TRUE;
+}
+
+-(BOOL) removeGraphic:(AGSGraphic*)graphic
+{
+    AGSGeometryType geometryType = AGSGeometryTypeForGeometry(graphic.geometry);
+    
+    NSString *layername;
+    
+    AGSSymbol *symbol;
+    if (geometryType == AGSGeometryTypePoint) {
+        layername = @"Point";
+    }
+    else if(geometryType == AGSGeometryTypePolyline)
+    {
+        layername = @"Line";
+    }
+    else if(geometryType == AGSGeometryTypePolygon)
+    {
+        layername = @"Region";
+    }
+    
+    AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)[self.mapView mapLayerForName:layername];
+    
+    
+    
+    [graphicsLayer removeGraphic:graphic];
+    [graphicsLayer refresh];
+    
+    char *err_msg = NULL;
+    char sql[256];
+    strcpy (sql, "DELETE FROM ");
+    strcat (sql, layername.UTF8String);
+    strcat (sql, " WHERE id = ");
+    char szid[256];
+    int gid = [graphic attributeAsIntForKey:@"id" exists:nil];
+    sprintf(szid,"%d",gid);
+    
+    strcat (sql, szid);
+    
+    int ret = sqlite3_exec (_handle, sql, NULL, NULL, &err_msg);
+    if (ret != SQLITE_OK)
+    {
+        /* an error occurred */
+        printf ("delete error: %s\n", err_msg);
+        sqlite3_free (err_msg);
+        return FALSE;
+    }
+    
+    return TRUE;
+}
+
 -(BOOL) addPhoto:(Photo*)photo
 {
     NSDate *date = [NSDate date];
@@ -793,6 +1271,13 @@
     sqlite3_finalize (stmt);
     
     return TRUE;
+}
+
+-(NSMutableArray*) search:(NSString *)key
+{
+
+    
+    return nil;
 }
 
 -(NSInteger) photoCount

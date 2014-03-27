@@ -12,7 +12,7 @@
 #import "Projects.h"
 #import "GPX/GPX.h"
 
-@interface ViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate,CLLocationManagerDelegate,AGSMapViewLayerDelegate,AGSMapViewTouchDelegate>
+@interface ViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate,CLLocationManagerDelegate,AGSMapViewLayerDelegate,AGSMapViewTouchDelegate,AGSCalloutDelegate,UIAlertViewDelegate,UISearchBarDelegate>
 {
     NSArray* _buttonTitle;
     CLLocationManager *_locationManager;
@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *gpsSwitch;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *edittype;
 @property (weak, nonatomic) IBOutlet UILabel *mapScaleLabel;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchbar;
 - (IBAction)gpsloggerTouch:(id)sender;
 - (IBAction)leftButtonTouch:(id)sender;
 - (IBAction)measureErea:(id)sender;

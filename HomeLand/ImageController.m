@@ -28,6 +28,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+//    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editImage:)];
+//    self.navigationItem.rightBarButtonItem = button;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,6 +71,10 @@
     
 }
 
+//- (IBAction)editProject:(id)sender {
+//
+//    self.collectionView = YES;
+//}
 
 /*
 #pragma mark - Navigation

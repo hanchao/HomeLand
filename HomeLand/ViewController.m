@@ -11,6 +11,9 @@
 #import "LayerController.h"
 #import "MeasureLayer.h"
 #import "GPSLayer.h"
+#import "EditLayer.h"
+#import "AttributeController.h"
+#import "RecordController.h"
 
 @interface ViewController ()
 
@@ -55,12 +58,15 @@
     
     self.mapView.layerDelegate = self;
     self.mapView.touchDelegate = self;
-
+    
+    self.mapView.allowCallout = true;
+    self.mapView.callout.delegate = self;
 }
 
 - (void)mapViewDidLoad:(AGSMapView *)mapView {
     
     [self.mapView.locationDisplay startDataSource];
+    
     
 }
 
@@ -79,10 +85,14 @@
 
 - (IBAction)gpsloggerTouch:(id)sender {
     GPSLayer *gpsLayer = (GPSLayer *)[self.mapView mapLayerForName:@"GPS layer"];
+    
+    UIButton *button = (UIButton *)sender;
     if (gpsLayer.enableLogger) {
         [gpsLayer stopLogger];
+        button.highlighted = FALSE;
     }else{
         [gpsLayer startLogger];
+        button.highlighted = TRUE;
     }
 }
 
@@ -92,6 +102,9 @@
     measureLayer.measureout = self.measureout;
     [measureLayer setMeasureType:AGSGeometryTypePolygon];
     _mapView.touchDelegate=measureLayer;
+    
+    UIButton *button = (UIButton *)sender;
+    button.highlighted = TRUE;
 }
 
 - (IBAction)measureLine:(id)sender {
@@ -99,6 +112,9 @@
     measureLayer.measureout = self.measureout;
     [measureLayer setMeasureType:AGSGeometryTypePolyline];
     _mapView.touchDelegate=measureLayer;
+    
+    UIButton *button = (UIButton *)sender;
+    button.highlighted = TRUE;
 }
 
 - (IBAction)measure:(id)sender {
@@ -122,27 +138,42 @@
 }
 
 - (IBAction)editpoint:(id)sender {
-    AGSSketchGraphicsLayer *sketchLayer = (AGSSketchGraphicsLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
     //点
     sketchLayer.geometry = [[AGSMutablePoint alloc] initWithX:NAN y:NAN spatialReference:_mapView.spatialReference];
     _mapView.touchDelegate=sketchLayer;
 }
 
 - (IBAction)editline:(id)sender {
-    AGSSketchGraphicsLayer *sketchLayer = (AGSSketchGraphicsLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
     //线
     sketchLayer.geometry = [[AGSMutablePolyline alloc] initWithSpatialReference:_mapView.spatialReference];
     _mapView.touchDelegate=sketchLayer;
 }
 
 - (IBAction)editRegion:(id)sender {
-    AGSSketchGraphicsLayer *sketchLayer = (AGSSketchGraphicsLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
     //面
     sketchLayer.geometry = [[AGSMutablePolygon alloc] initWithSpatialReference:_mapView.spatialReference];
     _mapView.touchDelegate=sketchLayer;
 }
 
 - (IBAction)editDeleteSelect:(id)sender {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"删除记录" message:@"是否删除记录" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
+    alert.alertViewStyle = UIAlertViewStyleDefault;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+{
+    if(buttonIndex == 1)
+    {
+//        callout.representedFeature;
+//        [[Projects sharedProjects].curProject removeGraphic:graphic];
+//        [self mapView.callout dismiss];
+//        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)editMoveSelect:(id)sender {
@@ -164,33 +195,42 @@
     AGSPoint *point = [[AGSPoint alloc] initWithX:x y:y spatialReference:[AGSSpatialReference wgs84SpatialReference]];
     
     [self.mapView centerAtPoint:point animated:YES];
+    
+
+    //[self.mapView.callout showCalloutAt:point screenOffset:<#(CGPoint)#> animated:<#(BOOL)#>
 }
 
 - (IBAction)gpsinput:(id)sender {
+    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+    [sketchLayer addGPSPoint:_locationManager.location];
 }
 
 - (IBAction)autoinput:(id)sender {
+    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+    sketchLayer.autoInput = !sketchLayer.autoInput;
 }
 
 - (IBAction)editredo:(id)sender {
-    AGSSketchGraphicsLayer *sketchLayer = (AGSSketchGraphicsLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
     [sketchLayer.undoManager redo];
 }
 
 - (IBAction)editundo:(id)sender {
-    AGSSketchGraphicsLayer *sketchLayer = (AGSSketchGraphicsLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
     [sketchLayer.undoManager undo];
 }
 
 - (IBAction)editsave:(id)sender {
-    AGSSketchGraphicsLayer *sketchLayer = (AGSSketchGraphicsLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
-    [[Projects sharedProjects].curProject addGeometry:sketchLayer.geometry];
-    [sketchLayer clear];
+//    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+//    [[Projects sharedProjects].curProject addGeometry:sketchLayer.geometry];
+//    [sketchLayer clear];
+    
 }
 
 - (IBAction)editclear:(id)sender {
-    AGSSketchGraphicsLayer *sketchLayer = (AGSSketchGraphicsLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
     [sketchLayer clear];
+    sketchLayer.geometry = nil;
 }
 
 - (IBAction)openProjecTouch:(id)sender {
@@ -213,6 +253,7 @@
 }
 
 - (IBAction)DataSearchTouch:(id)sender {
+    self.searchbar.hidden = !self.searchbar.hidden;
 }
 
 - (IBAction)DataManageTouch:(id)sender {
@@ -232,6 +273,12 @@
         
         //保存轨迹文件
         [[Projects sharedProjects].curProject saveTrack:gpsLayer.gpxString Name:gpsLayer.gpxName];
+    }
+    
+    
+    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+    if (sketchLayer.autoInput) {
+        [sketchLayer addGPSPoint:newLocation];
     }
     
 }
@@ -338,7 +385,7 @@
 {
     if (!self.editView.hidden) {
         self.editView.hidden = true;
-        AGSSketchGraphicsLayer *sketchLayer = (AGSSketchGraphicsLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+        EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
         self.mapView.touchDelegate=nil;
         sketchLayer.geometry=nil;
         [sketchLayer clear];
@@ -370,7 +417,7 @@
     if (!self.editView.hidden) {
         
     }else{
-        AGSSketchGraphicsLayer *sketchLayer = (AGSSketchGraphicsLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+        EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
         [sketchLayer.undoManager undo];
         self.mapView.touchDelegate=nil;
         sketchLayer.geometry=nil;
@@ -385,19 +432,72 @@
                         change:(NSDictionary *)change
                        context:(void *)context {
     NSString *scaleInfo;
-    if (self.mapView.mapScale > 100000) {
-        scaleInfo = [[NSString alloc] initWithFormat:@"1:%.02fkm",self.mapView.mapScale/100000];
-    }
-    else{
-        scaleInfo = [[NSString alloc] initWithFormat:@"1:%.02fm",self.mapView.mapScale/100];
+    if (self.mapView.mapScale > 10000) {
+        scaleInfo = [[NSString alloc] initWithFormat:@"1:%.02f万",self.mapView.mapScale/10000];
+//    }else if (self.mapView.mapScale > 1000) {
+//        scaleInfo = [[NSString alloc] initWithFormat:@"1:%.02f千",self.mapView.mapScale/1000];
+    }else{
+        scaleInfo = [[NSString alloc] initWithFormat:@"1:%.02f",self.mapView.mapScale];
     }
     self.mapScaleLabel.text = scaleInfo;
 }
 
 -(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint graphics:(NSDictionary *)graphics
 {
-    NSLog(@"grg");
+    NSLog(@"didClickAtPoint");
+//        if (graphics.allValues.count>0) {
+//            NSArray *layer = (NSArray *)[graphics.allValues objectAtIndex:0];
+//            if (layer.count>0) {
+//                AGSGraphic *graphic = (AGSGraphic *)[layer objectAtIndex:0];
+//                //self.geometry = graphic.geometry;
+//            }
+//        }
+}
+
+
+-(BOOL)callout:(AGSCallout*)callout willShowForFeature:(id<AGSFeature>)feature layer:(AGSLayer<AGSHitTestable>*)layer mapPoint:(AGSPoint*)mapPoint{
+    NSLog(@"willShowForFeature");
+	//Specify the callout's contents
     
+    EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+    if (sketchLayer.isEditing) {
+        return NO;
+    }
+    
+	self.mapView.callout.title = (NSString*)[feature attributeForKey:@"name"];
+	//self.mapView.callout.detail =(NSString*)[feature attributeForKey:@"Address"];
+	//self.mapView.callout.image = [UIImage imageNamed:@"<my_image.png>"];
+    
+//    if(self.editView.hidden == NO)
+//    {
+//        EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
+//        //线
+//        sketchLayer.geometry = feature;
+//        _mapView.touchDelegate=sketchLayer;
+//    }
+	return YES;
+}
+- (void)didClickAccessoryButtonForCallout:(AGSCallout *)callout
+{
+    NSLog(@"didClickAccessoryButtonForCallout");
+    
+//    AttributeController *attributeController = [[AttributeController alloc] init];
+//    [self presentViewController:attributeController animated:YES completion:nil];
+    
+        UIStoryboard * storyBoard;
+        AttributeController *projectController;
+    
+        storyBoard  = [UIStoryboard
+                       storyboardWithName:@"Main_iPad" bundle:nil];
+    
+        projectController = [storyBoard instantiateViewControllerWithIdentifier:@"AttributeController"];
+    projectController.graphic = callout.representedFeature;
+        [self.navigationController pushViewController:projectController animated:YES];
+    
+//    LayerController *attributeController = [[LayerController alloc] init];
+//    [self presentViewController:attributeController animated:YES completion:nil];
+    
+//    AGSPopupsContainerViewController* popupVC;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -413,6 +513,23 @@
     
 //    UIViewController * destinationViewController = (UIViewController *)segue.destinationViewController;
 //    destinationViewController.navigationController.navigationBarHidden = FALSE;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"searchBarSearchButtonClicked");
+    
+    [searchBar resignFirstResponder];
+    searchBar.hidden = YES;
+    
+    UIStoryboard * storyBoard;
+    RecordController *projectController;
+    
+    storyBoard  = [UIStoryboard
+                   storyboardWithName:@"Main_iPad" bundle:nil];
+    
+    projectController = [storyBoard instantiateViewControllerWithIdentifier:@"RecordController"];
+    [self.navigationController pushViewController:projectController animated:YES];
 }
 
 @end

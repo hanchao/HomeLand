@@ -12,6 +12,9 @@
 
 + (Projects *)sharedProjects;
 
++ (NSString *)chinesename:(NSString *) enname;
++ (NSString *)enname:(NSString *) chinesename;
+
 - (NSString *) projectDirectory;
 
 - (void) initDirectory;

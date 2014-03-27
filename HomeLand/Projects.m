@@ -22,6 +22,48 @@
     return sharedProjects;
 }
 
++ (NSString *)chinesename:(NSString *) enname
+{
+    if ([enname compare:@"id"] == NSOrderedSame) {
+        return @"编号";
+    }else if ([enname compare:@"name"] == NSOrderedSame) {
+        return @"名称";
+    }else if ([enname compare:@"time"] == NSOrderedSame) {
+        return @"时间";
+    }else if ([enname compare:@"photoname"] == NSOrderedSame) {
+        return @"照片";
+    }else if ([enname compare:@"field1"] == NSOrderedSame) {
+        return @"字段1";
+    }else if ([enname compare:@"field2"] == NSOrderedSame) {
+        return @"字段2";
+    }else if ([enname compare:@"field3"] == NSOrderedSame) {
+        return @"字段3";
+    }else{
+        return enname;
+    }
+}
+
++ (NSString *)enname:(NSString *) chinesename
+{
+    if ([chinesename compare:@"编号"] == NSOrderedSame) {
+        return @"id";
+    }else if ([chinesename compare:@"名称"] == NSOrderedSame) {
+        return @"name";
+    }else if ([chinesename compare:@"时间"] == NSOrderedSame) {
+        return @"time";
+    }else if ([chinesename compare:@"照片"] == NSOrderedSame) {
+        return @"photoname";
+    }else if ([chinesename compare:@"字段1"] == NSOrderedSame) {
+        return @"field1";
+    }else if ([chinesename compare:@"字段2"] == NSOrderedSame) {
+        return @"field2";
+    }else if ([chinesename compare:@"字段3"] == NSOrderedSame) {
+        return @"field3";
+    }else{
+        return chinesename;
+    }
+}
+
 -(void) initDirectory
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];

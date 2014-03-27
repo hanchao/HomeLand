@@ -33,7 +33,12 @@
 		D60663A918D6C705004E0A7A /* GPXWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D606639218D6C705004E0A7A /* GPXWaypoint.m */; };
 		D60663AA18D6C705004E0A7A /* GPXXML.m in Sources */ = {isa = PBXBuildFile; fileRef = D606639418D6C705004E0A7A /* GPXXML.m */; };
 		D60663AD18D6C9C1004E0A7A /* GPSLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D60663AC18D6C9C1004E0A7A /* GPSLayer.m */; };
+		D623C37218E1369F0007656E /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D623C37118E1369F0007656E /* RecordController.m */; };
+		D623C37818E13B180007656E /* ManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D623C37718E13B180007656E /* ManageController.m */; };
+		D623C37B18E13C7F0007656E /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D623C37918E13C7F0007656E /* Main_iPad.storyboard */; };
 		D62583A318D5240C00564A9D /* liblibspatialite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6603FB918C710E700C1E1EA /* liblibspatialite.a */; };
+		D6279A5118DABCAD00E4536D /* AttributeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6279A5018DABCAD00E4536D /* AttributeController.m */; };
+		D6279A5718DAC07200E4536D /* FieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D6279A5618DAC07200E4536D /* FieldInfo.m */; };
 		D63134E518C996C1003DD1C8 /* LayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63134E418C996C1003DD1C8 /* LayerController.m */; };
 		D6603FA718C703A300C1E1EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6603FA618C703A300C1E1EA /* Images.xcassets */; };
 		D6603FAE18C7083F00C1E1EA /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = D6603FAD18C7083F00C1E1EA /* Projects.m */; };
@@ -46,7 +51,6 @@
 		D66A277518C43370008B4CFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D66A277418C43370008B4CFC /* main.m */; };
 		D66A277918C43370008B4CFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D66A277818C43370008B4CFC /* AppDelegate.m */; };
 		D66A277C18C43370008B4CFC /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D66A277A18C43370008B4CFC /* Main_iPhone.storyboard */; };
-		D66A277F18C43370008B4CFC /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D66A277D18C43370008B4CFC /* Main_iPad.storyboard */; };
 		D66A278218C43370008B4CFC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D66A278118C43370008B4CFC /* ViewController.m */; };
 		D66A278B18C43371008B4CFC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D66A278A18C43371008B4CFC /* XCTest.framework */; };
 		D66A278C18C43371008B4CFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D66A276818C43370008B4CFC /* Foundation.framework */; };
@@ -143,6 +147,7 @@
 		D6854BB418D731AC008E638A /* 欢迎画面竖2048.png in Resources */ = {isa = PBXBuildFile; fileRef = D6854B5F18D731AC008E638A /* 欢迎画面竖2048.png */; };
 		D6854BB718D824F7008E638A /* ImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6854BB618D824F7008E638A /* ImageController.m */; };
 		D6854BBA18D833DE008E638A /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = D6854BB918D833DE008E638A /* Photo.m */; };
+		D6854BBD18D84C6C008E638A /* EditLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D6854BBC18D84C6C008E638A /* EditLayer.m */; };
 		D6C3607B18C5B6D900D9A5F8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3607A18C5B6D900D9A5F8 /* MediaPlayer.framework */; };
 		D6C3607D18C5B6E400D9A5F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3607C18C5B6E400D9A5F8 /* CoreLocation.framework */; };
 		D6C3608518C5B77700D9A5F8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3608418C5B77700D9A5F8 /* MobileCoreServices.framework */; };
@@ -234,6 +239,15 @@
 		D606639418D6C705004E0A7A /* GPXXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXXML.m; path = GPX/GPXXML.m; sourceTree = "<group>"; };
 		D60663AB18D6C9C1004E0A7A /* GPSLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSLayer.h; sourceTree = "<group>"; };
 		D60663AC18D6C9C1004E0A7A /* GPSLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSLayer.m; sourceTree = "<group>"; };
+		D623C37018E1369F0007656E /* RecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordController.h; sourceTree = "<group>"; };
+		D623C37118E1369F0007656E /* RecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordController.m; sourceTree = "<group>"; };
+		D623C37618E13B180007656E /* ManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageController.h; sourceTree = "<group>"; };
+		D623C37718E13B180007656E /* ManageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageController.m; sourceTree = "<group>"; };
+		D623C37A18E13C7F0007656E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		D6279A4F18DABCAC00E4536D /* AttributeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeController.h; sourceTree = "<group>"; };
+		D6279A5018DABCAD00E4536D /* AttributeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeController.m; sourceTree = "<group>"; };
+		D6279A5518DAC07200E4536D /* FieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldInfo.h; sourceTree = "<group>"; };
+		D6279A5618DAC07200E4536D /* FieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldInfo.m; sourceTree = "<group>"; };
 		D63134E318C996C1003DD1C8 /* LayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerController.h; sourceTree = "<group>"; };
 		D63134E418C996C1003DD1C8 /* LayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerController.m; sourceTree = "<group>"; };
 		D6603FA618C703A300C1E1EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -254,7 +268,6 @@
 		D66A277718C43370008B4CFC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D66A277818C43370008B4CFC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D66A277B18C43370008B4CFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		D66A277E18C43370008B4CFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		D66A278018C43370008B4CFC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D66A278118C43370008B4CFC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D66A278918C43371008B4CFC /* HomeLandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeLandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,6 +367,8 @@
 		D6854BB618D824F7008E638A /* ImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageController.m; sourceTree = "<group>"; };
 		D6854BB818D833DE008E638A /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		D6854BB918D833DE008E638A /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		D6854BBB18D84C6C008E638A /* EditLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditLayer.h; sourceTree = "<group>"; };
+		D6854BBC18D84C6C008E638A /* EditLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditLayer.m; sourceTree = "<group>"; };
 		D6C3607A18C5B6D900D9A5F8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		D6C3607C18C5B6E400D9A5F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D6C3607E18C5B6ED00D9A5F8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -463,6 +478,10 @@
 				D606635718D69C12004E0A7A /* MeasureLayer.m */,
 				D60663AB18D6C9C1004E0A7A /* GPSLayer.h */,
 				D60663AC18D6C9C1004E0A7A /* GPSLayer.m */,
+				D6854BBB18D84C6C008E638A /* EditLayer.h */,
+				D6854BBC18D84C6C008E638A /* EditLayer.m */,
+				D6279A5518DAC07200E4536D /* FieldInfo.h */,
+				D6279A5618DAC07200E4536D /* FieldInfo.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -524,15 +543,21 @@
 				D66A277718C43370008B4CFC /* AppDelegate.h */,
 				D66A277818C43370008B4CFC /* AppDelegate.m */,
 				D66A277A18C43370008B4CFC /* Main_iPhone.storyboard */,
-				D66A277D18C43370008B4CFC /* Main_iPad.storyboard */,
+				D623C37918E13C7F0007656E /* Main_iPad.storyboard */,
 				D66A278018C43370008B4CFC /* ViewController.h */,
 				D66A278118C43370008B4CFC /* ViewController.m */,
+				D623C37018E1369F0007656E /* RecordController.h */,
+				D623C37118E1369F0007656E /* RecordController.m */,
 				D6603FAF18C70C7D00C1E1EA /* ProjectController.h */,
 				D6603FB018C70C7D00C1E1EA /* ProjectController.m */,
 				D63134E318C996C1003DD1C8 /* LayerController.h */,
 				D63134E418C996C1003DD1C8 /* LayerController.m */,
 				D6854BB518D824F7008E638A /* ImageController.h */,
 				D6854BB618D824F7008E638A /* ImageController.m */,
+				D6279A4F18DABCAC00E4536D /* AttributeController.h */,
+				D6279A5018DABCAD00E4536D /* AttributeController.m */,
+				D623C37618E13B180007656E /* ManageController.h */,
+				D623C37718E13B180007656E /* ManageController.m */,
 				D6603FA618C703A300C1E1EA /* Images.xcassets */,
 				D66A276F18C43370008B4CFC /* Supporting Files */,
 			);
@@ -716,6 +741,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "chao han";
 				TargetAttributes = {
+					D66A276418C43370008B4CFC = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					D66A278818C43371008B4CFC = {
 						TestTargetID = D66A276418C43370008B4CFC;
 					};
@@ -788,9 +820,9 @@
 				D6854B8B18D731AC008E638A /* 023长度.png in Resources */,
 				D6854BA018D731AC008E638A /* 036图层长条按钮.png in Resources */,
 				D6854B7318D731AC008E638A /* 010点@2x.png in Resources */,
-				D66A277F18C43370008B4CFC /* Main_iPad.storyboard in Resources */,
 				D6854B8F18D731AC008E638A /* 025回退.png in Resources */,
 				D6854B9A18D731AC008E638A /* 031当前位置@2x.png in Resources */,
+				D623C37B18E13C7F0007656E /* Main_iPad.storyboard in Resources */,
 				D6854B9718D731AC008E638A /* 030记录轨迹.png in Resources */,
 				D6854B9E18D731AC008E638A /* 034保存（长）.png in Resources */,
 				D6854B6A18D731AC008E638A /* 006图斑查找.png in Resources */,
@@ -885,9 +917,11 @@
 				D606639618D6C705004E0A7A /* GPXBounds.m in Sources */,
 				D606636118D6C6A2004E0A7A /* Track.m in Sources */,
 				D60663A018D6C705004E0A7A /* GPXPoint.m in Sources */,
+				D623C37218E1369F0007656E /* RecordController.m in Sources */,
 				D60663AA18D6C705004E0A7A /* GPXXML.m in Sources */,
 				D60663A918D6C705004E0A7A /* GPXWaypoint.m in Sources */,
 				D606635818D69C12004E0A7A /* MeasureLayer.m in Sources */,
+				D6279A5118DABCAD00E4536D /* AttributeController.m in Sources */,
 				D606639818D6C705004E0A7A /* GPXCopyright.m in Sources */,
 				D60663AD18D6C9C1004E0A7A /* GPSLayer.m in Sources */,
 				D606639918D6C705004E0A7A /* GPXElement.m in Sources */,
@@ -898,6 +932,7 @@
 				D6603FAE18C7083F00C1E1EA /* Projects.m in Sources */,
 				D63134E518C996C1003DD1C8 /* LayerController.m in Sources */,
 				D6854A5C18D73120008E638A /* Project.mm in Sources */,
+				D623C37818E13B180007656E /* ManageController.m in Sources */,
 				D606639E18D6C705004E0A7A /* GPXParser.m in Sources */,
 				D60663A618D6C705004E0A7A /* GPXTrackPoint.m in Sources */,
 				D66A278218C43370008B4CFC /* ViewController.m in Sources */,
@@ -909,8 +944,10 @@
 				D60663A118D6C705004E0A7A /* GPXPointSegment.m in Sources */,
 				D606639B18D6C705004E0A7A /* GPXExtensions.m in Sources */,
 				D606639F18D6C705004E0A7A /* GPXPerson.m in Sources */,
+				D6279A5718DAC07200E4536D /* FieldInfo.m in Sources */,
 				D66A277918C43370008B4CFC /* AppDelegate.m in Sources */,
 				D6854BBA18D833DE008E638A /* Photo.m in Sources */,
+				D6854BBD18D84C6C008E638A /* EditLayer.m in Sources */,
 				D66A277518C43370008B4CFC /* main.m in Sources */,
 				D60663A318D6C705004E0A7A /* GPXRoute.m in Sources */,
 				D606639C18D6C705004E0A7A /* GPXLink.m in Sources */,
@@ -939,6 +976,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D623C37918E13C7F0007656E /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D623C37A18E13C7F0007656E /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
 		D66A277118C43370008B4CFC /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -953,14 +998,6 @@
 				D66A277B18C43370008B4CFC /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		D66A277D18C43370008B4CFC /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D66A277E18C43370008B4CFC /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		D66A279318C43371008B4CFC /* InfoPlist.strings */ = {

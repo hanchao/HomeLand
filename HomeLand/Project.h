@@ -30,7 +30,13 @@
 -(BOOL) open:(NSString *)path;
 -(BOOL) close;
 
+-(NSMutableArray*) allFieldInfo:(AGSGeometryType)geometryType;
 -(BOOL) addGeometry:(AGSGeometry*)geometry;
+-(BOOL) addGraphic:(AGSGraphic*)graphic;
+-(BOOL) saveGraphic:(AGSGraphic*)graphic;
+-(BOOL) removeGraphic:(AGSGraphic*)graphic;
+
+-(NSMutableArray*) search:(NSString *)key;
 
 -(BOOL) addPhoto:(Photo*)photo;
 -(NSInteger) photoCount;

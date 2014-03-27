@@ -77,10 +77,10 @@
     NSLog(@"%f %f %f %f %d", point.x,point.y, pointMap.x,pointMap.y,_line.numPoints);
     
     AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
-    myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:0.5];
+    myFillSymbol.color = [UIColor colorWithRed:0.1 green:0.2 blue:0.7 alpha:0.5];
     //线的边框还是“线”
     AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
-    myOutlineSymbol.color = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:0.5];
+    myOutlineSymbol.color = [UIColor colorWithRed:0.1 green:0.2 blue:0.7 alpha:0.5];
     myOutlineSymbol.width = 2;
     //set the outline property to myOutlineSymbol
     myFillSymbol.outline = myOutlineSymbol;
