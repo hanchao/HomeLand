@@ -30,6 +30,19 @@
     self.navigationController.navigationBarHidden = FALSE;
     
     _layerName = @[@"Point",@"Line",@"Region"];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = FALSE;
+    
+    if (_curLayerName.length != 0) {
+        self.selectLayerButton.titleLabel.text = _curLayerName;
+    }
+    NSLog(@"%@",self.selectLayerButton.titleLabel.text);
+    self.selectLayerButton.titleLabel.text = @"lint";
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,7 +91,8 @@
     
     NSInteger row = [self.layerPicker selectedRowInComponent:0];
     
-    self.selectLayerButton.titleLabel.text = [_layerName objectAtIndex:row];
+    _curLayerName = [_layerName objectAtIndex:row];
+    self.selectLayerButton.titleLabel.text = _curLayerName;
     [self.recordTable reloadData];
 }
 

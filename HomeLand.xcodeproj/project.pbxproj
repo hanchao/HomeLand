@@ -51,6 +51,10 @@
 		D62130D618E3C6D50061A10A /* 长度点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130C418E3C6D50061A10A /* 长度点击效果@2x.png */; };
 		D62130D718E3C6D50061A10A /* 自动采点点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130C518E3C6D50061A10A /* 自动采点点击效果.png */; };
 		D62130D818E3C6D50061A10A /* 自动采点点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130C618E3C6D50061A10A /* 自动采点点击效果@2x.png */; };
+		D62130E318E4171A0061A10A /* libMWPhotoBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D62130E218E415D60061A10A /* libMWPhotoBrowser.a */; };
+		D62130E518E417480061A10A /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62130E418E417480061A10A /* ImageIO.framework */; };
+		D62130E718E4177C0061A10A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62130E618E4177C0061A10A /* AssetsLibrary.framework */; };
+		D62130E918E420570061A10A /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D62130E818E420570061A10A /* MWPhotoBrowser.bundle */; };
 		D623C37218E1369F0007656E /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D623C37118E1369F0007656E /* RecordController.m */; };
 		D623C37818E13B180007656E /* ManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D623C37718E13B180007656E /* ManageController.m */; };
 		D623C37B18E13C7F0007656E /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D623C37918E13C7F0007656E /* Main_iPad.storyboard */; };
@@ -172,6 +176,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D62130E118E415D60061A10A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D62130DD18E415D60061A10A /* MWPhotoBrowser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4C6F96C414AF704100F8389A;
+			remoteInfo = MWPhotoBrowser;
+		};
 		D6603FB818C710E700C1E1EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D6603FB218C710E500C1E1EA /* libspatialite.xcodeproj */;
@@ -275,6 +286,10 @@
 		D62130C418E3C6D50061A10A /* 长度点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "长度点击效果@2x.png"; sourceTree = "<group>"; };
 		D62130C518E3C6D50061A10A /* 自动采点点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自动采点点击效果.png"; sourceTree = "<group>"; };
 		D62130C618E3C6D50061A10A /* 自动采点点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自动采点点击效果@2x.png"; sourceTree = "<group>"; };
+		D62130DD18E415D60061A10A /* MWPhotoBrowser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MWPhotoBrowser.xcodeproj; path = MWPhotoBrowser/MWPhotoBrowser.xcodeproj; sourceTree = "<group>"; };
+		D62130E418E417480061A10A /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		D62130E618E4177C0061A10A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		D62130E818E420570061A10A /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MWPhotoBrowser.bundle; path = MWPhotoBrowser/MWPhotoBrowser.bundle; sourceTree = SOURCE_ROOT; };
 		D623C37018E1369F0007656E /* RecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordController.h; sourceTree = "<group>"; };
 		D623C37118E1369F0007656E /* RecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordController.m; sourceTree = "<group>"; };
 		D623C37618E13B180007656E /* ManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageController.h; sourceTree = "<group>"; };
@@ -418,6 +433,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D62130E718E4177C0061A10A /* AssetsLibrary.framework in Frameworks */,
+				D62130E518E417480061A10A /* ImageIO.framework in Frameworks */,
+				D62130E318E4171A0061A10A /* libMWPhotoBrowser.a in Frameworks */,
 				D62583A318D5240C00564A9D /* liblibspatialite.a in Frameworks */,
 				D67F9F3418C8706E000AF822 /* libgeos.a in Frameworks */,
 				D6603FC218C7171C00C1E1EA /* libiconv.dylib in Frameworks */,
@@ -497,6 +515,14 @@
 			name = GPX;
 			sourceTree = "<group>";
 		};
+		D62130DE18E415D60061A10A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D62130E218E415D60061A10A /* libMWPhotoBrowser.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D6603FAB18C7081D00C1E1EA /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,7 +580,10 @@
 		D66A276718C43370008B4CFC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D62130E618E4177C0061A10A /* AssetsLibrary.framework */,
+				D62130E418E417480061A10A /* ImageIO.framework */,
 				D6603FC118C7171C00C1E1EA /* libiconv.dylib */,
+				D62130DD18E415D60061A10A /* MWPhotoBrowser.xcodeproj */,
 				D6603FB218C710E500C1E1EA /* libspatialite.xcodeproj */,
 				D6C3608418C5B77700D9A5F8 /* MobileCoreServices.framework */,
 				D6C3608218C5B71800D9A5F8 /* QuartzCore.framework */,
@@ -603,6 +632,7 @@
 		D66A276F18C43370008B4CFC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D62130E818E420570061A10A /* MWPhotoBrowser.bundle */,
 				D6854B0918D731AC008E638A /* image */,
 				D66A277018C43370008B4CFC /* HomeLand-Info.plist */,
 				D66A277118C43370008B4CFC /* InfoPlist.strings */,
@@ -823,6 +853,10 @@
 					ProductGroup = D6603FB318C710E500C1E1EA /* Products */;
 					ProjectRef = D6603FB218C710E500C1E1EA /* libspatialite.xcodeproj */;
 				},
+				{
+					ProductGroup = D62130DE18E415D60061A10A /* Products */;
+					ProjectRef = D62130DD18E415D60061A10A /* MWPhotoBrowser.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -833,6 +867,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		D62130E218E415D60061A10A /* libMWPhotoBrowser.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMWPhotoBrowser.a;
+			remoteRef = D62130E118E415D60061A10A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		D6603FB918C710E700C1E1EA /* liblibspatialite.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -948,6 +989,7 @@
 				D6854B6318D731AC008E638A /* 002图层管理@2x.png in Resources */,
 				D6854B9518D731AC008E638A /* 028搜索.png in Resources */,
 				D6854BA518D731AC008E638A /* 布局示意图004量算界面.jpg in Resources */,
+				D62130E918E420570061A10A /* MWPhotoBrowser.bundle in Resources */,
 				D6603FA718C703A300C1E1EA /* Images.xcassets in Resources */,
 				D6854BB318D731AC008E638A /* 欢迎画面竖2048.jpg in Resources */,
 				D6854BB018D731AC008E638A /* 欢迎画面横2048.png in Resources */,

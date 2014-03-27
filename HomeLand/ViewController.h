@@ -11,11 +11,13 @@
 #import "Project.h"
 #import "Projects.h"
 #import "GPX/GPX.h"
+#import "../MWPhotoBrowser/Classes/MWPhotoBrowser.h"
 
-@interface ViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate,CLLocationManagerDelegate,AGSMapViewLayerDelegate,AGSMapViewTouchDelegate,AGSCalloutDelegate,UIAlertViewDelegate,UISearchBarDelegate>
+@interface ViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate,CLLocationManagerDelegate,AGSMapViewLayerDelegate,AGSMapViewTouchDelegate,AGSCalloutDelegate,UIAlertViewDelegate,UISearchBarDelegate,MWPhotoBrowserDelegate>
 {
     NSArray* _buttonTitle;
     CLLocationManager *_locationManager;
+    NSMutableArray *_photos;
 }
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIView *measureView;

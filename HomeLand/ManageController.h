@@ -14,6 +14,7 @@
 @interface ManageController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
 {
     NSArray *_layerName;
+    NSString *_curLayerName;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *recordTable;

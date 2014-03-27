@@ -15,6 +15,7 @@
 #import "AttributeController.h"
 #import "RecordController.h"
 
+
 @interface ViewController ()
 
 @end
@@ -276,7 +277,46 @@
     [self photograph];
 }
 
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
+}
+
 - (IBAction)photoManageTouch:(id)sender {
+    
+    NSMutableArray *allPhoto = [Projects sharedProjects].curProject.allPhoto;
+    
+    // Create array of MWPhoto objects
+    _photos = [NSMutableArray array];
+    for (int i=0; i<allPhoto.count; i++) {
+        Photo *photo = (Photo *)[allPhoto objectAtIndex:i];
+        MWPhoto *mwphoto = [MWPhoto photoWithImage:photo.image];
+        mwphoto.caption = photo.fileName;
+        [_photos addObject:mwphoto];
+    }
+
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    
+    browser.enableGrid = YES;
+    browser.startOnGrid = YES;
+    browser.displayNavArrows = YES;
+
+
+    [self.navigationController pushViewController:browser animated:YES];
+
 }
 
 - (IBAction)DataInputTouch:(id)sender {
