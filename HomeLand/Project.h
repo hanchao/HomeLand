@@ -41,6 +41,7 @@
 -(NSString *) addPhoto:(Photo*)photo;
 -(NSInteger) photoCount;
 -(NSMutableArray*) allPhoto;
+-(UIImage *) photoWithName:(NSString *)name;
 
 -(BOOL) saveTrack:(NSString *)gpx Name:(NSString *)name;
 

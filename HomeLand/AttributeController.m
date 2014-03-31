@@ -72,8 +72,9 @@
         
         UIBarButtonItem *buttonDelete = [[UIBarButtonItem alloc] initWithTitle:@"删除" style: UIBarButtonItemStylePlain target:self action:@selector(deleteFeature:)];
 
+        UIBarButtonItem *buttonShowInMap = [[UIBarButtonItem alloc] initWithTitle:@"位置" style: UIBarButtonItemStylePlain target:self action:@selector(showInMap:)];
 
-        self.navigationItem.rightBarButtonItems = @[buttonSave,buttonDelete];
+        self.navigationItem.rightBarButtonItems = @[buttonSave,buttonDelete,buttonShowInMap];
         
         //self.graphic.allAttributes.allKeys
         AGSGeometryType geometryType = AGSGeometryTypeForGeometry(self.graphic.geometry);
@@ -137,6 +138,14 @@
             UIButton* botton = (UIButton*) [cell viewWithTag: 400];
             botton.hidden = NO;
             testField.enabled = NO;
+            
+            if (testField.text.length != 0) {
+                UIButton* bottonshow = (UIButton*) [cell viewWithTag: 500];
+                bottonshow.hidden = NO;
+                
+                _photoname = testField.text;
+                _image = [[Projects sharedProjects].curProject photoWithName:_photoname];
+            }
         }
         else if ([fieldInfo.name compare:@"id"] == NSOrderedSame ||
                  [fieldInfo.name compare:@"time"] == NSOrderedSame )
@@ -206,6 +215,25 @@
     }
 }
 
+- (IBAction)showInMap:(id)sender {
+    
+    [[Projects sharedProjects].curProject.mapView.callout dismiss];
+    
+//    self.mapView.callout.title = (NSString*)[feature attributeForKey:@"name"];
+//    if (self.mapView.callout.title.length == 0) {
+//        self.mapView.callout.title = @"未命名";
+//    }
+//    
+//    NSString *photoname = (NSString*)[feature attributeForKey:@"photoname"];
+//    UIImage *image = [[Projects sharedProjects].curProject photoWithName:photoname];
+//    self.mapView.callout.image = image;
+    
+    AGSEnvelope * envelope = self.graphic.geometry.envelope;
+    [[Projects sharedProjects].curProject.mapView zoomToEnvelope:envelope animated:NO];
+    [[Projects sharedProjects].curProject.mapView.callout showCalloutAtPoint:envelope.center forFeature:self.graphic layer:self.graphic.layer animated:NO];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 {
     if(buttonIndex == 1)
@@ -247,6 +275,32 @@
     [self presentViewController:imagePickerController animated:YES completion:nil];  //需要以模态的形式展示
     
 }
+
+#pragma mark - MWPhotoBrowserDelegate
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    MWPhoto *mwphoto = [MWPhoto photoWithImage:_image];
+    mwphoto.caption = _photoname;
+    return mwphoto;
+}
+
+
+- (IBAction)showphoto:(id)sender {
+    
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    
+    browser.enableGrid = YES;
+    browser.startOnGrid = YES;
+    browser.displayNavArrows = YES;
+    
+    
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
 
 //完成拍照
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -291,9 +345,12 @@
             Photo * photo = [[Photo alloc] init];
             photo.image = image;
             photo.point = point;
-            NSString *filename = [[Projects sharedProjects].curProject addPhoto:photo];
+            _photoname = [[Projects sharedProjects].curProject addPhoto:photo];
             
-            testField.text = filename;
+            testField.text = _photoname;
+            
+            UIButton* bottonshow = (UIButton*) [cell viewWithTag: 500];
+            bottonshow.hidden = NO;
         }
         
         

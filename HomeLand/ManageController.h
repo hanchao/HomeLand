@@ -18,7 +18,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *recordTable;
-@property (weak, nonatomic) IBOutlet UIButton *selectLayerButton;
+@property (weak, nonatomic) IBOutlet UITextField *selectlayerEdit;
 @property (weak, nonatomic) IBOutlet UIPickerView *layerPicker;
 @property (weak, nonatomic) IBOutlet UIView *selectView;
 - (IBAction)selectlayerTouch:(id)sender;

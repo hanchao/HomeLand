@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ArcGIS/ArcGIS.h>
+#import "Projects.h"
+#import "Project.h"
 
 @interface RecordController : UITableViewController
+
+@property (nonatomic) NSMutableArray* graphics;
 
 @end

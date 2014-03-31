@@ -11,6 +11,7 @@
 #import "Project.h"
 #import "Projects.h"
 #import "GPX/GPX.h"
+#import "BottomAnimateView.h"
 #import "../MWPhotoBrowser/Classes/MWPhotoBrowser.h"
 
 @interface ViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate,CLLocationManagerDelegate,AGSMapViewLayerDelegate,AGSMapViewTouchDelegate,AGSCalloutDelegate,UIAlertViewDelegate,UISearchBarDelegate,MWPhotoBrowserDelegate>
@@ -20,8 +21,8 @@
     NSMutableArray *_photos;
 }
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIView *measureView;
-@property (weak, nonatomic) IBOutlet UIView *editView;
+@property (weak, nonatomic) IBOutlet BottomAnimateView *measureView;
+@property (weak, nonatomic) IBOutlet BottomAnimateView *editView;
 @property (weak, nonatomic) IBOutlet UILabel *measureout;
 @property (weak, nonatomic) IBOutlet UILabel *mapScaleLabel;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchbar;

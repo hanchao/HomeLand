@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <ArcGIS/ArcGIS.h>
+#import "../MWPhotoBrowser/Classes/MWPhotoBrowser.h"
 
-@interface AttributeController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
+@interface AttributeController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,MWPhotoBrowserDelegate>
 {
     NSMutableArray* _fieldInfos;
     UIImage *_image;
+    NSString *_photoname;
 }
 
 @property (nonatomic) BOOL isAddNew;
@@ -21,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 - (IBAction)TextField_DidEndOnExit:(id)sender;
 - (IBAction)photo:(id)sender;
+- (IBAction)showphoto:(id)sender;
 
 @end

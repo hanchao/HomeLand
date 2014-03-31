@@ -38,11 +38,9 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = FALSE;
     
-    if (_curLayerName.length != 0) {
-        self.selectLayerButton.titleLabel.text = _curLayerName;
-    }
-    NSLog(@"%@",self.selectLayerButton.titleLabel.text);
-    self.selectLayerButton.titleLabel.text = @"lint";
+//    if (_curLayerName.length != 0) {
+//        self.selectlayerEdit.text = _curLayerName;
+//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,13 +90,13 @@
     NSInteger row = [self.layerPicker selectedRowInComponent:0];
     
     _curLayerName = [_layerName objectAtIndex:row];
-    self.selectLayerButton.titleLabel.text = _curLayerName;
+    self.selectlayerEdit.text = _curLayerName;
     [self.recordTable reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSString *layername = self.selectLayerButton.titleLabel.text;
+    NSString *layername = self.selectlayerEdit.text;
     AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)[[Projects sharedProjects].curProject.mapView mapLayerForName:layername];
     
     if (graphicsLayer != nil) {
@@ -113,7 +111,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier
                                                             forIndexPath: indexPath];
     
-    NSString *layername = self.selectLayerButton.titleLabel.text;
+    NSString *layername = self.selectlayerEdit.text;
     AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)[[Projects sharedProjects].curProject.mapView mapLayerForName:layername];
     
     if (graphicsLayer != nil) {
@@ -135,7 +133,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *layername = self.selectLayerButton.titleLabel.text;
+    NSString *layername = self.selectlayerEdit.text;
     AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)[[Projects sharedProjects].curProject.mapView mapLayerForName:layername];
     
     if (graphicsLayer != nil) {

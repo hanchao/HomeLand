@@ -73,7 +73,8 @@
     self.mapView.allowCallout = true;
     self.mapView.callout.delegate = self;
     
-    //self.measurebutton.selected = YES;
+    [self.measureView hide:NO];
+    [self.editView hide:NO];
 }
 
 - (void)mapViewDidLoad:(AGSMapView *)mapView {
@@ -95,6 +96,14 @@
         self.editregionbutton.selected = NO;
         self.editautoinput.selected = NO;
     }
+    
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+
 }
 
 # pragma table
@@ -452,6 +461,7 @@
 //    [self.navigationController pushViewController:layerController animated:YES];
 }
 
+
 -(void) openmeasure
 {
     if (!self.editView.hidden) {
@@ -555,9 +565,16 @@
     }
     
 	self.mapView.callout.title = (NSString*)[feature attributeForKey:@"name"];
-
+    if (self.mapView.callout.title.length == 0) {
+        self.mapView.callout.title = @"未命名";
+    }
+    
+    NSString *photoname = (NSString*)[feature attributeForKey:@"photoname"];
+    UIImage *image = [[Projects sharedProjects].curProject photoWithName:photoname];
+    self.mapView.callout.image = image;
 	return YES;
 }
+
 - (void)didClickAccessoryButtonForCallout:(AGSCallout *)callout
 {
     NSLog(@"didClickAccessoryButtonForCallout");
@@ -600,17 +617,25 @@
 {
     NSLog(@"searchBarSearchButtonClicked");
     
+    NSMutableArray * result = [[Projects sharedProjects].curProject search:searchBar.text];
+    if (result == nil || result.count == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有查询的数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
     [searchBar resignFirstResponder];
     searchBar.hidden = YES;
     
     UIStoryboard * storyBoard;
-    RecordController *projectController;
+    RecordController *recordController;
     
     storyBoard  = [UIStoryboard
                    storyboardWithName:@"Main_iPad" bundle:nil];
     
-    projectController = [storyBoard instantiateViewControllerWithIdentifier:@"RecordController"];
-    [self.navigationController pushViewController:projectController animated:YES];
+    recordController = [storyBoard instantiateViewControllerWithIdentifier:@"RecordController"];
+    
+    recordController.graphics = result;
+    [self.navigationController pushViewController:recordController animated:YES];
 }
 
 @end
