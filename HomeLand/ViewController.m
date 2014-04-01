@@ -334,6 +334,10 @@
 
 - (IBAction)DataSearchTouch:(id)sender {
     self.searchbar.hidden = !self.searchbar.hidden;
+    if (!self.searchbar.hidden) {
+        [self.searchbar becomeFirstResponder];
+    }
+    
 }
 
 - (IBAction)DataManageTouch:(id)sender {

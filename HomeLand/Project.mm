@@ -1326,13 +1326,7 @@
     /* we'll now save the #columns within the result set */
     n_columns = sqlite3_column_count (stmt);
     row_no = 0;
-    
-    
-    AGSGraphicsLayer *graphicsLayer= [[AGSGraphicsLayer alloc] init];
-    
-    
-    [self.mapView addMapLayer:graphicsLayer withName:name];
-    
+
 
     
     AGSGeometryType geometryType = AGSGeometryTypePoint;
