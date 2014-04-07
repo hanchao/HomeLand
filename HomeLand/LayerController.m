@@ -37,13 +37,6 @@
     UISwitch* layerswitch = (UISwitch*) [cell viewWithTag: 200];
     layerswitch.on = layer.visible;
     layerswitch.accessibilityLabel = layer.name;
-    //    UIButton* button = (UIButton*) [cell viewWithTag: 100];
-    //    [button setTitle: [[Projects sharedProjects].projects objectAtIndex: indexPath.row]
-    //                forState: UIControlStateNormal];
-    //
-    //
-    //    button.clipsToBounds = YES;
-    //    button.layer.cornerRadius = 8;
     
     return cell;
 }

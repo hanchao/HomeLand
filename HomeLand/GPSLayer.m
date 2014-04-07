@@ -53,9 +53,9 @@
 
 - (void) addGPSPoint:(CLLocation *)newLocation
 {
-    GPXTrackPoint *gpxTrackPoint = [_gpxTrack newTrackpointWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude];
-    gpxTrackPoint.elevation = newLocation.altitude;
-    gpxTrackPoint.time = [NSDate date];
+//    GPXTrackPoint *gpxTrackPoint = [_gpxTrack newTrackpointWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude];
+//    gpxTrackPoint.elevation = newLocation.altitude;
+//    gpxTrackPoint.time = [NSDate date];
     
 //    TrackPoint *trackpoint = [[TrackPoint alloc] init];
 //    trackpoint.latitude = [NSNumber numberWithFloat:newLocation.coordinate.latitude];

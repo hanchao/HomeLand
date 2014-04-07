@@ -356,7 +356,7 @@
         [gpsLayer addGPSPoint:newLocation];
         
         //保存轨迹文件
-        [[Projects sharedProjects].curProject saveTrack:gpsLayer.gpxString Name:gpsLayer.gpxName];
+        //[[Projects sharedProjects].curProject saveTrack:gpsLayer.gpxString Name:gpsLayer.gpxName];
     }
     
     

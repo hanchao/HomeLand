@@ -41,12 +41,6 @@
     button.title = @"保存";
     self.navigationItem.rightBarButtonItem = button;
     
-//    UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveFeature:)];
-//    
-//    UIBarButtonItem *buttonDelete = [[UIBarButtonItem alloc] initWithTitle:@"删除" style: UIBarButtonItemStylePlain target:self action:@selector(saveFeature:)];
-//    
-//    
-//    self.navigationItem.rightBarButtonItems = @[buttonSave,buttonDelete];
 }
 
 - (void)viewWillAppear:(BOOL)animated
