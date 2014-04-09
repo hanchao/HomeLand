@@ -17,6 +17,7 @@
     NSString *_photoname;
 }
 
+@property (nonatomic) BOOL isQuery;
 @property (nonatomic) BOOL isAddNew;
 @property (nonatomic) AGSGraphic* graphic;
 

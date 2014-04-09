@@ -91,10 +91,17 @@
         }
     }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *curProjectName = [defaults stringForKey:@"curProjectName"];
-    if (curProjectName != nil) {
-        [self openProject:curProjectName];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *curProjectName = [defaults stringForKey:@"curProjectName"];
+//    if (curProjectName != nil) {
+//        [self openProject:curProjectName];
+//    }else{
+//        [self createProject:@"DefaultProject"];
+//        [self openProject:@"DefaultProject"];
+//    }
+    if (![self openProject:@"DefaultProject"]) {
+        [self createProject:@"DefaultProject"];
+        [self openProject:@"DefaultProject"];
     }
 }
 

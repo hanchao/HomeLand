@@ -16,6 +16,7 @@
 
 @interface Project : NSObject
 {
+    sqlite3 *_basehandle;
     sqlite3 *_handle;
 }
 
@@ -44,5 +45,7 @@
 -(UIImage *) photoWithName:(NSString *)name;
 
 -(BOOL) saveTrack:(NSString *)gpx Name:(NSString *)name;
+
+-(NSMutableArray*) allFieldInfoBase:(NSString *)name;
 
 @end

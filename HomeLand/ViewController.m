@@ -447,6 +447,20 @@
 //    projectController = [storyBoard instantiateViewControllerWithIdentifier:@"ProjectController"];
 //    
 //    [self.navigationController pushViewController:projectController animated:YES];
+    
+    if(![[Projects sharedProjects] openProject:@"DefaultProject"])
+    {
+        [[Projects sharedProjects] createProject:@"DefaultProject"];
+        if(![[Projects sharedProjects] openProject:@"DefaultProject"]){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"打开工程失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"打开工程成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 -(void) openLayer
@@ -568,14 +582,29 @@
         return NO;
     }
     
-	self.mapView.callout.title = (NSString*)[feature attributeForKey:@"name"];
-    if (self.mapView.callout.title.length == 0) {
+    if ([layer.name compare:@"DMD"] == NSOrderedSame ) {
+        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"NAME"];
+    }else if ([layer.name compare:@"WPZFTB"] == NSOrderedSame ) {
+        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"TBBH"];
+    }else if ([layer.name compare:@"TDPW"] == NSOrderedSame ) {
+        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"SPZWH"];
+    }else{
+        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"name"];
+    }
+	
+    if (self.mapView.callout.title == nil ||
+        [self.mapView.callout.title isEqual:[NSNull null]] ||
+        self.mapView.callout.title.length == 0) {
         self.mapView.callout.title = @"未命名";
     }
     
+    
     NSString *photoname = (NSString*)[feature attributeForKey:@"photoname"];
-    UIImage *image = [[Projects sharedProjects].curProject photoWithName:photoname];
-    self.mapView.callout.image = image;
+    if (photoname != nil && ![photoname isEqual:[NSNull null]]) {
+        UIImage *image = [[Projects sharedProjects].curProject photoWithName:photoname];
+        self.mapView.callout.image = image;
+    }
+
 	return YES;
 }
 

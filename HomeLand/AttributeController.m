@@ -20,6 +20,7 @@
 
 @implementation AttributeController
 
+@synthesize isQuery;
 @synthesize isAddNew;
 @synthesize graphic;
 
@@ -70,10 +71,27 @@
 
         self.navigationItem.rightBarButtonItems = @[buttonSave,buttonDelete,buttonShowInMap];
         
-        //self.graphic.allAttributes.allKeys
-        AGSGeometryType geometryType = AGSGeometryTypeForGeometry(self.graphic.geometry);
+        NSString *layerName = self.graphic.layer.name;
+        if (layerName == nil) {
+            layerName = [graphic attributeAsStringForKey:@"LayerName_Query"];
+        }
         
-        _fieldInfos = [[Projects sharedProjects].curProject allFieldInfo:geometryType];
+        if ([layerName compare:@"Point"] == NSOrderedSame ||
+            [layerName compare:@"Line"] == NSOrderedSame ||
+            [layerName compare:@"Region"] == NSOrderedSame) {
+            
+            AGSGeometryType geometryType = AGSGeometryTypeForGeometry(self.graphic.geometry);
+            
+            _fieldInfos = [[Projects sharedProjects].curProject allFieldInfo:geometryType];
+            
+            self.navigationItem.rightBarButtonItems = @[buttonSave,buttonDelete,buttonShowInMap];
+        }
+        else{
+            _fieldInfos = [[Projects sharedProjects].curProject allFieldInfoBase:layerName];
+            
+            self.navigationItem.rightBarButtonItems = @[buttonShowInMap];
+        }
+
         
     }
 }
@@ -213,18 +231,9 @@
     
     [[Projects sharedProjects].curProject.mapView.callout dismiss];
     
-//    self.mapView.callout.title = (NSString*)[feature attributeForKey:@"name"];
-//    if (self.mapView.callout.title.length == 0) {
-//        self.mapView.callout.title = @"未命名";
-//    }
-//    
-//    NSString *photoname = (NSString*)[feature attributeForKey:@"photoname"];
-//    UIImage *image = [[Projects sharedProjects].curProject photoWithName:photoname];
-//    self.mapView.callout.image = image;
-    
     AGSEnvelope * envelope = self.graphic.geometry.envelope;
     [[Projects sharedProjects].curProject.mapView zoomToEnvelope:envelope animated:NO];
-    [[Projects sharedProjects].curProject.mapView.callout showCalloutAtPoint:envelope.center forFeature:self.graphic layer:self.graphic.layer animated:NO];
+//    [[Projects sharedProjects].curProject.mapView.callout showCalloutAtPoint:envelope.center forFeature:self.graphic layer:self.graphic.layer animated:NO];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

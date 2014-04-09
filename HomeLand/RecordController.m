@@ -67,7 +67,20 @@
     AGSGraphic *graphic = (AGSGraphic *)[self.graphics objectAtIndex:indexPath.row];
     
     int fid = [graphic attributeAsIntForKey:@"id" exists:nil];
-    NSString *name = [graphic attributeAsStringForKey:@"name"];
+    NSString *name;
+    NSString * layerName = [graphic attributeAsStringForKey:@"LayerName_Query"];
+    if ([layerName compare:@"DMD"] == NSOrderedSame ) {
+        name = [graphic attributeAsStringForKey:@"NAME"];
+        fid = [graphic attributeAsIntForKey:@"PK_UID" exists:nil];
+    }else if ([layerName compare:@"WPZFTB"] == NSOrderedSame ) {
+        name = [graphic attributeAsStringForKey:@"TBBH"];
+        fid = [graphic attributeAsIntForKey:@"PK_UID" exists:nil];
+    }else if ([layerName compare:@"TDPW"] == NSOrderedSame ) {
+        name = [graphic attributeAsStringForKey:@"SPZWH"];
+        fid = [graphic attributeAsIntForKey:@"PK_UID" exists:nil];
+    }else{
+        name = [graphic attributeAsStringForKey:@"name"];
+    }
     
     UILabel* labelid = (UILabel*) [cell viewWithTag: 100];
     labelid.text = [NSString stringWithFormat:@"%d",fid];
@@ -91,6 +104,9 @@
         
         projectController = [storyBoard instantiateViewControllerWithIdentifier:@"AttributeController"];
         projectController.graphic = graphic;
+    projectController.isQuery = YES;
+    //NSLog(@"%@ %d",graphic.layer.name, indexPath.row);
+    
         [self.navigationController pushViewController:projectController animated:YES];
     
 }

@@ -29,7 +29,7 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = FALSE;
     
-    _layerName = @[@"Point",@"Line",@"Region"];
+    _layerName = @[@"Point",@"Line",@"Region",@"DMD",@"WPZFTB",@"TDPW"];
     
 }
 
@@ -118,7 +118,20 @@
         AGSGraphic *graphic = (AGSGraphic *)[graphicsLayer.graphics objectAtIndex:indexPath.row];
         
         int fid = [graphic attributeAsIntForKey:@"id" exists:nil];
-        NSString *name = [graphic attributeAsStringForKey:@"name"];
+        
+        NSString *name;
+        if ([graphic.layer.name compare:@"DMD"] == NSOrderedSame ) {
+            name = [graphic attributeAsStringForKey:@"NAME"];
+            fid = [graphic attributeAsIntForKey:@"PK_UID" exists:nil];
+        }else if ([graphic.layer.name compare:@"WPZFTB"] == NSOrderedSame ) {
+            name = [graphic attributeAsStringForKey:@"TBBH"];
+            fid = [graphic attributeAsIntForKey:@"PK_UID" exists:nil];
+        }else if ([graphic.layer.name compare:@"TDPW"] == NSOrderedSame ) {
+            name = [graphic attributeAsStringForKey:@"SPZWH"];
+            fid = [graphic attributeAsIntForKey:@"PK_UID" exists:nil];
+        }else{
+            name = [graphic attributeAsStringForKey:@"name"];
+        }
         
         UILabel* labelid = (UILabel*) [cell viewWithTag: 100];
         labelid.text = [NSString stringWithFormat:@"%d",fid];
