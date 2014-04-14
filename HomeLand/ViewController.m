@@ -17,6 +17,9 @@
 
 
 @interface ViewController ()
+{
+    UIPopoverController *_layerPopover;
+}
 
 @end
 
@@ -279,7 +282,24 @@
 }
 
 - (IBAction)LayerManageTouch:(id)sender {
-    [self openLayer];
+    UIStoryboard * storyBoard;
+    LayerController *projectController;
+    
+    storyBoard  = [UIStoryboard
+                   storyboardWithName:@"Main_iPad" bundle:nil];
+    
+    projectController = [storyBoard instantiateViewControllerWithIdentifier:@"LayerController"];
+    //projectController.graphic = callout.representedFeature;
+    
+    _layerPopover = [[UIPopoverController alloc] initWithContentViewController:projectController];
+    //    [colorPickerPopover presentPopoverFromBarButtonItem:(UIBarButtonItem *)sender
+    //                               permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    
+    CGRect rect=[[UIScreen mainScreen] bounds];
+    _layerPopover.popoverContentSize = CGSizeMake(rect.size.width/2, rect.size.height);
+    
+    [_layerPopover presentPopoverFromRect:((UIView *)sender).frame inView:self.mapView permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES ];
+    return ;
 }
 
 - (IBAction)photographTouch:(id)sender {
@@ -462,23 +482,6 @@
         [alert show];
     }
 }
-
--(void) openLayer
-{
-    //OpenProjectController *openProjectController = [[OpenProjectController alloc] init];
-    //[self presentViewController:openProjectController animated:YES completion:nil];  //需要以模态的形式展示
-    
-//    UIStoryboard * storyBoard;
-//    LayerController *layerController;
-//    
-//    storyBoard  = [UIStoryboard
-//                   storyboardWithName:@"Main_iPad" bundle:nil];
-//    
-//    layerController = [storyBoard instantiateViewControllerWithIdentifier:@"LayerController"];
-//    
-//    [self.navigationController pushViewController:layerController animated:YES];
-}
-
 
 -(void) openmeasure
 {
