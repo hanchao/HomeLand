@@ -61,8 +61,15 @@
         return FALSE;
     }
     
-    [self createBaseLayer];
+    
+    [self openWebBaseLayer];
+    [self openBaseTpkLayer:path];
     [self createGPSLayer:path];
+    
+    [self openBaseLayer:@"WPZFTB"];
+    [self openBaseLayer:@"TDPW"];
+    [self openBaseLayer:@"DMD"];
+    
     [self createLayer:@"Region" type:AGSGeometryTypePolygon];
     [self createLayer:@"Line" type:AGSGeometryTypePolyline];
     [self createLayer:@"Point" type:AGSGeometryTypePoint];
@@ -544,20 +551,27 @@
     return TRUE;
 }
 
--(BOOL) createBaseLayer
+-(BOOL) openWebBaseLayer
 {
     //Add a basemap tiled layer
     NSURL* url = [NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"];
     AGSTiledMapServiceLayer *tiledLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:url];
     [self.mapView addMapLayer:tiledLayer withName:@"Basemap Tiled Layer"];
     
+
+
+
+    
+    return TRUE;
+}
+
+-(BOOL) openSketchLayer
+{
     EditLayer *sketchLayer= [[EditLayer alloc] initWithGeometry:nil];
     [self.mapView addMapLayer:sketchLayer withName:@"Sketch layer"];
     
     MeasureLayer *measureLayer= [[MeasureLayer alloc] init];
     [self.mapView addMapLayer:measureLayer withName:@"Measure layer"];
-
-    
     return TRUE;
 }
 
@@ -595,8 +609,9 @@
     printf ("SpatiaLite version: %s\n", spatialite_version ());
     printf ("\n\n");
     
-    [self createBaseLayer];
+    [self openWebBaseLayer];
     [self openBaseTpkLayer:path];
+    [self openSketchLayer];
     [self openGPSLayer:path];
     
     [self openBaseLayer:@"WPZFTB"];

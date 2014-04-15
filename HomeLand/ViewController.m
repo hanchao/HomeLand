@@ -14,11 +14,12 @@
 #import "EditLayer.h"
 #import "AttributeController.h"
 #import "RecordController.h"
-
+#import "Reachability.h"
 
 @interface ViewController ()
 {
     UIPopoverController *_layerPopover;
+    AGSPopupsContainerViewController* _popupVC;
 }
 
 @end
@@ -29,16 +30,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    
-    //self.mapView.hidden = YES;
-    
-//    [self.rightBarView setDelegate:self];
-//    [self.rightBarView setDataSource:self];
 
-//    UIButton *pButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,100,100)];
-//    [pButton setTitle:@"返回" forState:UIControlStateNormal];
-//    [self.mapView addSubview:pButton];
     
     // 判断定位操作是否被允许
     if([CLLocationManager locationServicesEnabled]) {
@@ -49,11 +41,32 @@
         [_locationManager startUpdatingLocation];
     }
     
-    _buttonTitle = [[NSArray alloc] initWithObjects:@"打开工程", @"图层管理",@"照片采集",@"照片浏览",@"图斑采集",@"图斑查询",@"图斑管理",@"量算",@"导出数据",nil];
-    
     [Projects sharedProjects].mapView = self.mapView;
     [[Projects sharedProjects] initDirectory];
 
+    Reachability* reach = [Reachability reachabilityWithHostname:@"services.arcgisonline.com"];
+    
+    // Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
+    reach.reachableOnWWAN = NO;
+    
+    reach.reachableBlock = ^(Reachability * reachability)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"REACHABLE!");
+        });
+    };
+    
+    reach.unreachableBlock = ^(Reachability * reachability)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //没网络的情况下，把在线数据移调
+            [self.mapView removeMapLayerWithName:@"Basemap Tiled Layer"];
+            NSLog(@"UNREACHABLE!");
+        });
+    };
+    
+    [reach startNotifier];
+    
     [self.mapView addObserver:self
                                 forKeyPath:@"mapScale"
                                    options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
@@ -82,9 +95,8 @@
 
 - (void)mapViewDidLoad:(AGSMapView *)mapView {
     
+    NSLog(@"mapViewDidLoad!");
     [self.mapView.locationDisplay startDataSource];
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -231,6 +243,9 @@
 
 - (IBAction)goMyPos:(id)sender {
     
+    if (self.mapView.locationDisplay.mapLocation == nil) {
+        return;
+    }
     double x = self.mapView.locationDisplay.mapLocation.x;
     double y = self.mapView.locationDisplay.mapLocation.y;
     
@@ -275,6 +290,11 @@
     EditLayer *sketchLayer = (EditLayer *)[self.mapView mapLayerForName:@"Sketch layer"];
     [sketchLayer clear];
     sketchLayer.geometry = nil;
+    
+    self.editpointbutton.selected = NO;
+    self.editlinebutton.selected = NO;
+    self.editregionbutton.selected = NO;
+    self.editautoinput.selected = NO;
 }
 
 - (IBAction)openProjecTouch:(id)sender {
@@ -614,10 +634,7 @@
 - (void)didClickAccessoryButtonForCallout:(AGSCallout *)callout
 {
     NSLog(@"didClickAccessoryButtonForCallout");
-    
-//    AttributeController *attributeController = [[AttributeController alloc] init];
-//    [self presentViewController:attributeController animated:YES completion:nil];
-    
+
         UIStoryboard * storyBoard;
         AttributeController *projectController;
     
@@ -625,13 +642,9 @@
                        storyboardWithName:@"Main_iPad" bundle:nil];
     
         projectController = [storyBoard instantiateViewControllerWithIdentifier:@"AttributeController"];
-    projectController.graphic = callout.representedFeature;
+    projectController.graphic = (AGSGraphic *)callout.representedFeature;
         [self.navigationController pushViewController:projectController animated:YES];
-    
-//    LayerController *attributeController = [[LayerController alloc] init];
-//    [self presentViewController:attributeController animated:YES completion:nil];
-    
-//    AGSPopupsContainerViewController* popupVC;
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

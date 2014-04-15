@@ -36,6 +36,7 @@
 		D613964718E974EF008AA606 /* liblibspatialite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6603FB918C710E700C1E1EA /* liblibspatialite.a */; };
 		D613964818E974FE008AA606 /* libgeos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6603FBB18C710E700C1E1EA /* libgeos.a */; };
 		D613964918E974FE008AA606 /* libproj.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6603FBD18C710E700C1E1EA /* libproj.a */; };
+		D61E129218FD229B001D3061 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E129118FD229B001D3061 /* Reachability.m */; };
 		D62130C718E3C6D50061A10A /* 点点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130B518E3C6D40061A10A /* 点点击效果.png */; };
 		D62130C818E3C6D50061A10A /* 点点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130B618E3C6D40061A10A /* 点点击效果@2x.png */; };
 		D62130C918E3C6D50061A10A /* 记录轨迹点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62130B718E3C6D50061A10A /* 记录轨迹点击效果.png */; };
@@ -269,6 +270,8 @@
 		D606639418D6C705004E0A7A /* GPXXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPXXML.m; path = GPX/GPXXML.m; sourceTree = "<group>"; };
 		D60663AB18D6C9C1004E0A7A /* GPSLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSLayer.h; sourceTree = "<group>"; };
 		D60663AC18D6C9C1004E0A7A /* GPSLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSLayer.m; sourceTree = "<group>"; };
+		D61E129018FD229B001D3061 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = SOURCE_ROOT; };
+		D61E129118FD229B001D3061 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = SOURCE_ROOT; };
 		D62130B518E3C6D40061A10A /* 点点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "点点击效果.png"; sourceTree = "<group>"; };
 		D62130B618E3C6D40061A10A /* 点点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "点点击效果@2x.png"; sourceTree = "<group>"; };
 		D62130B718E3C6D50061A10A /* 记录轨迹点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "记录轨迹点击效果.png"; sourceTree = "<group>"; };
@@ -518,6 +521,15 @@
 			name = GPX;
 			sourceTree = "<group>";
 		};
+		D61E128B18FD228B001D3061 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				D61E129018FD229B001D3061 /* Reachability.h */,
+				D61E129118FD229B001D3061 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		D62130DE18E415D60061A10A /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +618,7 @@
 		D66A276E18C43370008B4CFC /* HomeLand */ = {
 			isa = PBXGroup;
 			children = (
+				D61E128B18FD228B001D3061 /* Reachability */,
 				D6FB834A18E93E2F00898A9B /* View */,
 				D606636618D6C6C5004E0A7A /* GPX */,
 				D6603FAB18C7081D00C1E1EA /* Core */,
@@ -1051,6 +1064,7 @@
 				D6279A5118DABCAD00E4536D /* AttributeController.m in Sources */,
 				D606639818D6C705004E0A7A /* GPXCopyright.m in Sources */,
 				D60663AD18D6C9C1004E0A7A /* GPSLayer.m in Sources */,
+				D61E129218FD229B001D3061 /* Reachability.m in Sources */,
 				D606639918D6C705004E0A7A /* GPXElement.m in Sources */,
 				D606636218D6C6A2004E0A7A /* TrackPoint.m in Sources */,
 				D60663A718D6C705004E0A7A /* GPXTrackSegment.m in Sources */,
