@@ -15,11 +15,15 @@
 #import "AttributeController.h"
 #import "RecordController.h"
 #import "Reachability.h"
+#import "MBProgressHUD.h"
 
 @interface ViewController ()
 {
     UIPopoverController *_layerPopover;
-    AGSPopupsContainerViewController* _popupVC;
+    //AGSPopupsContainerViewController* _popupVC;
+    Reachability* _reach;
+    
+    MBProgressHUD* _HUD;
 }
 
 @end
@@ -44,19 +48,19 @@
     [Projects sharedProjects].mapView = self.mapView;
     [[Projects sharedProjects] initDirectory];
 
-    Reachability* reach = [Reachability reachabilityWithHostname:@"services.arcgisonline.com"];
+    _reach = [Reachability reachabilityWithHostname:@"services.arcgisonline.com"];
     
     // Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
-    reach.reachableOnWWAN = NO;
+    _reach.reachableOnWWAN = NO;
     
-    reach.reachableBlock = ^(Reachability * reachability)
+    _reach.reachableBlock = ^(Reachability * reachability)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"REACHABLE!");
         });
     };
     
-    reach.unreachableBlock = ^(Reachability * reachability)
+    _reach.unreachableBlock = ^(Reachability * reachability)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             //没网络的情况下，把在线数据移调
@@ -65,7 +69,7 @@
         });
     };
     
-    [reach startNotifier];
+    [_reach startNotifier];
     
     [self.mapView addObserver:self
                                 forKeyPath:@"mapScale"
@@ -91,6 +95,9 @@
     
     [self.measureView hide:NO];
     [self.editView hide:NO];
+    
+    _HUD = [[MBProgressHUD alloc] init];
+    [self.view addSubview:_HUD];
 }
 
 - (void)mapViewDidLoad:(AGSMapView *)mapView {
@@ -244,6 +251,12 @@
 - (IBAction)goMyPos:(id)sender {
     
     if (self.mapView.locationDisplay.mapLocation == nil) {
+        _HUD.yOffset = 300;
+        _HUD.mode = MBProgressHUDModeText;
+        _HUD.labelText = @"无法获取当前位置";
+        [_HUD show:YES];
+        
+        [_HUD hide:YES afterDelay:2.0];
         return;
     }
     double x = self.mapView.locationDisplay.mapLocation.x;
@@ -492,14 +505,26 @@
     {
         [[Projects sharedProjects] createProject:@"DefaultProject"];
         if(![[Projects sharedProjects] openProject:@"DefaultProject"]){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"打开工程失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"打开工程失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//            [alert show];
+            _HUD.yOffset = 300;
+            _HUD.mode = MBProgressHUDModeText;
+            _HUD.labelText = @"打开工程失败";
+            [_HUD show:YES];
+            
+            [_HUD hide:YES afterDelay:2.0];
         }
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"打开工程成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"打开工程成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [alert show];
+        _HUD.yOffset = 300;
+        _HUD.mode = MBProgressHUDModeText;
+        _HUD.labelText = @"打开工程成功";
+        [_HUD show:YES];
+        
+        [_HUD hide:YES afterDelay:2.0];
     }
 }
 
@@ -668,8 +693,16 @@
     
     NSMutableArray * result = [[Projects sharedProjects].curProject search:searchBar.text];
     if (result == nil || result.count == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有查询的数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有查询的数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//        [alert show];
+        _HUD.yOffset = 300;
+        _HUD.mode = MBProgressHUDModeText;
+        _HUD.labelText = @"没有查询的数据";
+        [_HUD show:YES];
+        
+        [_HUD hide:YES afterDelay:2.0];
+        
+        [searchBar resignFirstResponder];
         return;
     }
     [searchBar resignFirstResponder];
