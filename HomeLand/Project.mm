@@ -66,9 +66,7 @@
     [self openBaseTpkLayer:path];
     [self createGPSLayer:path];
     
-    [self openBaseLayer:@"WPZFTB"];
-    [self openBaseLayer:@"TDPW"];
-    [self openBaseLayer:@"DMD"];
+    [self openAllBaseLayer];
     
     [self createLayer:@"Region" type:AGSGeometryTypePolygon];
     [self createLayer:@"Line" type:AGSGeometryTypePolyline];
@@ -614,9 +612,7 @@
     [self openSketchLayer];
     [self openGPSLayer:path];
     
-    [self openBaseLayer:@"WPZFTB"];
-    [self openBaseLayer:@"TDPW"];
-    [self openBaseLayer:@"DMD"];
+    [self openAllBaseLayer];
     
     [self openLayer:@"Region" type:AGSGeometryTypePolygon];
     [self openLayer:@"Line" type:AGSGeometryTypePolyline];
@@ -1323,14 +1319,12 @@
     resultlayer = [self search:key Layer:@"Region"];
     [result addObjectsFromArray:resultlayer];
     
-    resultlayer = [self searchBase:key Layer:@"DMD"];
-    [result addObjectsFromArray:resultlayer];
-    
-    resultlayer = [self searchBase:key Layer:@"WPZFTB"];
-    [result addObjectsFromArray:resultlayer];
-    
-    resultlayer = [self searchBase:key Layer:@"TDPW"];
-    [result addObjectsFromArray:resultlayer];
+    NSArray *baseLayernames = [self allBaseLayerName];
+    for(int i=0;i<baseLayernames.count;i++){
+        NSString *layername = [baseLayernames objectAtIndex:i];
+        resultlayer = [self searchBase:key Layer:layername];
+        [result addObjectsFromArray:resultlayer];
+    }
     
     return result;
 }
@@ -1744,6 +1738,108 @@
     return YES;
 }
 
+-(NSMutableArray *)allBaseLayerName
+{
+    if (_basehandle == NULL) {
+        return nil;
+    }
+    
+    int ret = 0;
+    char *err_msg = NULL;
+    char sql[256];
+    
+    sqlite3_stmt *stmt;
+    
+    sprintf (sql, "SELECT f_table_name FROM geometry_columns");
+    
+    ret = sqlite3_prepare_v2 (_basehandle, sql, strlen (sql), &stmt, NULL);
+    if (ret != SQLITE_OK)
+    {
+        /* some error occurred */
+		printf ("query#2 SQL error: %s\n", sqlite3_errmsg (_handle));
+		return nil;
+    }
+    
+    NSMutableArray *layerNames = [[NSMutableArray alloc] init];
+    
+    while (1)
+    {
+        /* this is an infinite loop, intended to fetch any row */
+        
+        /* we are now trying to fetch the next available row */
+		ret = sqlite3_step (stmt);
+		if (ret == SQLITE_DONE)
+        {
+            /* there are no more rows to fetch - we can stop looping */
+            break;
+        }
+		if (ret == SQLITE_ROW)
+        {
+            NSString *layername = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, 0)];
+            [layerNames addObject:layername];
+        }
+    }
+    
+    /* we have now to finalize the query [memory cleanup] */
+    sqlite3_finalize (stmt);
+    return layerNames;
+}
+
+-(NSMutableArray *)allLayerName
+{
+    NSMutableArray *layerNames = [self allBaseLayerName];
+    [layerNames addObject:@"Point"];
+    [layerNames addObject:@"Line"];
+    [layerNames addObject:@"Region"];
+    return layerNames;
+}
+
+- (BOOL) openAllBaseLayer
+{
+    if (_basehandle == NULL) {
+        return NO;
+    }
+    
+    int ret = 0;
+    char *err_msg = NULL;
+    char sql[256];
+    
+    sqlite3_stmt *stmt;
+    
+    sprintf (sql, "SELECT f_table_name FROM geometry_columns");
+    
+    ret = sqlite3_prepare_v2 (_basehandle, sql, strlen (sql), &stmt, NULL);
+    if (ret != SQLITE_OK)
+    {
+        /* some error occurred */
+		printf ("query#2 SQL error: %s\n", sqlite3_errmsg (_handle));
+		return FALSE;
+    }
+    
+    while (1)
+    {
+        /* this is an infinite loop, intended to fetch any row */
+        
+        /* we are now trying to fetch the next available row */
+		ret = sqlite3_step (stmt);
+		if (ret == SQLITE_DONE)
+        {
+            /* there are no more rows to fetch - we can stop looping */
+            break;
+        }
+		if (ret == SQLITE_ROW)
+        {
+            NSString *layername = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, 0)];
+            [self openBaseLayer:layername];
+        }
+    }
+    
+    /* we have now to finalize the query [memory cleanup] */
+    sqlite3_finalize (stmt);
+    
+    return YES;
+}
+
 - (BOOL) openBaseLayer:(NSString*)name
 {
     if (_basehandle == NULL) {
@@ -1764,6 +1860,25 @@
     const unsigned char *blob;
     int blob_size;
     int geom_type;
+    
+    UIColor *lineColor = [UIColor blueColor];
+    UIColor *fillColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.7 alpha:0.5];
+    sprintf (sql, "SELECT line_color,fill_color FROM layer_params where table_name = '%s'", name.UTF8String);
+    ret = sqlite3_prepare_v2 (_basehandle, sql, strlen (sql), &stmt, NULL);
+    if (ret == SQLITE_OK)
+    {
+		ret = sqlite3_step (stmt);
+		if (ret == SQLITE_ROW)
+        {
+            NSString *value1 = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, 0)];
+            lineColor = [Projects colorfromHexString:value1];
+            
+            NSString *value2 = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, 1)];
+            fillColor = [Projects colorfromHexString:value2];
+            fillColor = [fillColor colorWithAlphaComponent:0.5];
+        }
+        sqlite3_finalize (stmt);
+    }
     
     sprintf (sql, "SELECT * FROM %s", name.UTF8String);
     
@@ -1819,18 +1934,15 @@
                  - a column value, that can be of type: SQLITE_NULL, SQLITE_INTEGER,
                  SQLITE_FLOAT, SQLITE_TEXT or SQLITE_BLOB, according to internal DB storage type
                  */
-			    printf ("\t%-10s = ",
-                        sqlite3_column_name (stmt, ic));
+
                 
                 NSString *key = [NSString stringWithFormat:@"%s",sqlite3_column_name (stmt, ic)];
                 NSString *value;
 			    switch (sqlite3_column_type (stmt, ic))
                 {
                     case SQLITE_NULL:
-                        printf ("NULL");
                         break;
                     case SQLITE_INTEGER:
-                        printf ("%d", sqlite3_column_int (stmt, ic));
                         value = [NSString stringWithFormat:@"%d",sqlite3_column_int (stmt, ic)];
                         
                         if (value != nil) {
@@ -1838,16 +1950,12 @@
                         }
                         break;
                     case SQLITE_FLOAT:
-                        printf ("%1.4f",
-                                sqlite3_column_double (stmt, ic));
                         value = [NSString stringWithFormat:@"%f",sqlite3_column_double (stmt, ic)];
                         if (value != nil) {
                             [dict setObject:value forKey:key];
                         }
                         break;
                     case SQLITE_TEXT:
-                        printf ("'%s'",
-                                sqlite3_column_text (stmt, ic));
                         value = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, ic)];
                         if (value != nil) {
                             [dict setObject:value forKey:key];
@@ -1886,7 +1994,7 @@
                                     //NSLog(@"%f %f", ((AGSPoint *)geometry).x,((AGSPoint *)geometry).y);
                                     
                                     AGSSimpleMarkerSymbol* myMarkerSymbol = [AGSSimpleMarkerSymbol simpleMarkerSymbol];
-                                    myMarkerSymbol.color = [UIColor colorWithRed:0.1 green:0.1 blue:0.7 alpha:0.5];
+                                    myMarkerSymbol.color = fillColor;
                                     
                                     symbol = myMarkerSymbol;
                                 }
@@ -1910,10 +2018,10 @@
                                     geometry = [geometryEngine projectGeometry:geometry toSpatialReference:srMap];
                                     
                                     AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
-                                    myFillSymbol.color = [UIColor colorWithRed:0.1 green:0.1 blue:0.7 alpha:0.5];
+                                    myFillSymbol.color = fillColor;
                                     //线的边框还是“线”
                                     AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
-                                    myOutlineSymbol.color = [UIColor blueColor];
+                                    myOutlineSymbol.color = lineColor;
                                     myOutlineSymbol.width = 2;
                                     //set the outline property to myOutlineSymbol
                                     myFillSymbol.outline = myOutlineSymbol;
@@ -1939,10 +2047,10 @@
                                     geometry = [geometryEngine projectGeometry:geometry toSpatialReference:srMap];
                                     
                                     AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
-                                    myFillSymbol.color = [UIColor colorWithRed:0.1 green:0.1 blue:0.7 alpha:0.5];
+                                    myFillSymbol.color = fillColor;
                                     //线的边框还是“线”
                                     AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
-                                    myOutlineSymbol.color = [UIColor blueColor];
+                                    myOutlineSymbol.color = lineColor;
                                     myOutlineSymbol.width = 2;
                                     //set the outline property to myOutlineSymbol
                                     myFillSymbol.outline = myOutlineSymbol;
@@ -1955,8 +2063,36 @@
                                     GAIA_MULTILINESTRING)
                                     geom_name = "MULTILINESTRING";
                                 if (geom_type ==
-                                    GAIA_MULTIPOLYGON)
+                                    GAIA_MULTIPOLYGON){
                                     geom_name = "MULTIPOLYGON";
+                                    
+                                    geom_name = "POLYGON";
+                                    AGSMutablePolygon *polyon = [[AGSMutablePolygon alloc] init];
+                                    [polyon addRingToPolygon];
+                                    gaiaPolygonPtr polygonprt = geom->FirstPolygon;
+                                    for (int i=0; i<polygonprt->Exterior->Points; i++) {
+                                        double x,y;
+                                        gaiaGetPoint(polygonprt->Exterior->Coords,i,&x,&y);
+                                        AGSPoint *point = [[AGSPoint alloc] initWithX:x y:y spatialReference:nil];
+                                        //[line addPoint:point toPath:0];
+                                        [polyon addPointToRing:point];
+                                    }
+                                    polyon.spatialReference = srWGS84;
+                                    geometry = polyon;
+                                    
+                                    geometry = [geometryEngine projectGeometry:geometry toSpatialReference:srMap];
+                                    
+                                    AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
+                                    myFillSymbol.color = fillColor;
+                                    //线的边框还是“线”
+                                    AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
+                                    myOutlineSymbol.color = lineColor;
+                                    myOutlineSymbol.width = 2;
+                                    //set the outline property to myOutlineSymbol
+                                    myFillSymbol.outline = myOutlineSymbol;
+                                    
+                                    symbol = myFillSymbol;
+                                }
                                 if (geom_type ==
                                     GAIA_GEOMETRYCOLLECTION)
                                     geom_name =
@@ -2000,9 +2136,6 @@
                         
                         break;
                 };
-			    printf ("\n");
-                
-                
 			}
             
             AGSGraphic*graphic = [AGSGraphic graphicWithGeometry:geometry symbol:symbol attributes:dict];
@@ -2110,11 +2243,15 @@
     int blob_size;
     int geom_type;
     
-    if ([name compare:@"DMD"] == NSOrderedSame ) {
+    if ([name compare:@"DMD"] == NSOrderedSame ||
+        [name compare:@"diming"] == NSOrderedSame) {
         sprintf (sql, "SELECT * FROM %s where NAME like \'%%%s%%\'", name.UTF8String, key.UTF8String);
-    }else if ([name compare:@"WPZFTB"] == NSOrderedSame ) {
+    }else if ([name compare:@"WPZFTB"] == NSOrderedSame){
         sprintf (sql, "SELECT * FROM %s where TBBH like \'%%%s%%\'", name.UTF8String, key.UTF8String);
-    }else if ([name compare:@"TDPW"] == NSOrderedSame ) {
+    }else if ([name compare:@"GHJBNT"] == NSOrderedSame){
+        sprintf (sql, "SELECT * FROM %s where BSM like \'%%%s%%\'", name.UTF8String, key.UTF8String);
+    }else if ([name compare:@"TDPW"] == NSOrderedSame ||
+              [name compare:@"zhengzhuanpiwen"] == NSOrderedSame) {
         sprintf (sql, "SELECT * FROM %s where SPZWH like \'%%%s%%\'", name.UTF8String, key.UTF8String);
     }
     
@@ -2274,8 +2411,24 @@
                                     GAIA_MULTILINESTRING)
                                     geom_name = "MULTILINESTRING";
                                 if (geom_type ==
-                                    GAIA_MULTIPOLYGON)
+                                    GAIA_MULTIPOLYGON){
                                     geom_name = "MULTIPOLYGON";
+                                    
+                                    AGSMutablePolygon *polyon = [[AGSMutablePolygon alloc] init];
+                                    [polyon addRingToPolygon];
+                                    gaiaPolygonPtr polygonprt = geom->FirstPolygon;
+                                    for (int i=0; i<polygonprt->Exterior->Points; i++) {
+                                        double x,y;
+                                        gaiaGetPoint(polygonprt->Exterior->Coords,i,&x,&y);
+                                        AGSPoint *point = [[AGSPoint alloc] initWithX:x y:y spatialReference:nil];
+                                        //[line addPoint:point toPath:0];
+                                        [polyon addPointToRing:point];
+                                    }
+                                    polyon.spatialReference = srWGS84;
+                                    geometry = polyon;
+                                    
+                                    geometry = [geometryEngine projectGeometry:geometry toSpatialReference:srMap];
+                                }
                                 if (geom_type ==
                                     GAIA_GEOMETRYCOLLECTION)
                                     geom_name =
@@ -2329,11 +2482,11 @@
             //graphic.layer = (AGSGraphicsLayer *)[self.mapView mapLayerForName:name];
             [result addObject:graphic];
             
-            //            if (row_no >= 5)
-            //			{
-            //                /* we'll exit the loop after the first 5 rows - this is only a demo :-) */
-            //			    break;
-            //			}
+            if (row_no >= 100)
+            {
+                // 返回前100个就行了
+                break;
+            }
         }
 		else
         {

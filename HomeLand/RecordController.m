@@ -66,20 +66,24 @@
 
     AGSGraphic *graphic = (AGSGraphic *)[self.graphics objectAtIndex:indexPath.row];
     
-    int fid = [graphic attributeAsIntForKey:@"id" exists:nil];
+    int fid = 0;
+    if ([graphic hasAttributeForKey:@"id"]) {
+        fid = [graphic attributeAsIntForKey:@"id" exists:nil];
+    }else if ([graphic hasAttributeForKey:@"PK_UID"]){
+        fid = [graphic attributeAsIntForKey:@"PK_UID" exists:nil];
+    }
+    
     NSString *name;
-    NSString * layerName = [graphic attributeAsStringForKey:@"LayerName_Query"];
-    if ([layerName compare:@"DMD"] == NSOrderedSame ) {
-        name = [graphic attributeAsStringForKey:@"NAME"];
-        fid = [graphic attributeAsIntForKey:@"PK_UID" exists:nil];
-    }else if ([layerName compare:@"WPZFTB"] == NSOrderedSame ) {
-        name = [graphic attributeAsStringForKey:@"TBBH"];
-        fid = [graphic attributeAsIntForKey:@"PK_UID" exists:nil];
-    }else if ([layerName compare:@"TDPW"] == NSOrderedSame ) {
-        name = [graphic attributeAsStringForKey:@"SPZWH"];
-        fid = [graphic attributeAsIntForKey:@"PK_UID" exists:nil];
-    }else{
-        name = [graphic attributeAsStringForKey:@"name"];
+    if ([graphic hasAttributeForKey:@"NAME"]) {
+        name = (NSString*)[graphic attributeForKey:@"NAME"];
+    }else if ([graphic hasAttributeForKey:@"name"]) {
+        name = (NSString*)[graphic attributeForKey:@"name"];
+    }else if ([graphic hasAttributeForKey:@"TBBH"]) {
+        name = (NSString*)[graphic attributeForKey:@"TBBH"];
+    }else if ([graphic hasAttributeForKey:@"SPZWH"]) {
+        name = (NSString*)[graphic attributeForKey:@"SPZWH"];
+    }else if ([graphic hasAttributeForKey:@"BSM"]) {
+        name = (NSString*)[graphic attributeForKey:@"BSM"];
     }
     
     UILabel* labelid = (UILabel*) [cell viewWithTag: 100];

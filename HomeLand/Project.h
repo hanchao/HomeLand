@@ -48,4 +48,9 @@
 
 -(NSMutableArray*) allFieldInfoBase:(NSString *)name;
 
+
+-(NSMutableArray *)allBaseLayerName;
+-(NSMutableArray *)allLayerName;
+
+
 @end

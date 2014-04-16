@@ -14,6 +14,7 @@
 
 + (NSString *)chinesename:(NSString *) enname;
 + (NSString *)enname:(NSString *) chinesename;
++ (UIColor *) colorfromHexString: (NSString *) stringToConvert;
 
 - (NSString *) projectDirectory;
 

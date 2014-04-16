@@ -1257,7 +1257,7 @@
 				GCC_PREFIX_HEADER = "HomeLand/HomeLand-Prefix.pch";
 				INFOPLIST_FILE = "HomeLand/HomeLand-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
@@ -1281,7 +1281,7 @@
 				GCC_PREFIX_HEADER = "HomeLand/HomeLand-Prefix.pch";
 				INFOPLIST_FILE = "HomeLand/HomeLand-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";

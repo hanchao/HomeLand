@@ -630,25 +630,37 @@
         return NO;
     }
     
-    if ([layer.name compare:@"DMD"] == NSOrderedSame ) {
+    self.mapView.callout.title = nil;
+    self.mapView.callout.image = nil;
+    
+//    if ([layer.name compare:@"DMD"] == NSOrderedSame ) {
+//        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"NAME"];
+//    }else if ([layer.name compare:@"WPZFTB"] == NSOrderedSame ) {
+//        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"TBBH"];
+//    }else if ([layer.name compare:@"TDPW"] == NSOrderedSame ) {
+//        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"SPZWH"];
+//    }else{
+//        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"name"];
+//    }
+    
+    if ([feature hasAttributeForKey:@"NAME"]) {
         self.mapView.callout.title = (NSString*)[feature attributeForKey:@"NAME"];
-    }else if ([layer.name compare:@"WPZFTB"] == NSOrderedSame ) {
-        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"TBBH"];
-    }else if ([layer.name compare:@"TDPW"] == NSOrderedSame ) {
-        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"SPZWH"];
-    }else{
+    }else if ([feature hasAttributeForKey:@"name"]) {
         self.mapView.callout.title = (NSString*)[feature attributeForKey:@"name"];
-    }
-	
-    if (self.mapView.callout.title == nil ||
-        [self.mapView.callout.title isEqual:[NSNull null]] ||
-        self.mapView.callout.title.length == 0) {
+    }else if ([feature hasAttributeForKey:@"TBBH"]) {
+        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"TBBH"];
+    }else if ([feature hasAttributeForKey:@"SPZWH"]) {
+        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"SPZWH"];
+    }else if ([feature hasAttributeForKey:@"BSM"]) {
+        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"BSM"];
+    }else{
         self.mapView.callout.title = @"未命名";
     }
+
     
     
-    NSString *photoname = (NSString*)[feature attributeForKey:@"photoname"];
-    if (photoname != nil && ![photoname isEqual:[NSNull null]]) {
+    if ([feature hasAttributeForKey:@"photoname"]) {
+        NSString *photoname = (NSString*)[feature attributeForKey:@"photoname"];
         UIImage *image = [[Projects sharedProjects].curProject photoWithName:photoname];
         self.mapView.callout.image = image;
     }
@@ -691,33 +703,73 @@
 {
     NSLog(@"searchBarSearchButtonClicked");
     
-    NSMutableArray * result = [[Projects sharedProjects].curProject search:searchBar.text];
-    if (result == nil || result.count == 0) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有查询的数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//        [alert show];
-        _HUD.yOffset = 300;
-        _HUD.mode = MBProgressHUDModeText;
-        _HUD.labelText = @"没有查询的数据";
-        [_HUD show:YES];
+    _HUD.mode = MBProgressHUDModeIndeterminate;
+    _HUD.labelText = NSLocalizedString(@"查询中", nil);
+    [_HUD show:YES];
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
-        [_HUD hide:YES afterDelay:2.0];
+        NSMutableArray * result = [[Projects sharedProjects].curProject search:searchBar.text];
         
-        [searchBar resignFirstResponder];
-        return;
-    }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_HUD hide:YES];
+            if (result == nil || result.count == 0) {
+                //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有查询的数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                //        [alert show];
+                _HUD.yOffset = 300;
+                _HUD.mode = MBProgressHUDModeText;
+                _HUD.labelText = @"没有查询的数据";
+                [_HUD show:YES];
+                
+                [_HUD hide:YES afterDelay:2.0];
+                
+                [searchBar resignFirstResponder];
+                return;
+            }
+            
+            searchBar.hidden = YES;
+            
+            UIStoryboard * storyBoard;
+            RecordController *recordController;
+            
+            storyBoard  = [UIStoryboard
+                           storyboardWithName:@"Main_iPad" bundle:nil];
+            
+            recordController = [storyBoard instantiateViewControllerWithIdentifier:@"RecordController"];
+            
+            recordController.graphics = result;
+            [self.navigationController pushViewController:recordController animated:YES];
+        });
+    });
+    
     [searchBar resignFirstResponder];
-    searchBar.hidden = YES;
     
-    UIStoryboard * storyBoard;
-    RecordController *recordController;
-    
-    storyBoard  = [UIStoryboard
-                   storyboardWithName:@"Main_iPad" bundle:nil];
-    
-    recordController = [storyBoard instantiateViewControllerWithIdentifier:@"RecordController"];
-    
-    recordController.graphics = result;
-    [self.navigationController pushViewController:recordController animated:YES];
+//    if (result == nil || result.count == 0) {
+////        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有查询的数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+////        [alert show];
+//        _HUD.yOffset = 300;
+//        _HUD.mode = MBProgressHUDModeText;
+//        _HUD.labelText = @"没有查询的数据";
+//        [_HUD show:YES];
+//        
+//        [_HUD hide:YES afterDelay:2.0];
+//        
+//        [searchBar resignFirstResponder];
+//        return;
+//    }
+//    [searchBar resignFirstResponder];
+//    searchBar.hidden = YES;
+//    
+//    UIStoryboard * storyBoard;
+//    RecordController *recordController;
+//    
+//    storyBoard  = [UIStoryboard
+//                   storyboardWithName:@"Main_iPad" bundle:nil];
+//    
+//    recordController = [storyBoard instantiateViewControllerWithIdentifier:@"RecordController"];
+//    
+//    recordController.graphics = result;
+//    [self.navigationController pushViewController:recordController animated:YES];
 }
 
 @end

@@ -233,7 +233,7 @@
     
     AGSEnvelope * envelope = self.graphic.geometry.envelope;
     [[Projects sharedProjects].curProject.mapView zoomToEnvelope:envelope animated:NO];
-//    [[Projects sharedProjects].curProject.mapView.callout showCalloutAtPoint:envelope.center forFeature:self.graphic layer:self.graphic.layer animated:NO];
+    [[Projects sharedProjects].curProject.mapView.callout showCalloutAtPoint:envelope.center forFeature:self.graphic layer:self.graphic.layer animated:NO];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
