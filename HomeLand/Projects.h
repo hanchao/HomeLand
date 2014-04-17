@@ -15,7 +15,7 @@
 + (NSString *)chinesename:(NSString *) enname;
 + (NSString *)enname:(NSString *) chinesename;
 + (UIColor *) colorfromHexString: (NSString *) stringToConvert;
-
++ (AGSGeometryType) geotype:(NSString *)geotype;
 - (NSString *) projectDirectory;
 
 - (void) initDirectory;

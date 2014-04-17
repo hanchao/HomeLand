@@ -1806,7 +1806,7 @@
     
     sqlite3_stmt *stmt;
     
-    sprintf (sql, "SELECT f_table_name FROM geometry_columns");
+    sprintf (sql, "SELECT f_table_name, type FROM geometry_columns");
     
     ret = sqlite3_prepare_v2 (_basehandle, sql, strlen (sql), &stmt, NULL);
     if (ret != SQLITE_OK)
@@ -1830,7 +1830,12 @@
 		if (ret == SQLITE_ROW)
         {
             NSString *layername = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, 0)];
-            [self openBaseLayer:layername];
+            
+            NSString *geotypeString = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, 1)];
+            
+            AGSGeometryType geotype = [Projects geotype:geotypeString];
+            
+            [self openBaseLayer:layername type:geotype];
         }
     }
     
@@ -1840,7 +1845,7 @@
     return YES;
 }
 
-- (BOOL) openBaseLayer:(NSString*)name
+- (BOOL) openBaseLayer:(NSString*)name type:(AGSGeometryType)geometryType
 {
     if (_basehandle == NULL) {
         return NO;
@@ -1880,6 +1885,43 @@
         sqlite3_finalize (stmt);
     }
     
+    AGSSymbol *symbol;
+    
+    if (geometryType == AGSGeometryTypePoint) {
+        
+        AGSSimpleMarkerSymbol* myMarkerSymbol = [AGSSimpleMarkerSymbol simpleMarkerSymbol];
+        myMarkerSymbol.color = lineColor;
+        
+        symbol = myMarkerSymbol;
+    }
+    else if(geometryType == AGSGeometryTypePolyline)
+    {
+        AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
+        myFillSymbol.color = fillColor;
+        //线的边框还是“线”
+        AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
+        myOutlineSymbol.color = lineColor;
+        myOutlineSymbol.width = 2;
+        //set the outline property to myOutlineSymbol
+        myFillSymbol.outline = myOutlineSymbol;
+        
+        symbol = myFillSymbol;
+    }
+    else if(geometryType == AGSGeometryTypePolygon)
+    {
+        AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
+        myFillSymbol.color = fillColor;
+        //线的边框还是“线”
+        AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
+        myOutlineSymbol.color = lineColor;
+        myOutlineSymbol.width = 2;
+        //set the outline property to myOutlineSymbol
+        myFillSymbol.outline = myOutlineSymbol;
+        
+        symbol = myFillSymbol;
+    }
+    
+    
     sprintf (sql, "SELECT * FROM %s", name.UTF8String);
     
     ret = sqlite3_prepare_v2 (_basehandle, sql, strlen (sql), &stmt, NULL);
@@ -1900,7 +1942,6 @@
     
     [self.mapView addMapLayer:graphicsLayer withName:name];
     
-    AGSSymbol *symbol;
     AGSSpatialReference *srWGS84 = [AGSSpatialReference spatialReferenceWithWKID:4326];
     AGSSpatialReference *srMap = [AGSSpatialReference spatialReferenceWithWKID:102100];
     AGSGeometryEngine *geometryEngine = [[AGSGeometryEngine alloc] init];
@@ -1993,10 +2034,7 @@
                                     
                                     //NSLog(@"%f %f", ((AGSPoint *)geometry).x,((AGSPoint *)geometry).y);
                                     
-                                    AGSSimpleMarkerSymbol* myMarkerSymbol = [AGSSimpleMarkerSymbol simpleMarkerSymbol];
-                                    myMarkerSymbol.color = fillColor;
-                                    
-                                    symbol = myMarkerSymbol;
+
                                 }
                                 if (geom_type == GAIA_LINESTRING)
                                 {
@@ -2016,17 +2054,6 @@
                                     
                                     
                                     geometry = [geometryEngine projectGeometry:geometry toSpatialReference:srMap];
-                                    
-                                    AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
-                                    myFillSymbol.color = fillColor;
-                                    //线的边框还是“线”
-                                    AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
-                                    myOutlineSymbol.color = lineColor;
-                                    myOutlineSymbol.width = 2;
-                                    //set the outline property to myOutlineSymbol
-                                    myFillSymbol.outline = myOutlineSymbol;
-                                    
-                                    symbol = myFillSymbol;
                                 }
                                 if (geom_type == GAIA_POLYGON)
                                 {
@@ -2046,16 +2073,6 @@
                                     
                                     geometry = [geometryEngine projectGeometry:geometry toSpatialReference:srMap];
                                     
-                                    AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
-                                    myFillSymbol.color = fillColor;
-                                    //线的边框还是“线”
-                                    AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
-                                    myOutlineSymbol.color = lineColor;
-                                    myOutlineSymbol.width = 2;
-                                    //set the outline property to myOutlineSymbol
-                                    myFillSymbol.outline = myOutlineSymbol;
-                                    
-                                    symbol = myFillSymbol;
                                 }
                                 if (geom_type == GAIA_MULTIPOINT)
                                     geom_name = "MULTIPOINT";
@@ -2081,17 +2098,6 @@
                                     geometry = polyon;
                                     
                                     geometry = [geometryEngine projectGeometry:geometry toSpatialReference:srMap];
-                                    
-                                    AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
-                                    myFillSymbol.color = fillColor;
-                                    //线的边框还是“线”
-                                    AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
-                                    myOutlineSymbol.color = lineColor;
-                                    myOutlineSymbol.width = 2;
-                                    //set the outline property to myOutlineSymbol
-                                    myFillSymbol.outline = myOutlineSymbol;
-                                    
-                                    symbol = myFillSymbol;
                                 }
                                 if (geom_type ==
                                     GAIA_GEOMETRYCOLLECTION)
@@ -2142,11 +2148,11 @@
             [graphicsLayer addGraphic:graphic];
             [graphicsLayer refresh];
             
-            //            if (row_no >= 5)
-            //			{
-            //                /* we'll exit the loop after the first 5 rows - this is only a demo :-) */
-            //			    break;
-            //			}
+            //
+            if (row_no >= 10000)
+            {
+                break;
+            }
         }
 		else
         {

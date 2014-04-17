@@ -130,6 +130,19 @@
     return nil;
 }
 
++ (AGSGeometryType) geotype:(NSString *)geotype
+{
+    if ([geotype compare:@"POINT"] == NSOrderedSame) {
+        return AGSGeometryTypePoint;
+    }else if ([geotype compare:@"LINESTRING"] == NSOrderedSame ||
+              [geotype compare:@"MULTILINESTRING"] == NSOrderedSame) {
+        return AGSGeometryTypePolyline;
+    }else if ([geotype compare:@"POLYGON"] == NSOrderedSame ||
+              [geotype compare:@"MULTIPOLYGON"] == NSOrderedSame) {
+        return AGSGeometryTypePolygon;
+    }
+    return AGSGeometryTypeUndefined;
+}
 
 -(void) initDirectory
 {
