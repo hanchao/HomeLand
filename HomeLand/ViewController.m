@@ -104,6 +104,14 @@
     
     NSLog(@"mapViewDidLoad!");
     [self.mapView.locationDisplay startDataSource];
+    
+    // register for pan notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(respondToEnvChange:)
+                                                 name:AGSMapViewDidEndPanningNotification object:nil];
+    
+    // register for zoom notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(respondToEnvChange:)
+                                                 name:AGSMapViewDidEndZoomingNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -612,7 +620,6 @@
 -(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint graphics:(NSDictionary *)graphics
 {
     NSLog(@"didClickAtPoint");
-
 }
 
 
@@ -664,6 +671,9 @@
         UIImage *image = [[Projects sharedProjects].curProject photoWithName:photoname];
         self.mapView.callout.image = image;
     }
+    
+ //   AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)layer;
+ //   [graphicsLayer setSelected:YES forGraphic:feature];
 
 	return YES;
 }
@@ -712,7 +722,7 @@
         NSMutableArray * result = [[Projects sharedProjects].curProject search:searchBar.text];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [_HUD hide:YES];
+            
             if (result == nil || result.count == 0) {
                 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有查询的数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                 //        [alert show];
@@ -725,6 +735,10 @@
                 
                 [searchBar resignFirstResponder];
                 return;
+            }
+            else
+            {
+                [_HUD hide:YES];
             }
             
             searchBar.hidden = YES;
@@ -770,6 +784,26 @@
 //    
 //    recordController.graphics = result;
 //    [self.navigationController pushViewController:recordController animated:YES];
+}
+
+// The method that should be called when the notification arises
+- (void)respondToEnvChange: (NSNotification*) notification {
+    
+    //create the string containing the new map extent NSString*
+    NSString* theString = [[NSString alloc] initWithFormat:@"xmin = %f,\nymin = %f,\nxmax = %f,\nymax = %f", _mapView.visibleAreaEnvelope.xmin,
+                           _mapView.visibleAreaEnvelope.ymin, _mapView.visibleAreaEnvelope.xmax,
+                           _mapView.visibleAreaEnvelope.ymax];
+    
+    NSLog(@"%@",theString);
+    
+    [[Projects sharedProjects].curProject refreshBaseLayerEnvelope:_mapView.visibleAreaEnvelope];
+    
+//
+//    //display the new map extent in a simple alert
+//    UIAlertView* alertView = [[UIAlertView alloc]	initWithTitle:@"Finished Panning"
+//                                                        message:theString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    [alertView show];
+    
 }
 
 @end

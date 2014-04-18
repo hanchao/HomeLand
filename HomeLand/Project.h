@@ -52,5 +52,7 @@
 -(NSMutableArray *)allBaseLayerName;
 -(NSMutableArray *)allLayerName;
 
+-(void)refreshBaseLayerEnvelope:(AGSEnvelope *)envelop;
+-(NSMutableArray *)queryAtLayer:(NSString *)name Envelope:(AGSEnvelope *)envelop;
 
 @end
