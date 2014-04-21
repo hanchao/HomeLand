@@ -16,6 +16,8 @@
 @implementation Project
 {
     BOOL stopQuery;
+    dispatch_queue_t queue;
+    dispatch_group_t group;
 }
 
 @synthesize opened;
@@ -27,6 +29,8 @@
     if( (self = [super init]) )
     {
         spatialite_init(0);
+        queue = dispatch_queue_create("querying", DISPATCH_QUEUE_SERIAL);
+        group = dispatch_group_create();
     }
     return self;
 }
@@ -1924,6 +1928,10 @@
         symbol = myFillSymbol;
     }
     
+//    AGSTextSymbol *textSymbol = [[AGSTextSymbol alloc] init];
+//    textSymbol.text = @"${NAME}";
+//    textSymbol.color = [UIColor redColor];
+    
     AGSGraphicsLayer *graphicsLayer= [[AGSGraphicsLayer alloc] init];
     AGSSimpleRenderer*renderer = [AGSSimpleRenderer simpleRendererWithSymbol:symbol];
     graphicsLayer.renderer= renderer;
@@ -2306,6 +2314,16 @@
 		return;
     }
     
+    stopQuery = YES;
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 4ull * NSEC_PER_SEC);
+    int result =  dispatch_group_wait(group, time);
+    if (result == 0) {
+        NSLog(@"任务已经完成");
+    }else{
+        NSLog(@"任务还在执行");
+    }
+    stopQuery = NO;
+    
     while (1)
     {
         /* this is an infinite loop, intended to fetch any row */
@@ -2324,14 +2342,15 @@
             NSString *geotypeString = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, 1)];
             
             //AGSGeometryType geotype = [Projects geotype:geotypeString];
-
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            dispatch_group_async(group, queue, ^{
                 NSMutableArray *graphics = [self queryAtLayer:layername Envelope:envelopWGS84];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)[self.mapView mapLayerForName:layername];
                     [graphicsLayer removeAllGraphics];
                     [graphicsLayer addGraphics:graphics];
+                    
                 });
             });
             
@@ -2386,6 +2405,7 @@
 //    strcat (sql, "WHERE MbrWithin(geom, BuildMbr(");
 //    strcat (sql, "1000400.5, 4000400.5, ");
 //    strcat (sql, "1000450.5, 4000450.5))");
+    
     
     NSString *sqlString = [NSString stringWithFormat:@"SELECT Geometry FROM %@ WHERE MbrIntersects(Geometry, BuildMbr(%f, %f, %f, %f))",name, envelop.xmin,envelop.ymin,envelop.xmax,envelop.ymax];
     
