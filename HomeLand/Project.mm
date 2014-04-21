@@ -2347,6 +2347,9 @@
                 NSMutableArray *graphics = [self queryAtLayer:layername Envelope:envelopWGS84];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    if (stopQuery == YES) {
+                        return;
+                    }
                     AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)[self.mapView mapLayerForName:layername];
                     [graphicsLayer removeAllGraphics];
                     [graphicsLayer addGraphics:graphics];
@@ -2407,7 +2410,7 @@
 //    strcat (sql, "1000450.5, 4000450.5))");
     
     
-    NSString *sqlString = [NSString stringWithFormat:@"SELECT Geometry FROM %@ WHERE MbrIntersects(Geometry, BuildMbr(%f, %f, %f, %f))",name, envelop.xmin,envelop.ymin,envelop.xmax,envelop.ymax];
+    NSString *sqlString = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE MbrIntersects(Geometry, BuildMbr(%f, %f, %f, %f))",name, envelop.xmin,envelop.ymin,envelop.xmax,envelop.ymax];
     
 //    sprintf (sql, "SELECT * FROM %s where Rowid in(SELECT pkid
 //                FROM idx_highways_Geometry
