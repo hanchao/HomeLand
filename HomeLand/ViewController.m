@@ -323,24 +323,24 @@
 }
 
 - (IBAction)LayerManageTouch:(id)sender {
-    UIStoryboard * storyBoard;
-    LayerController *projectController;
-    
-    storyBoard  = [UIStoryboard
-                   storyboardWithName:@"Main_iPad" bundle:nil];
-    
-    projectController = [storyBoard instantiateViewControllerWithIdentifier:@"LayerController"];
-    //projectController.graphic = callout.representedFeature;
-    
-    _layerPopover = [[UIPopoverController alloc] initWithContentViewController:projectController];
-    //    [colorPickerPopover presentPopoverFromBarButtonItem:(UIBarButtonItem *)sender
-    //                               permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    
-    CGRect rect=[[UIScreen mainScreen] bounds];
-    _layerPopover.popoverContentSize = CGSizeMake(rect.size.width/2, rect.size.height);
-    
-    [_layerPopover presentPopoverFromRect:((UIView *)sender).frame inView:self.mapView permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES ];
-    return ;
+//    UIStoryboard * storyBoard;
+//    LayerController *projectController;
+//    
+//    storyBoard  = [UIStoryboard
+//                   storyboardWithName:@"Main_iPad" bundle:nil];
+//    
+//    projectController = [storyBoard instantiateViewControllerWithIdentifier:@"LayerController"];
+//    //projectController.graphic = callout.representedFeature;
+//    
+//    _layerPopover = [[UIPopoverController alloc] initWithContentViewController:projectController];
+//    //    [colorPickerPopover presentPopoverFromBarButtonItem:(UIBarButtonItem *)sender
+//    //                               permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+//    
+//    CGRect rect=[[UIScreen mainScreen] bounds];
+//    _layerPopover.popoverContentSize = CGSizeMake(rect.size.width/2, rect.size.height);
+//    
+//    [_layerPopover presentPopoverFromRect:((UIView *)sender).frame inView:self.mapView permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES ];
+//    return ;
 }
 
 - (IBAction)photographTouch:(id)sender {
@@ -696,14 +696,18 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    if ([segue.identifier isEqualToString:@"PushMapViewController"]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        
-//        Track *track = [self.tracks objectAtIndex:indexPath.row];
-//        
-//        MapViewController *viewController = (MapViewController *)segue.destinationViewController;
-//        viewController.track = track;
-//    }
+    if ([segue.identifier isEqualToString:@"LayerSegue"]) {
+        
+        UIStoryboardPopoverSegue *popoverSegue;
+        popoverSegue=(UIStoryboardPopoverSegue *)segue;
+        
+        UIPopoverController *popoverController;
+        popoverController=popoverSegue.popoverController;
+
+        CGRect rect=[[UIScreen mainScreen] bounds];
+
+        popoverController.popoverContentSize = CGSizeMake(rect.size.width/2, rect.size.height*3/5);
+    }
     
 //    UIViewController * destinationViewController = (UIViewController *)segue.destinationViewController;
 //    destinationViewController.navigationController.navigationBarHidden = FALSE;

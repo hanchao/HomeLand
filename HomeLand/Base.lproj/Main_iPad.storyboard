@@ -363,6 +363,9 @@
                                 </state>
                                 <connections>
                                     <action selector="LayerManageTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B0f-wM-Cgq"/>
+                                    <segue destination="vE6-8G-uWi" kind="popover" identifier="LayerSegue" popoverAnchorView="cDp-G1-czD" id="yZE-MQ-h4G">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wVe-Ll-fWV">
@@ -631,6 +634,21 @@
             </objects>
             <point key="canvasLocation" x="1623" y="217"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KUa-Tw-eJL">
+            <objects>
+                <navigationController restorationIdentifier="LayerNavigationController" storyboardIdentifier="LayerNavigationController" definesPresentationContext="YES" id="vE6-8G-uWi" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S1d-ZW-sA2">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="NFg-rq-8aC" kind="relationship" relationship="rootViewController" id="Udq-6y-rnJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sgS-Th-ZbA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1861" y="1403"/>
+        </scene>
         <!--Record Controller - 记录-->
         <scene sceneID="jpJ-RL-Tru">
             <objects>
@@ -685,21 +703,21 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="BMj-jy-tAo">
-                                <rect key="frame" x="0.0" y="22" width="1024" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BMj-jy-tAo" id="OBd-Wn-2k9">
                                     <rect key="frame" x="0.0" y="0.0" width="1024" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rbq-Sw-zGh">
-                                            <rect key="frame" x="33" y="11" width="274" height="21"/>
+                                            <rect key="frame" x="33" y="11" width="239" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <switch opaque="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="LayerSwitch" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="mUA-WY-Dhl">
-                                            <rect key="frame" x="315" y="6" width="51" height="31"/>
+                                            <rect key="frame" x="289" y="6" width="51" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <connections>
                                                 <action selector="layerswitch:" destination="NFg-rq-8aC" eventType="valueChanged" id="7xE-CN-ySr"/>
@@ -719,7 +737,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Td-bX-EUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1631" y="1328"/>
+            <point key="canvasLocation" x="3015" y="1412"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JCn-dr-Q2u">

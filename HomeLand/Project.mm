@@ -1729,19 +1729,44 @@
     return TRUE;
 }
 
+-(BOOL) openTpk:(NSString*) fullPath
+{
+    AGSLocalTiledLayer* layer = [AGSLocalTiledLayer localTiledLayerWithPath:fullPath];
+    if (layer != nil && layer.loaded) {
+        NSString *name = [[fullPath lastPathComponent] stringByDeletingPathExtension];
+        [self.mapView addMapLayer:layer withName:name];
+        return YES;
+    }
+    return NO;
+}
+
 - (BOOL) openBaseTpkLayer:(NSString *)path
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    NSString *photoFilePath = [documentsDirectory stringByAppendingPathComponent:@"base"];
-    NSString *fileName = [photoFilePath stringByAppendingPathExtension:@"tpk"];
+    NSArray *allFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:nil];
+    NSMutableArray *visibleFiles = [NSMutableArray arrayWithCapacity:[allFiles count]];
     
-    AGSLocalTiledLayer* layer = [AGSLocalTiledLayer localTiledLayerWithPath:fileName];
-    if (layer == nil) {
-        return NO;
+    for (NSString *file in allFiles) {
+        if (![file hasPrefix:@"."]) {
+            NSString *ext = [file pathExtension];
+            if([ext isEqualToString:@"tpk"])
+            {
+                NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:file];
+                [self openTpk:fullPath];
+            }
+        }
     }
-    [self.mapView addMapLayer:layer withName:@"Base Tpk Layer"];
+//
+//    NSString *photoFilePath = [documentsDirectory stringByAppendingPathComponent:@"base"];
+//    NSString *fileName = [photoFilePath stringByAppendingPathExtension:@"tpk"];
+//    
+//    AGSLocalTiledLayer* layer = [AGSLocalTiledLayer localTiledLayerWithPath:fileName];
+//    if (layer == nil) {
+//        return NO;
+//    }
+//    [self.mapView addMapLayer:layer withName:@"Base Tpk Layer"];
     return YES;
 }
 

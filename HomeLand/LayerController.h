@@ -10,8 +10,9 @@
 #import <ArcGIS/ArcGIS.h>
 #import "Projects.h"
 #import "Project.h"
+#import "PSDirectoryPickerController.h"
 
-@interface LayerController : UITableViewController
+@interface LayerController : UITableViewController<PSDirectoryPickerDelegate>
 
 - (IBAction)layerswitch:(id)sender;
 
