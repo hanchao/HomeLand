@@ -763,6 +763,9 @@
         
         [self openGPSLayer:path];
         [self openSketchLayer];
+        
+        [self refreshMaxEnvelope];
+        self.path = path;
         return YES;
     }
     
@@ -783,6 +786,8 @@
     self.path = path;
     
     NSLog(@"project path %@", self.path);
+    
+    [self refreshMaxEnvelope];
     return TRUE;
 }
 
@@ -1915,6 +1920,8 @@
     if (layer != nil && layer.loaded) {
         NSString *name = [[fullPath lastPathComponent] stringByDeletingPathExtension];
         [self.mapView addMapLayer:layer withName:name];
+        
+        [self refreshMaxEnvelope];
         return YES;
     }
     return NO;
@@ -2863,6 +2870,27 @@
     sqlite3_finalize (stmt);
     
     return graphics;
+}
+
+-(void) refreshMaxEnvelope
+{
+    AGSMutableEnvelope *maxEnvelope = [[AGSMutableEnvelope alloc] initWithXmin:0.0f ymin:0.0f xmax:0.0f ymax:0.0f spatialReference:self.mapView.spatialReference];
+    for( int i = 0;i< self.mapView.mapLayers.count;i++){
+        AGSLayer *layer = [self.mapView.mapLayers objectAtIndex:i];
+        if ([layer isKindOfClass:[AGSLocalTiledLayer class]])
+        {
+            if (maxEnvelope.isEmpty) {
+                [maxEnvelope updateWithXmin:layer.fullEnvelope.xmin ymin:layer.fullEnvelope.ymin xmax:layer.fullEnvelope.xmax ymax:layer.fullEnvelope.ymax];
+            }
+            else
+            {
+                [maxEnvelope unionWithEnvelope:self.mapView.maxEnvelope];
+            }
+        }
+    }
+    if (!maxEnvelope.isEmpty){
+        self.mapView.maxEnvelope = maxEnvelope;
+    }
 }
 
 @end

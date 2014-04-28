@@ -821,6 +821,7 @@
         UINavigationController *navigationController = (UINavigationController *)viewController;
         if ([navigationController.visibleViewController isKindOfClass:[LayerController class]]) {
             [[Projects sharedProjects].curProject save];
+            [[Projects sharedProjects].curProject refreshMaxEnvelope];
         }
     }
 }

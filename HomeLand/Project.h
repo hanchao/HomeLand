@@ -72,4 +72,5 @@
 -(NSMutableArray *)queryAtLayer:(NSString *)name Envelope:(AGSEnvelope *)envelop;
 
 -(BOOL) openTpk:(NSString*) path;
+-(void) refreshMaxEnvelope;
 @end
