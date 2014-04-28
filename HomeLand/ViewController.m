@@ -64,7 +64,7 @@
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             //没网络的情况下，把在线数据移调
-            [self.mapView removeMapLayerWithName:@"Basemap Tiled Layer"];
+            [self.mapView removeMapLayerWithName:@"基础层"];
             NSLog(@"UNREACHABLE!");
         });
     };
@@ -252,7 +252,7 @@
 }
 
 - (IBAction)viewAll:(id)sender {
-    AGSEnvelope *fullEnvelope = self.mapView.baseLayer.fullEnvelope;
+    AGSEnvelope *fullEnvelope = self.mapView.maxEnvelope;
     [self.mapView zoomToEnvelope:fullEnvelope animated:YES];
 }
 
@@ -509,10 +509,10 @@
 //    
 //    [self.navigationController pushViewController:projectController animated:YES];
     
-    if(![[Projects sharedProjects] openProject:@"DefaultProject"])
+    if(![[Projects sharedProjects] openProject:@"Project"])
     {
-        [[Projects sharedProjects] createProject:@"DefaultProject"];
-        if(![[Projects sharedProjects] openProject:@"DefaultProject"]){
+        [[Projects sharedProjects] createProject:@"Project"];
+        if(![[Projects sharedProjects] openProject:@"Project"]){
 //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"打开工程失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
 //            [alert show];
             _HUD.yOffset = 300;
@@ -703,6 +703,8 @@
         
         UIPopoverController *popoverController;
         popoverController=popoverSegue.popoverController;
+        
+        popoverController.delegate = self;
 
         CGRect rect=[[UIScreen mainScreen] bounds];
 
@@ -808,6 +810,19 @@
 //                                                        message:theString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 //    [alertView show];
     
+}
+
+#pragma mark - UIPopoverControllerDelegate
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    UIViewController *viewController = popoverController.contentViewController;
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationController = (UINavigationController *)viewController;
+        if ([navigationController.visibleViewController isKindOfClass:[LayerController class]]) {
+            [[Projects sharedProjects].curProject save];
+        }
+    }
 }
 
 @end

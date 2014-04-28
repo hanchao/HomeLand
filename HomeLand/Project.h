@@ -14,6 +14,21 @@
 #import "Photo.h"
 //#import "GPX/GPX.h"
 
+#define HL_POINT @"点"
+#define HL_LINE @"线"
+#define HL_REGION @"面"
+
+#define HL_L_TPK 0
+#define HL_L_SPATIALTE 1
+#define HL_L_TMS 2
+
+@interface LayerDefinition : NSObject<NSCoding>
+
+@property (nonatomic) NSString* name;
+@property (nonatomic) int type;
+@property (nonatomic) BOOL visible;
+@end
+
 @interface Project : NSObject
 {
     sqlite3 *_basehandle;
@@ -29,6 +44,7 @@
 
 -(BOOL) create:(NSString *)path;
 -(BOOL) open:(NSString *)path;
+-(BOOL) save;
 -(BOOL) close;
 
 -(NSMutableArray*) allFieldInfo:(AGSGeometryType)geometryType;

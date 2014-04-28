@@ -13,6 +13,62 @@
 #import "EditLayer.h"
 #import "FieldInfo.h"
 
+@implementation LayerDefinition
+@synthesize name;
+@synthesize type;
+@synthesize visible;
+
+#pragma mark NSCoding
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeInteger:self.type forKey:@"type"];
+    [aCoder encodeBool:self.visible forKey:@"visible"];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super init]) {
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.type = [aDecoder decodeIntegerForKey:@"type"];
+        self.visible = [aDecoder decodeBoolForKey:@"visible"];
+    }
+    return self;
+}
+//- (void)encodeWithCoder:(NSCoder *)aCoder {
+////    [aCoder encodeObject:city forKey:@"city"];
+////    [aCoder encodeObject:circle forKey:@"circle"];
+////    [aCoder encodeObject:detail forKey:@"detail"];
+////    [aCoder encodeObject:userName forKey:@"username"];
+////    [aCoder encodeObject:telephone forKey:@"telephone"];
+////    [aCoder encodeFloat:SetAsDefault forKey:@"setasdefault"];
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder {
+//    if (self = [super init]) {
+////        self.city = [aDecoder decodeObjectForKey:@"city"];
+////        self.circle = [aDecoder decodeObjectForKey:@"circle"];
+////        self.detail = [aDecoder decodeObjectForKey:@"detail"];
+////        self.userName = [aDecoder decodeObjectForKey:@"username"];
+////        self.telephone = [aDecoder decodeObjectForKey:@"telephone"];
+////        self.SetAsDefault = [aDecoder decodeFloatForKey:@"setasdefault"];
+//    }
+//    return self;
+//}
+//
+//#pragma mark NSCoping
+//- (id)copyWithZone:(NSZone *)zone {
+//    LayerDefinition *copy = [[[self class] allocWithZone:zone] init];
+////    copy.city = self.city;
+////    copy.circle = [self.circle copyWithZone:zone];
+////    copy.detail = [self.detail copyWithZone:zone];
+////    copy.userName = [self.userName copyWithZone:zone];
+////    copy.telephone = [self.telephone copyWithZone:zone];
+////    copy.SetAsDefault = self.SetAsDefault;
+//    return copy;
+//}
+
+@end
+
 @implementation Project
 {
     BOOL stopQuery;
@@ -68,18 +124,31 @@
         return FALSE;
     }
     
-    
     [self openWebBaseLayer];
     [self openBaseTpkLayer:path];
-    [self createGPSLayer:path];
     
     [self openAllBaseLayer];
     
-    [self createLayer:@"Region" type:AGSGeometryTypePolygon];
-    [self createLayer:@"Line" type:AGSGeometryTypePolyline];
-    [self createLayer:@"Point" type:AGSGeometryTypePoint];
+    [self createLayer:HL_REGION type:AGSGeometryTypePolygon];
+    [self createLayer:HL_LINE type:AGSGeometryTypePolyline];
+    [self createLayer:HL_POINT type:AGSGeometryTypePoint];
     
-    [self createPhotoLayer:path];
+    [self openPhotoLayer:path];
+    
+    [self openGPSLayer:path];
+    [self openSketchLayer];
+    
+//    [self openWebBaseLayer];
+//    [self openBaseTpkLayer:path];
+//    [self createGPSLayer:path];
+//    
+//    [self openAllBaseLayer];
+//    
+//    [self createLayer:HL_REGION type:AGSGeometryTypePolygon];
+//    [self createLayer:HL_LINE type:AGSGeometryTypePolyline];
+//    [self createLayer:HL_POINT type:AGSGeometryTypePoint];
+//    
+//    [self createPhotoLayer:path];
     
     self.path = path;
     
@@ -561,7 +630,7 @@
     //Add a basemap tiled layer
     NSURL* url = [NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"];
     AGSTiledMapServiceLayer *tiledLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:url];
-    [self.mapView addMapLayer:tiledLayer withName:@"Basemap Tiled Layer"];
+    [self.mapView addMapLayer:tiledLayer withName:@"基础层"];
     
 
 
@@ -579,6 +648,72 @@
     [self.mapView addMapLayer:measureLayer withName:@"Measure layer"];
     return TRUE;
 }
+
+-(BOOL) openLayer:(LayerDefinition *)layerDefinition Path:(NSString *)path
+{
+    if (layerDefinition.type == HL_L_TPK) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *fullPath = [documentsDirectory stringByAppendingFormat:@"/%@.tpk",layerDefinition.name];
+        [self openTpk:fullPath];
+        
+        //[self openBaseTpkLayer:layerDefinition.name];
+    }else if (layerDefinition.type == HL_L_SPATIALTE) {
+        if ([layerDefinition.name isEqualToString:HL_POINT]) {
+            [self openLayer:layerDefinition.name type:AGSGeometryTypePoint];
+        }else if ([layerDefinition.name isEqualToString:HL_LINE]) {
+            [self openLayer:layerDefinition.name type:AGSGeometryTypePolyline];
+        }else if ([layerDefinition.name isEqualToString:HL_REGION]) {
+            [self openLayer:layerDefinition.name type:AGSGeometryTypePolygon];
+        }else{
+            
+            if (_basehandle == NULL) {
+                return NO;
+            }
+            
+            int ret = 0;
+            char *err_msg = NULL;
+            char sql[256];
+            
+            sqlite3_stmt *stmt;
+            
+            sprintf (sql, "SELECT f_table_name, type FROM geometry_columns WHERE f_table_name = '%s'",layerDefinition.name.UTF8String);
+            
+            ret = sqlite3_prepare_v2 (_basehandle, sql, strlen (sql), &stmt, NULL);
+            if (ret != SQLITE_OK)
+            {
+                /* some error occurred */
+                printf ("query#2 SQL error: %s\n", sqlite3_errmsg (_handle));
+                return FALSE;
+            }
+
+                /* we are now trying to fetch the next available row */
+                ret = sqlite3_step (stmt);
+                if (ret == SQLITE_ROW)
+                {
+                    NSString *layername = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, 0)];
+                    
+                    NSString *geotypeString = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, 1)];
+                    
+                    AGSGeometryType geotype = [Projects geotype:geotypeString];
+                    
+                    [self openBaseLayer:layername type:geotype];
+                }
+            
+            
+            /* we have now to finalize the query [memory cleanup] */
+            sqlite3_finalize (stmt);
+        }
+        
+    }else if (layerDefinition.type == HL_L_TMS) {
+        [self openWebBaseLayer];
+    }
+    
+    AGSLayer *layer = [self.mapView mapLayerForName:layerDefinition.name];
+    layer.visible = layerDefinition.visible;
+    return YES;
+}
+
 
 -(BOOL) open:(NSString *)path
 {
@@ -614,24 +749,69 @@
     printf ("SpatiaLite version: %s\n", spatialite_version ());
     printf ("\n\n");
     
+    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //    NSString *curProjectName = [defaults stringForKey:@"curProjectName"];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *layers = (NSArray *)[defaults objectForKey:@"Layers"];
+    if (layers != nil) {
+        for( NSData *date in layers)
+        {
+            LayerDefinition *layerDefinition = (LayerDefinition *)[NSKeyedUnarchiver unarchiveObjectWithData:date];
+            [self openLayer:layerDefinition Path:path];
+        }
+        
+        [self openGPSLayer:path];
+        [self openSketchLayer];
+        return YES;
+    }
+    
     [self openWebBaseLayer];
     [self openBaseTpkLayer:path];
-    [self openSketchLayer];
-    [self openGPSLayer:path];
     
     [self openAllBaseLayer];
     
-    [self openLayer:@"Region" type:AGSGeometryTypePolygon];
-    [self openLayer:@"Line" type:AGSGeometryTypePolyline];
-    [self openLayer:@"Point" type:AGSGeometryTypePoint];
+    [self openLayer:@"面" type:AGSGeometryTypePolygon];
+    [self openLayer:@"线" type:AGSGeometryTypePolyline];
+    [self openLayer:@"点" type:AGSGeometryTypePoint];
     
     [self openPhotoLayer:path];
+    
+    [self openGPSLayer:path];
+    [self openSketchLayer];
     
     self.path = path;
     
     NSLog(@"project path %@", self.path);
     return TRUE;
 }
+
+-(BOOL) save
+{
+    NSMutableArray *layers = [NSMutableArray new];
+    for( int i = 0;i< self.mapView.mapLayers.count-3;i++){ //最后3个图层不保存
+        AGSLayer *layer = [self.mapView.mapLayers objectAtIndex:i];
+        LayerDefinition *layerDefinition = [LayerDefinition new];
+        layerDefinition.name = layer.name;
+        if ([layer isKindOfClass:AGSLocalTiledLayer.class]) {
+            layerDefinition.type = HL_L_TPK;
+        }else if([layer isKindOfClass:AGSGraphicsLayer.class])
+        {
+            layerDefinition.type = HL_L_SPATIALTE;
+        }else if([layer isKindOfClass:AGSTiledMapServiceLayer.class]){
+            layerDefinition.type = HL_L_TMS;
+        }
+        layerDefinition.visible = layer.visible;
+        
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:layerDefinition];
+        [layers addObject:data];
+    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:layers forKey:@"Layers"];
+    [defaults synchronize];
+    return YES;
+}
+
 -(BOOL) close
 {
     [self.mapView reset];
@@ -654,15 +834,15 @@
     AGSSymbol *symbol;
     if (geometryType == AGSGeometryTypePoint) {
         
-        layername = @"Point";
+        layername = HL_POINT;
     }
     else if(geometryType == AGSGeometryTypePolyline)
     {
-        layername = @"Line";
+        layername = HL_LINE;
     }
     else if(geometryType == AGSGeometryTypePolygon)
     {
-        layername = @"Region";
+        layername = HL_REGION;
     }
     
     strcpy (sql, "select * from ");
@@ -734,7 +914,7 @@
     AGSSymbol *symbol;
     if (geometryType == AGSGeometryTypePoint) {
         
-        layername = @"Point";
+        layername = HL_POINT;
         
         AGSSimpleMarkerSymbol* myMarkerSymbol = [AGSSimpleMarkerSymbol simpleMarkerSymbol];
         myMarkerSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
@@ -747,7 +927,7 @@
     }
     else if(geometryType == AGSGeometryTypePolyline)
     {
-        layername = @"Line";
+        layername = HL_LINE;
         AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
         myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
         //线的边框还是“线”
@@ -770,7 +950,7 @@
     }
     else if(geometryType == AGSGeometryTypePolygon)
     {
-        layername = @"Region";
+        layername = HL_REGION;
         AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
         myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
         //线的边框还是“线”
@@ -872,7 +1052,7 @@
     AGSSymbol *symbol;
     if (geometryType == AGSGeometryTypePoint) {
         
-        layername = @"Point";
+        layername = HL_POINT;
         
         AGSSimpleMarkerSymbol* myMarkerSymbol = [AGSSimpleMarkerSymbol simpleMarkerSymbol];
         myMarkerSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
@@ -885,7 +1065,7 @@
     }
     else if(geometryType == AGSGeometryTypePolyline)
     {
-        layername = @"Line";
+        layername = HL_LINE;
         AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
         myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
         //线的边框还是“线”
@@ -908,7 +1088,7 @@
     }
     else if(geometryType == AGSGeometryTypePolygon)
     {
-        layername = @"Region";
+        layername = HL_REGION;
         AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
         myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
         //线的边框还是“线”
@@ -1040,7 +1220,7 @@
     AGSSymbol *symbol;
     if (geometryType == AGSGeometryTypePoint) {
         
-        layername = @"Point";
+        layername = HL_POINT;
         
         AGSSimpleMarkerSymbol* myMarkerSymbol = [AGSSimpleMarkerSymbol simpleMarkerSymbol];
         myMarkerSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
@@ -1053,7 +1233,7 @@
     }
     else if(geometryType == AGSGeometryTypePolyline)
     {
-        layername = @"Line";
+        layername = HL_LINE;
         AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
         myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
         //线的边框还是“线”
@@ -1076,7 +1256,7 @@
     }
     else if(geometryType == AGSGeometryTypePolygon)
     {
-        layername = @"Region";
+        layername = HL_REGION;
         AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
         myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
         //线的边框还是“线”
@@ -1188,15 +1368,15 @@
     
     AGSSymbol *symbol;
     if (geometryType == AGSGeometryTypePoint) {
-        layername = @"Point";
+        layername = HL_POINT;
     }
     else if(geometryType == AGSGeometryTypePolyline)
     {
-        layername = @"Line";
+        layername = HL_LINE;
     }
     else if(geometryType == AGSGeometryTypePolygon)
     {
-        layername = @"Region";
+        layername = HL_REGION;
     }
     
     AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)[self.mapView mapLayerForName:layername];
@@ -1317,13 +1497,13 @@
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
-    NSMutableArray *resultlayer = [self search:key Layer:@"Point"];
+    NSMutableArray *resultlayer = [self search:key Layer:HL_POINT];
     [result addObjectsFromArray:resultlayer];
     
-    resultlayer = [self search:key Layer:@"Line"];
+    resultlayer = [self search:key Layer:HL_LINE];
     [result addObjectsFromArray:resultlayer];
     
-    resultlayer = [self search:key Layer:@"Region"];
+    resultlayer = [self search:key Layer:HL_REGION];
     [result addObjectsFromArray:resultlayer];
     
     NSArray *baseLayernames = [self allBaseLayerName];
@@ -1820,9 +2000,9 @@
 -(NSMutableArray *)allLayerName
 {
     NSMutableArray *layerNames = [self allBaseLayerName];
-    [layerNames addObject:@"Point"];
-    [layerNames addObject:@"Line"];
-    [layerNames addObject:@"Region"];
+    [layerNames addObject:HL_POINT];
+    [layerNames addObject:HL_LINE];
+    [layerNames addObject:HL_REGION];
     return layerNames;
 }
 

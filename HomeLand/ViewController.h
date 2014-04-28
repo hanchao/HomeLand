@@ -14,7 +14,7 @@
 #import "BottomAnimateView.h"
 #import "../MWPhotoBrowser/Classes/MWPhotoBrowser.h"
 
-@interface ViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate,CLLocationManagerDelegate,AGSMapViewLayerDelegate,AGSMapViewTouchDelegate,AGSCalloutDelegate,AGSPopupsContainerDelegate,UIAlertViewDelegate,UISearchBarDelegate,MWPhotoBrowserDelegate>
+@interface ViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate,CLLocationManagerDelegate,AGSMapViewLayerDelegate,AGSMapViewTouchDelegate,AGSCalloutDelegate,AGSPopupsContainerDelegate,UIAlertViewDelegate,UISearchBarDelegate,MWPhotoBrowserDelegate,UIPopoverControllerDelegate>
 {
     CLLocationManager *_locationManager;
     NSMutableArray *_photos;

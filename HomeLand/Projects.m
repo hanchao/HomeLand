@@ -14,6 +14,8 @@
 @synthesize projects;
 @synthesize curProjectIndex;
 
+
+
 + (Projects *)sharedProjects {
     static id sharedProjects = nil;
     if (!sharedProjects) {
@@ -179,9 +181,9 @@
 //        [self createProject:@"DefaultProject"];
 //        [self openProject:@"DefaultProject"];
 //    }
-    if (![self openProject:@"DefaultProject"]) {
-        [self createProject:@"DefaultProject"];
-        [self openProject:@"DefaultProject"];
+    if (![self openProject:@"Project"]) {
+        [self createProject:@"Project"];
+        [self openProject:@"Project"];
     }
 }
 

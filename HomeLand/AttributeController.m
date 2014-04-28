@@ -76,9 +76,9 @@
             layerName = [graphic attributeAsStringForKey:@"LayerName_Query"];
         }
         
-        if ([layerName compare:@"Point"] == NSOrderedSame ||
-            [layerName compare:@"Line"] == NSOrderedSame ||
-            [layerName compare:@"Region"] == NSOrderedSame) {
+        if ([layerName compare:HL_POINT] == NSOrderedSame ||
+            [layerName compare:HL_LINE] == NSOrderedSame ||
+            [layerName compare:HL_REGION] == NSOrderedSame) {
             
             AGSGeometryType geometryType = AGSGeometryTypeForGeometry(self.graphic.geometry);
             

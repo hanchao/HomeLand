@@ -42,7 +42,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [Projects sharedProjects].curProject.mapView.mapLayers.count;
+    return [Projects sharedProjects].curProject.mapView.mapLayers.count-3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -57,10 +57,12 @@
     //cell.textLabel.text = layer.name;
     UILabel* label = (UILabel*) [cell viewWithTag: 100];
     label.text =layer.name;
+
     UISwitch* layerswitch = (UISwitch*) [cell viewWithTag: 200];
     layerswitch.on = layer.visible;
     layerswitch.accessibilityLabel = layer.name;
     
+    layerswitch.hidden = self.tableView.isEditing;
     return cell;
 }
 
@@ -118,7 +120,7 @@ sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     else{
         self.navigationItem.rightBarButtonItems = @[_buttonAdd,_buttonEdit];
     }
-    
+    [self.tableView reloadData];
 }
 
 - (void)directoryPickerController:(PSDirectoryPickerController *)picker didFinishPickingDirectoryAtPath:(NSString *)path
