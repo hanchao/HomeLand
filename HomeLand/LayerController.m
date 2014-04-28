@@ -126,6 +126,13 @@ sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
 - (void)directoryPickerController:(PSDirectoryPickerController *)picker didFinishPickingDirectoryAtPath:(NSString *)path
 {
     [[Projects sharedProjects].curProject openTpk:path];
+    
+    NSString *name = [[path lastPathComponent] stringByDeletingPathExtension];
+    AGSLayer* layer = [[Projects sharedProjects].curProject.mapView mapLayerForName:name];
+    [[Projects sharedProjects].curProject.mapView removeMapLayer:layer];
+    int index = [Projects sharedProjects].curProject.mapView.mapLayers.count;
+    [[Projects sharedProjects].curProject.mapView insertMapLayer:layer atIndex:index-3];
+    
     [self.tableView reloadData];
 }
 

@@ -180,6 +180,7 @@
     {
         _select = [indexPath row];
         [[self navigationController] performSelector:@selector(doneButtonTapped) withObject:self];
+        return;
     }
 
     PSDirectoryListViewController *detailViewController = [[PSDirectoryListViewController alloc] initWithDirectoryAtPath:[entry path]];
