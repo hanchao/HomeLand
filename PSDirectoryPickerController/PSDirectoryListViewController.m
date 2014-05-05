@@ -93,7 +93,7 @@
             BOOL isDir = NO;
             [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir];
             NSString *ext = [file pathExtension];
-            if(!isDir && ![ext isEqualToString:@"tpk"])
+            if(!isDir && ![ext isEqualToString:@"tpk"] && ![ext isEqualToString:@"sqlite"])
                 continue;
             PSDirectoryPickerEntry *entry = [[PSDirectoryPickerEntry alloc] initWithPath:fullPath name:file dir:isDir];
             [visibleFiles addObject:entry];

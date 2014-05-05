@@ -68,6 +68,8 @@
 		D6249E5D19162F180059F44B /* DXSemiViewControllerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D6249E5A19162F180059F44B /* DXSemiViewControllerCategory.m */; };
 		D6249E6B191643C40059F44B /* AttributeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6249E6A191643C40059F44B /* AttributeController.m */; };
 		D6279A5718DAC07200E4536D /* FieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D6279A5618DAC07200E4536D /* FieldInfo.m */; };
+		D62DCCE5191767A2006FF205 /* 面点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62DCCE3191767A2006FF205 /* 面点击效果.png */; };
+		D62DCCE6191767A2006FF205 /* 面点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62DCCE4191767A2006FF205 /* 面点击效果@2x.png */; };
 		D63134E518C996C1003DD1C8 /* LayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63134E418C996C1003DD1C8 /* LayerController.m */; };
 		D6603FA718C703A300C1E1EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6603FA618C703A300C1E1EA /* Images.xcassets */; };
 		D6603FAE18C7083F00C1E1EA /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = D6603FAD18C7083F00C1E1EA /* Projects.m */; };
@@ -320,6 +322,8 @@
 		D6249E6A191643C40059F44B /* AttributeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeController.m; sourceTree = "<group>"; };
 		D6279A5518DAC07200E4536D /* FieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldInfo.h; sourceTree = "<group>"; };
 		D6279A5618DAC07200E4536D /* FieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldInfo.m; sourceTree = "<group>"; };
+		D62DCCE3191767A2006FF205 /* 面点击效果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面点击效果.png"; sourceTree = "<group>"; };
+		D62DCCE4191767A2006FF205 /* 面点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面点击效果@2x.png"; sourceTree = "<group>"; };
 		D63134E318C996C1003DD1C8 /* LayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerController.h; sourceTree = "<group>"; };
 		D63134E418C996C1003DD1C8 /* LayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerController.m; sourceTree = "<group>"; };
 		D6603FA618C703A300C1E1EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -760,6 +764,8 @@
 		D6854B0A18D731AC008E638A /* button */ = {
 			isa = PBXGroup;
 			children = (
+				D62DCCE3191767A2006FF205 /* 面点击效果.png */,
+				D62DCCE4191767A2006FF205 /* 面点击效果@2x.png */,
 				D62130B518E3C6D40061A10A /* 点点击效果.png */,
 				D62130B618E3C6D40061A10A /* 点点击效果@2x.png */,
 				D62130B718E3C6D50061A10A /* 记录轨迹点击效果.png */,
@@ -1034,6 +1040,7 @@
 				D6854B7E18D731AC008E638A /* 016前进.png in Resources */,
 				D62130CB18E3C6D50061A10A /* 量算点击效果.png in Resources */,
 				D6854B8D18D731AC008E638A /* 024面积.png in Resources */,
+				D62DCCE5191767A2006FF205 /* 面点击效果.png in Resources */,
 				D6854B6118D731AC008E638A /* 001打开地图@2x.png in Resources */,
 				D62130D218E3C6D50061A10A /* 线点击效果@2x.png in Resources */,
 				D6854B9218D731AC008E638A /* 026前进@2x.png in Resources */,
@@ -1090,6 +1097,7 @@
 				D6854BB018D731AC008E638A /* 欢迎画面横2048.png in Resources */,
 				D6854B9318D731AC008E638A /* 027清除.png in Resources */,
 				D6854B8E18D731AC008E638A /* 024面积@2x.png in Resources */,
+				D62DCCE6191767A2006FF205 /* 面点击效果@2x.png in Resources */,
 				D6854B6C18D731AC008E638A /* 007图斑管理.png in Resources */,
 				D6854B8C18D731AC008E638A /* 023长度@2x.png in Resources */,
 				D6854B9818D731AC008E638A /* 030记录轨迹@2x.png in Resources */,
@@ -1319,7 +1327,7 @@
 				GCC_PREFIX_HEADER = "HomeLand/HomeLand-Prefix.pch";
 				INFOPLIST_FILE = "HomeLand/HomeLand-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
@@ -1343,7 +1351,7 @@
 				GCC_PREFIX_HEADER = "HomeLand/HomeLand-Prefix.pch";
 				INFOPLIST_FILE = "HomeLand/HomeLand-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";

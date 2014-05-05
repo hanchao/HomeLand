@@ -19,7 +19,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="ax4-Fz-miE">
-                                        <rect key="frame" x="0.0" y="86" width="663" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="984" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ax4-Fz-miE" id="cik-qk-zRr">
                                             <rect key="frame" x="0.0" y="0.0" width="951" height="43"/>
@@ -268,7 +268,6 @@
                                         </state>
                                         <connections>
                                             <action selector="editsave:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iLh-7X-Ib8"/>
-                                            <segue destination="Kzk-Lo-ZWH" kind="push" id="ckT-Ph-kPC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Zdd-5a-Uqk">
@@ -309,6 +308,7 @@
                                         <state key="normal" image="012面.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" image="面点击效果.png"/>
                                         <connections>
                                             <action selector="editRegion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D6B-bX-NST"/>
                                         </connections>
@@ -496,19 +496,19 @@
             <objects>
                 <viewController storyboardIdentifier="AttributeController" id="Kzk-Lo-ZWH" customClass="AttributeController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i9h-Ng-KOv">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="HF2-fy-Fe4">
-                                <rect key="frame" x="20" y="68" width="993" height="655"/>
+                                <rect key="frame" x="20" y="68" width="737" height="911"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="RJy-JW-wUv">
-                                        <rect key="frame" x="0.0" y="86" width="993" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="737" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RJy-JW-wUv" id="f6N-1t-ArI">
-                                            <rect key="frame" x="0.0" y="0.0" width="993" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="737" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Uz-SO-eh4">
@@ -557,7 +557,6 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="属性" id="bYR-bH-gte"/>
                     <connections>
@@ -749,6 +748,7 @@
         <image name="记录轨迹点击效果.png" width="97" height="50"/>
         <image name="量算点击效果.png" width="83" height="83"/>
         <image name="长度点击效果.png" width="83" height="83"/>
+        <image name="面点击效果.png" width="83" height="83"/>
         <image name="面积点击效果.png" width="83" height="83"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

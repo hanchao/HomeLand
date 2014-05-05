@@ -16,6 +16,8 @@
 #import "RecordController.h"
 #import "Reachability.h"
 #import "MBProgressHUD.h"
+#import "DXSemiTableViewController.h"
+#import "DXSemiViewControllerCategory.h"
 
 @interface ViewController ()
 {
@@ -305,6 +307,19 @@
 //    [[Projects sharedProjects].curProject addGeometry:sketchLayer.geometry];
 //    [sketchLayer clear];
     
+    EditLayer *sketchLayer = (EditLayer *)[[Projects sharedProjects].curProject.mapView mapLayerForName:@"Sketch layer"];
+    if(sketchLayer.geometry == nil)
+        return;
+    
+    UIStoryboard * storyBoard;
+    AttributeController *projectController;
+    
+    storyBoard  = [UIStoryboard
+                   storyboardWithName:@"Main_iPad" bundle:nil];
+    
+    projectController = [storyBoard instantiateViewControllerWithIdentifier:@"AttributeController"];
+    [self.navigationController pushViewController:projectController animated:YES];
+    
 }
 
 - (IBAction)editclear:(id)sender {
@@ -402,6 +417,9 @@
 }
 
 - (IBAction)DataManageTouch:(id)sender {
+//    
+//    DXSemiTableViewController *tg = [DXSemiTableViewController new];
+//    self.leftSemiViewController = tg;
 }
 
 - (IBAction)MeasureTouch:(id)sender {
@@ -637,8 +655,24 @@
         return NO;
     }
     
+    if ([layer.name isEqualToString:@"GPS layer"]) {
+        return NO;
+    }
+    
+    self.mapView.callout.customView = nil;
     self.mapView.callout.title = nil;
     self.mapView.callout.image = nil;
+    
+    if ([layer.name isEqualToString:@"照片"]) {
+        NSString *filename = (NSString*)[feature attributeForKey:@"filename"];
+
+        UIImage *image = [[Projects sharedProjects].curProject photoWithName:filename];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        imageView.frame = CGRectMake(0,0,image.size.width/2, image.size.height/2);
+        self.mapView.callout.customView = imageView;
+        return YES;
+    }
     
 //    if ([layer.name compare:@"DMD"] == NSOrderedSame ) {
 //        self.mapView.callout.title = (NSString*)[feature attributeForKey:@"NAME"];
@@ -664,7 +698,10 @@
         self.mapView.callout.title = @"未命名";
     }
 
-    
+    if(self.mapView.callout.title.length == 0)
+    {
+        self.mapView.callout.title = @"未命名";
+    }
     
     if ([feature hasAttributeForKey:@"photoname"]) {
         NSString *photoname = (NSString*)[feature attributeForKey:@"photoname"];
