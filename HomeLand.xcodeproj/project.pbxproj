@@ -63,7 +63,10 @@
 		D623C37218E1369F0007656E /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D623C37118E1369F0007656E /* RecordController.m */; };
 		D623C37818E13B180007656E /* ManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D623C37718E13B180007656E /* ManageController.m */; };
 		D623C37B18E13C7F0007656E /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D623C37918E13C7F0007656E /* Main_iPad.storyboard */; };
-		D6279A5118DABCAD00E4536D /* AttributeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6279A5018DABCAD00E4536D /* AttributeController.m */; };
+		D6249E5B19162F180059F44B /* DXSemiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6249E5619162F180059F44B /* DXSemiTableViewController.m */; };
+		D6249E5C19162F180059F44B /* DXSemiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6249E5819162F180059F44B /* DXSemiViewController.m */; };
+		D6249E5D19162F180059F44B /* DXSemiViewControllerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D6249E5A19162F180059F44B /* DXSemiViewControllerCategory.m */; };
+		D6249E6B191643C40059F44B /* AttributeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6249E6A191643C40059F44B /* AttributeController.m */; };
 		D6279A5718DAC07200E4536D /* FieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D6279A5618DAC07200E4536D /* FieldInfo.m */; };
 		D63134E518C996C1003DD1C8 /* LayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63134E418C996C1003DD1C8 /* LayerController.m */; };
 		D6603FA718C703A300C1E1EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6603FA618C703A300C1E1EA /* Images.xcassets */; };
@@ -179,6 +182,8 @@
 		D6C3607D18C5B6E400D9A5F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3607C18C5B6E400D9A5F8 /* CoreLocation.framework */; };
 		D6C3608518C5B77700D9A5F8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C3608418C5B77700D9A5F8 /* MobileCoreServices.framework */; };
 		D6FB835118E93ED700898A9B /* BottomAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FB835018E93ED700898A9B /* BottomAnimateView.m */; };
+		D6FCA075190F7C5100B579C8 /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FCA073190F7C5100B579C8 /* photo.png */; };
+		D6FCA076190F7C5100B579C8 /* photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FCA074190F7C5100B579C8 /* photo@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -305,8 +310,14 @@
 		D623C37618E13B180007656E /* ManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageController.h; sourceTree = "<group>"; };
 		D623C37718E13B180007656E /* ManageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageController.m; sourceTree = "<group>"; };
 		D623C37A18E13C7F0007656E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		D6279A4F18DABCAC00E4536D /* AttributeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeController.h; sourceTree = "<group>"; };
-		D6279A5018DABCAD00E4536D /* AttributeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeController.m; sourceTree = "<group>"; };
+		D6249E5519162F180059F44B /* DXSemiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXSemiTableViewController.h; sourceTree = "<group>"; };
+		D6249E5619162F180059F44B /* DXSemiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSemiTableViewController.m; sourceTree = "<group>"; };
+		D6249E5719162F180059F44B /* DXSemiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXSemiViewController.h; sourceTree = "<group>"; };
+		D6249E5819162F180059F44B /* DXSemiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSemiViewController.m; sourceTree = "<group>"; };
+		D6249E5919162F180059F44B /* DXSemiViewControllerCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXSemiViewControllerCategory.h; sourceTree = "<group>"; };
+		D6249E5A19162F180059F44B /* DXSemiViewControllerCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSemiViewControllerCategory.m; sourceTree = "<group>"; };
+		D6249E69191643C40059F44B /* AttributeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeController.h; sourceTree = "<group>"; };
+		D6249E6A191643C40059F44B /* AttributeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeController.m; sourceTree = "<group>"; };
 		D6279A5518DAC07200E4536D /* FieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldInfo.h; sourceTree = "<group>"; };
 		D6279A5618DAC07200E4536D /* FieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldInfo.m; sourceTree = "<group>"; };
 		D63134E318C996C1003DD1C8 /* LayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerController.h; sourceTree = "<group>"; };
@@ -445,6 +456,8 @@
 		D6C3608418C5B77700D9A5F8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D6FB834F18E93ED700898A9B /* BottomAnimateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomAnimateView.h; sourceTree = "<group>"; };
 		D6FB835018E93ED700898A9B /* BottomAnimateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomAnimateView.m; sourceTree = "<group>"; };
+		D6FCA073190F7C5100B579C8 /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
+		D6FCA074190F7C5100B579C8 /* photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -560,6 +573,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D6249E5419162F180059F44B /* DXSemiViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D6249E5519162F180059F44B /* DXSemiTableViewController.h */,
+				D6249E5619162F180059F44B /* DXSemiTableViewController.m */,
+				D6249E5719162F180059F44B /* DXSemiViewController.h */,
+				D6249E5819162F180059F44B /* DXSemiViewController.m */,
+				D6249E5919162F180059F44B /* DXSemiViewControllerCategory.h */,
+				D6249E5A19162F180059F44B /* DXSemiViewControllerCategory.m */,
+			);
+			path = DXSemiViewController;
+			sourceTree = SOURCE_ROOT;
+		};
 		D6603FAB18C7081D00C1E1EA /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +666,7 @@
 		D66A276E18C43370008B4CFC /* HomeLand */ = {
 			isa = PBXGroup;
 			children = (
+				D6249E5419162F180059F44B /* DXSemiViewController */,
 				D6B0A86819079DAC005904F1 /* PSDirectoryPickerController */,
 				D61E129318FD4606001D3061 /* MBProgressHUD */,
 				D61E128B18FD228B001D3061 /* Reachability */,
@@ -660,10 +687,10 @@
 				D63134E418C996C1003DD1C8 /* LayerController.m */,
 				D6854BB518D824F7008E638A /* ImageController.h */,
 				D6854BB618D824F7008E638A /* ImageController.m */,
-				D6279A4F18DABCAC00E4536D /* AttributeController.h */,
-				D6279A5018DABCAD00E4536D /* AttributeController.m */,
 				D623C37618E13B180007656E /* ManageController.h */,
 				D623C37718E13B180007656E /* ManageController.m */,
+				D6249E69191643C40059F44B /* AttributeController.h */,
+				D6249E6A191643C40059F44B /* AttributeController.m */,
 				D6603FA618C703A300C1E1EA /* Images.xcassets */,
 				D66A276F18C43370008B4CFC /* Supporting Files */,
 			);
@@ -704,6 +731,8 @@
 		D6854B0918D731AC008E638A /* image */ = {
 			isa = PBXGroup;
 			children = (
+				D6FCA073190F7C5100B579C8 /* photo.png */,
+				D6FCA074190F7C5100B579C8 /* photo@2x.png */,
 				D6854B0A18D731AC008E638A /* button */,
 				D6854B4D18D731AC008E638A /* 布局示意图001主界面.jpg */,
 				D6854B4E18D731AC008E638A /* 布局示意图002图斑采集界面.jpg */,
@@ -1039,6 +1068,8 @@
 				D62130CE18E3C6D50061A10A /* 面积点击效果@2x.png in Resources */,
 				D6854B8118D731AC008E638A /* 017保存@2x.png in Resources */,
 				D62130D618E3C6D50061A10A /* 长度点击效果@2x.png in Resources */,
+				D6FCA076190F7C5100B579C8 /* photo@2x.png in Resources */,
+				D6FCA075190F7C5100B579C8 /* photo.png in Resources */,
 				D6854B8318D731AC008E638A /* 018清除编辑@2x.png in Resources */,
 				D6854B6518D731AC008E638A /* 003照片采集@2x.png in Resources */,
 				D6854B7518D731AC008E638A /* 011线@2x.png in Resources */,
@@ -1099,9 +1130,9 @@
 				D60663AA18D6C705004E0A7A /* GPXXML.m in Sources */,
 				D60663A918D6C705004E0A7A /* GPXWaypoint.m in Sources */,
 				D606635818D69C12004E0A7A /* MeasureLayer.m in Sources */,
-				D6279A5118DABCAD00E4536D /* AttributeController.m in Sources */,
 				D606639818D6C705004E0A7A /* GPXCopyright.m in Sources */,
 				D60663AD18D6C9C1004E0A7A /* GPSLayer.m in Sources */,
+				D6249E5C19162F180059F44B /* DXSemiViewController.m in Sources */,
 				D61E129218FD229B001D3061 /* Reachability.m in Sources */,
 				D606639918D6C705004E0A7A /* GPXElement.m in Sources */,
 				D606636218D6C6A2004E0A7A /* TrackPoint.m in Sources */,
@@ -1110,6 +1141,7 @@
 				D606639718D6C705004E0A7A /* GPXConst.m in Sources */,
 				D6B0A87119079DAC005904F1 /* PSDirectoryPickerController.m in Sources */,
 				D6603FAE18C7083F00C1E1EA /* Projects.m in Sources */,
+				D6249E5D19162F180059F44B /* DXSemiViewControllerCategory.m in Sources */,
 				D63134E518C996C1003DD1C8 /* LayerController.m in Sources */,
 				D6854A5C18D73120008E638A /* Project.mm in Sources */,
 				D623C37818E13B180007656E /* ManageController.m in Sources */,
@@ -1124,10 +1156,12 @@
 				D6854BB718D824F7008E638A /* ImageController.m in Sources */,
 				D60663A118D6C705004E0A7A /* GPXPointSegment.m in Sources */,
 				D6B0A87019079DAC005904F1 /* PSDirectoryListViewController.m in Sources */,
+				D6249E5B19162F180059F44B /* DXSemiTableViewController.m in Sources */,
 				D606639B18D6C705004E0A7A /* GPXExtensions.m in Sources */,
 				D61E129618FD462A001D3061 /* MBProgressHUD.m in Sources */,
 				D606639F18D6C705004E0A7A /* GPXPerson.m in Sources */,
 				D6279A5718DAC07200E4536D /* FieldInfo.m in Sources */,
+				D6249E6B191643C40059F44B /* AttributeController.m in Sources */,
 				D66A277918C43370008B4CFC /* AppDelegate.m in Sources */,
 				D6854BBA18D833DE008E638A /* Photo.m in Sources */,
 				D6854BBD18D84C6C008E638A /* EditLayer.m in Sources */,

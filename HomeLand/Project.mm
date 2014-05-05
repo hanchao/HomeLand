@@ -133,7 +133,7 @@
     [self createLayer:HL_LINE type:AGSGeometryTypePolyline];
     [self createLayer:HL_POINT type:AGSGeometryTypePoint];
     
-    [self openPhotoLayer:path];
+    [self createPhotoLayer:path];
     
     [self openGPSLayer:path];
     [self openSketchLayer];
@@ -523,14 +523,14 @@
      for simplicity we'll define only one column, the primary key
      */
     strcpy (sql, "CREATE TABLE ");
-    strcat (sql, "Photo");
+    strcat (sql, "照片");
     strcat (sql, " (");
     strcat (sql, "id INTEGER NOT NULL PRIMARY KEY)");
     ret = sqlite3_exec (_handle, sql, NULL, NULL, &err_msg);
     if (ret != SQLITE_OK)
     {
         /* an error occurred */
-        printf ("CREATE TABLE 'Photo' error: %s\n", err_msg);
+        printf ("CREATE TABLE '照片' error: %s\n", err_msg);
         sqlite3_free (err_msg);
         return FALSE;
     }
@@ -540,7 +540,7 @@
      ... we'll add a Geometry column of POINT type to the test table
      */
     strcpy (sql, "SELECT AddGeometryColumn('");
-    strcat (sql, "Photo");
+    strcat (sql, "照片");
     strcat (sql, "', 'geom', 4326, 'POINT', 2)");
 
     
@@ -553,7 +553,7 @@
         return FALSE;
     }
     
-    strcpy (sql, "alter TABLE Photo add filename varchar ( 256 )");
+    strcpy (sql, "alter TABLE 照片 add filename varchar ( 256 )");
     ret = sqlite3_exec (_handle, sql, NULL, NULL, &err_msg);
     if (ret != SQLITE_OK)
     {
@@ -567,7 +567,7 @@
      and finally we'll enable this geo-column to have a Spatial Index based on R*Tree
      */
     strcpy (sql, "SELECT CreateSpatialIndex('");
-    strcat (sql, "Photo");
+    strcat (sql, "照片");
     strcat (sql, "', 'geom')");
     ret = sqlite3_exec (_handle, sql, NULL, NULL, &err_msg);
     if (ret != SQLITE_OK)
@@ -596,6 +596,247 @@
     {
         [fileManager createDirectoryAtPath:photoDir withIntermediateDirectories:YES attributes:nil error:nil];
     }
+    
+    int ret = 0;
+    char *err_msg = NULL;
+    char sql[256];
+    
+    sqlite3_stmt *stmt;
+    
+    gaiaGeomCollPtr geom;
+    int ic;
+    int n_rows;
+    int n_columns;
+    int row_no;
+    const unsigned char *blob;
+    int blob_size;
+    int geom_type;
+    
+    sprintf (sql, "SELECT * FROM 照片");
+    
+    ret = sqlite3_prepare_v2 (_handle, sql, strlen (sql), &stmt, NULL);
+    if (ret != SQLITE_OK)
+    {
+        /* some error occurred */
+		printf ("query#2 SQL error: %s\n", sqlite3_errmsg (_handle));
+		return FALSE;
+    }
+    
+    /* we'll now save the #columns within the result set */
+    n_columns = sqlite3_column_count (stmt);
+    row_no = 0;
+    
+    
+    AGSGraphicsLayer *graphicsLayer= [[AGSGraphicsLayer alloc] init];
+    
+    
+    [self.mapView addMapLayer:graphicsLayer withName:@"照片"];
+    
+
+    AGSPictureMarkerSymbol* symbol = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"photo"];
+    AGSSimpleRenderer*renderer = [AGSSimpleRenderer simpleRendererWithSymbol:symbol];
+    graphicsLayer.renderer= renderer;
+    
+
+    while (1)
+    {
+        /* this is an infinite loop, intended to fetch any row */
+        
+        /* we are now trying to fetch the next available row */
+		ret = sqlite3_step (stmt);
+		if (ret == SQLITE_DONE)
+        {
+            /* there are no more rows to fetch - we can stop looping */
+            break;
+        }
+		if (ret == SQLITE_ROW)
+        {
+            /* ok, we've just fetched a valid row to process */
+            row_no++;
+            printf ("row #%d\n", row_no);
+            
+            AGSGeometry* geometry;
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+            for (ic = 0; ic < n_columns; ic++)
+			{
+                /*
+                 and now we'll fetch column values
+                 
+                 for each column we'll then get:
+                 - the column name
+                 - a column value, that can be of type: SQLITE_NULL, SQLITE_INTEGER,
+                 SQLITE_FLOAT, SQLITE_TEXT or SQLITE_BLOB, according to internal DB storage type
+                 */
+			    printf ("\t%-10s = ",
+                        sqlite3_column_name (stmt, ic));
+                
+                NSString *key = [NSString stringWithFormat:@"%s",sqlite3_column_name (stmt, ic)];
+                NSString *value;
+			    switch (sqlite3_column_type (stmt, ic))
+                {
+                    case SQLITE_NULL:
+                        printf ("NULL");
+                        break;
+                    case SQLITE_INTEGER:
+                        printf ("%d", sqlite3_column_int (stmt, ic));
+                        value = [NSString stringWithFormat:@"%d",sqlite3_column_int (stmt, ic)];
+                        
+                        if (value != nil) {
+                            [dict setObject:value forKey:key];
+                        }
+                        break;
+                    case SQLITE_FLOAT:
+                        printf ("%1.4f",
+                                sqlite3_column_double (stmt, ic));
+                        value = [NSString stringWithFormat:@"%f",sqlite3_column_double (stmt, ic)];
+                        if (value != nil) {
+                            [dict setObject:value forKey:key];
+                        }
+                        break;
+                    case SQLITE_TEXT:
+                        printf ("'%s'",
+                                sqlite3_column_text (stmt, ic));
+                        value = [NSString stringWithUTF8String:(const char *)sqlite3_column_text (stmt, ic)];
+                        if (value != nil) {
+                            [dict setObject:value forKey:key];
+                        }
+                        break;
+                    case SQLITE_BLOB:
+                        blob = (unsigned char *)sqlite3_column_blob (stmt, ic);
+                        blob_size = sqlite3_column_bytes (stmt, ic);
+                        
+                        /* checking if this BLOB actually is a GEOMETRY */
+                        geom =
+                        gaiaFromSpatiaLiteBlobWkb (blob,
+                                                   blob_size);
+                        if (!geom)
+                        {
+                            /* for sure this one is not a GEOMETRY */
+                            printf ("BLOB [%d bytes]", blob_size);
+                        }
+                        else
+                        {
+                            
+                            geom_type = gaiaGeometryType (geom);
+                            if (geom_type == GAIA_UNKNOWN)
+                                printf ("EMPTY or NULL GEOMETRY");
+                            else
+                            {
+                                char *geom_name;
+                                if (geom_type == GAIA_POINT)
+                                {
+                                    geom_name = "POINT";
+                                    
+                                    geometry = [[AGSPoint alloc] initWithX:geom->FirstPoint->X y:geom->FirstPoint->Y spatialReference:nil];
+                                }
+                                if (geom_type == GAIA_LINESTRING)
+                                {
+                                    geom_name = "LINESTRING";
+                                    AGSMutablePolyline *line = [[AGSMutablePolyline alloc] init];
+                                    gaiaLinestringPtr lineprt = geom->FirstLinestring;
+                                    [line addPathToPolyline];
+                                    for (int i=0; i<lineprt->Points; i++) {
+                                        double x,y;
+                                        gaiaGetPoint(lineprt->Coords,i,&x,&y);
+                                        AGSPoint *point = [[AGSPoint alloc] initWithX:x y:y spatialReference:nil];
+                                        //[line addPoint:point toPath:0];
+                                        [line addPointToPath:point];
+                                    }
+                                    geometry = line;
+                                }
+                                if (geom_type == GAIA_POLYGON)
+                                {
+                                    geom_name = "POLYGON";
+                                    AGSMutablePolygon *polyon = [[AGSMutablePolygon alloc] init];
+                                    [polyon addRingToPolygon];
+                                    gaiaPolygonPtr polygonprt = geom->FirstPolygon;
+                                    for (int i=0; i<polygonprt->Exterior->Points; i++) {
+                                        double x,y;
+                                        gaiaGetPoint(polygonprt->Exterior->Coords,i,&x,&y);
+                                        AGSPoint *point = [[AGSPoint alloc] initWithX:x y:y spatialReference:nil];
+                                        //[line addPoint:point toPath:0];
+                                        [polyon addPointToRing:point];
+                                    }
+                                    geometry = polyon;
+                                }
+                                if (geom_type == GAIA_MULTIPOINT)
+                                    geom_name = "MULTIPOINT";
+                                if (geom_type ==
+                                    GAIA_MULTILINESTRING)
+                                    geom_name = "MULTILINESTRING";
+                                if (geom_type ==
+                                    GAIA_MULTIPOLYGON)
+                                    geom_name = "MULTIPOLYGON";
+                                if (geom_type ==
+                                    GAIA_GEOMETRYCOLLECTION)
+                                    geom_name =
+                                    "GEOMETRYCOLLECTION";
+                                printf ("%s SRID=%d", geom_name,
+                                        geom->Srid);
+                                if (geom_type == GAIA_LINESTRING
+                                    || geom_type ==
+                                    GAIA_MULTILINESTRING)
+                                {
+                                    //#ifndef OMIT_GEOS		/* GEOS is required */
+                                    //                                    gaiaGeomCollLength (geom,
+                                    //                                                        &measure);
+                                    //                                    printf (" length=%1.2f",
+                                    //                                            measure);
+                                    //#else
+                                    //                                    printf
+                                    //                                    (" length=?? [no GEOS support available]");
+                                    //#endif /* GEOS enabled/disabled */
+                                }
+                                if (geom_type == GAIA_POLYGON ||
+                                    geom_type ==
+                                    GAIA_MULTIPOLYGON)
+                                {
+                                    //#ifndef OMIT_GEOS		/* GEOS is required */
+                                    //                                    gaiaGeomCollArea (geom,
+                                    //                                                      &measure);
+                                    //                                    printf (" area=%1.2f",
+                                    //                                            measure);
+                                    //#else
+                                    //                                    printf
+                                    //                                    ("area=?? [no GEOS support available]");
+                                    //#endif /* GEOS enabled/disabled */
+                                }
+                                
+                                
+                            }
+                            /* we have now to free the GEOMETRY */
+                            gaiaFreeGeomColl (geom);
+                        }
+                        
+                        break;
+                };
+			    printf ("\n");
+                
+                
+			}
+            
+            AGSGraphic*graphic = [AGSGraphic graphicWithGeometry:geometry symbol:nil attributes:dict];
+            [graphicsLayer addGraphic:graphic];
+            [graphicsLayer refresh];
+            
+            //            if (row_no >= 5)
+            //			{
+            //                /* we'll exit the loop after the first 5 rows - this is only a demo :-) */
+            //			    break;
+            //			}
+        }
+		else
+        {
+            /* some unexpected error occurred */
+            printf ("sqlite3_step() error: %s\n",
+                    sqlite3_errmsg (_handle));
+            sqlite3_finalize (stmt);
+            return FALSE;
+        }
+    }
+    /* we have now to finalize the query [memory cleanup] */
+    sqlite3_finalize (stmt);
+
     return TRUE;
 }
 
@@ -760,6 +1001,8 @@
             LayerDefinition *layerDefinition = (LayerDefinition *)[NSKeyedUnarchiver unarchiveObjectWithData:date];
             [self openLayer:layerDefinition Path:path];
         }
+        
+        [self openPhotoLayer:path];
         
         [self openGPSLayer:path];
         [self openSketchLayer];
@@ -1453,7 +1696,7 @@
     gaiaAddPointToGeomColl (geo, photo.point.x, photo.point.y);
     
     strcpy (sql, "INSERT INTO ");
-    strcat (sql, "Photo");
+    strcat (sql, "照片");
     strcat (sql, " (id, geom, filename) VALUES (?, ?, ?)");
     ret = sqlite3_prepare_v2 (_handle, sql, strlen (sql), &stmt, NULL);
     if (ret != SQLITE_OK)
@@ -1494,6 +1737,12 @@
     
     /* we have now to finalize the query [memory cleanup] */
     sqlite3_finalize (stmt);
+    
+    
+    AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)[self.mapView mapLayerForName:@"照片"];
+    AGSGraphic*graphic = [AGSGraphic graphicWithGeometry:photo.point symbol:nil attributes:nil];
+    [graphicsLayer addGraphic:graphic];
+    [graphicsLayer refresh];
     
     return shortFileName;
 }
@@ -1802,7 +2051,7 @@
     int blob_size;
     int geom_type;
     
-    strcpy (sql, "SELECT geom, filename FROM Photo");
+    strcpy (sql, "SELECT geom, filename FROM 照片");
     
     ret = sqlite3_prepare_v2 (_handle, sql, strlen (sql), &stmt, NULL);
     if (ret != SQLITE_OK)
