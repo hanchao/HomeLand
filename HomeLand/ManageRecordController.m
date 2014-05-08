@@ -13,6 +13,9 @@
 @end
 
 @implementation ManageRecordController
+{
+    NSMutableArray *_searchResult;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +42,15 @@
 //    if (_curLayerName.length != 0) {
 //        self.selectlayerEdit.text = _curLayerName;
 //    }
+    
+    if ([self.curLayerName isEqualToString:HL_POINT] ||
+        [self.curLayerName isEqualToString:HL_LINE] ||
+        [self.curLayerName isEqualToString:HL_REGION]) {
+        _searchResult = [[Projects sharedProjects].curProject search:@"" Layer:self.curLayerName];
+
+    }else{
+        _searchResult = [[Projects sharedProjects].curProject searchBase:@"" Layer:self.curLayerName];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,60 +59,44 @@
     // Dispose of any resources that can be recreated.
 }
 
-//// returns the number of 'columns' to display.
-//- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-//{
-//    return 1;
-//}
-//
-//// returns the # of rows in each component..
-//-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-//{
-//	return [_layerName count];
-//}
-//
-//-(UIView *)pickerView:(UIPickerView *)pickerView
-//		  titleForRow:(NSInteger)row
-//		 forComponent:(NSInteger)component
-//{
-//	
-//	return [_layerName objectAtIndex:row];
-//}
-//
-///*
-//#pragma mark - Navigation
-//
-//// In a storyboard-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    // Get the new view controller using [segue destinationViewController].
-//    // Pass the selected object to the new view controller.
-//}
-//*/
-//
-//- (IBAction)selectlayerTouch:(id)sender {
-//    self.selectView.hidden = NO;
-//}
-//
-//- (IBAction)selectedLayerTouch:(id)sender {
-//    self.selectView.hidden = YES;
-//    
-//    NSInteger row = [self.layerPicker selectedRowInComponent:0];
-//    
-//    _curLayerName = [_layerName objectAtIndex:row];
-//    self.selectlayerEdit.text = _curLayerName;
-//    [self.recordTable reloadData];
-//}
-//
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return _searchResult.count;
 }
 //
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier forIndexPath: indexPath];
+    
+    AGSGraphic *graphic = (AGSGraphic *)[_searchResult objectAtIndex:indexPath.row];
+    
+    int fid = 0;
+    if ([graphic hasAttributeForKey:@"id"]) {
+        fid = [graphic attributeAsIntForKey:@"id" exists:nil];
+    }else if ([graphic hasAttributeForKey:@"PK_UID"]){
+        fid = [graphic attributeAsIntForKey:@"PK_UID" exists:nil];
+    }
+    
+    NSString *name;
+    if ([graphic hasAttributeForKey:@"NAME"]) {
+        name = (NSString*)[graphic attributeForKey:@"NAME"];
+    }else if ([graphic hasAttributeForKey:@"name"]) {
+        name = (NSString*)[graphic attributeForKey:@"name"];
+    }else if ([graphic hasAttributeForKey:@"TBBH"]) {
+        name = (NSString*)[graphic attributeForKey:@"TBBH"];
+    }else if ([graphic hasAttributeForKey:@"SPZWH"]) {
+        name = (NSString*)[graphic attributeForKey:@"SPZWH"];
+    }else if ([graphic hasAttributeForKey:@"BSM"]) {
+        name = (NSString*)[graphic attributeForKey:@"BSM"];
+    }
+    
+    UILabel* labelid = (UILabel*) [cell viewWithTag: 100];
+    labelid.text = [NSString stringWithFormat:@"%d",fid];
+    
+    UILabel* labelname = (UILabel*) [cell viewWithTag: 200];
+    labelname.text = name;
     
     return cell;
 }
@@ -156,25 +152,24 @@
 //    return cell;
 //}
 //
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//    NSString *layername = self.selectlayerEdit.text;
-//    AGSGraphicsLayer *graphicsLayer = (AGSGraphicsLayer *)[[Projects sharedProjects].curProject.mapView mapLayerForName:layername];
-//    
-//    if (graphicsLayer != nil) {
-//        AGSGraphic *graphic = (AGSGraphic *)[graphicsLayer.graphics objectAtIndex:indexPath.row];
-//        
-//        UIStoryboard * storyBoard;
-//        AttributeController *projectController;
-//    
-//        storyBoard  = [UIStoryboard
-//                   storyboardWithName:@"Main_iPad" bundle:nil];
-//    
-//        projectController = [storyBoard instantiateViewControllerWithIdentifier:@"AttributeController"];
-//        projectController.graphic = graphic;
-//        [self.navigationController pushViewController:projectController animated:YES];
-//    }
-//    
-//}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    AGSGraphic *graphic = (AGSGraphic *)[_searchResult objectAtIndex:indexPath.row];
+    
+    UIStoryboard * storyBoard;
+    AttributeController *projectController;
+    
+    storyBoard  = [UIStoryboard
+                   storyboardWithName:@"Main_iPad" bundle:nil];
+    
+    projectController = [storyBoard instantiateViewControllerWithIdentifier:@"AttributeController"];
+    projectController.graphic = graphic;
+    projectController.isQuery = YES;
+    //NSLog(@"%@ %d",graphic.layer.name, indexPath.row);
+    
+    [self.navigationController pushViewController:projectController animated:YES];
+    
+    
+}
 
 @end

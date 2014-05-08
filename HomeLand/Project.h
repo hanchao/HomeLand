@@ -60,6 +60,9 @@
 
 -(NSMutableArray*) search:(NSString *)key;
 
+-(NSMutableArray*) search:(NSString *)key Layer:(NSString *)name;
+-(NSMutableArray*) searchBase:(NSString *)key Layer:(NSString *)name;
+
 -(NSString *) addPhoto:(Photo*)photo;
 -(NSInteger) photoCount;
 -(NSMutableArray*) allPhoto;
