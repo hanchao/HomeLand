@@ -61,7 +61,7 @@
 		D62130E718E4177C0061A10A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62130E618E4177C0061A10A /* AssetsLibrary.framework */; };
 		D62130E918E420570061A10A /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D62130E818E420570061A10A /* MWPhotoBrowser.bundle */; };
 		D623C37218E1369F0007656E /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D623C37118E1369F0007656E /* RecordController.m */; };
-		D623C37818E13B180007656E /* ManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D623C37718E13B180007656E /* ManageController.m */; };
+		D623C37818E13B180007656E /* ManageRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D623C37718E13B180007656E /* ManageRecordController.m */; };
 		D623C37B18E13C7F0007656E /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D623C37918E13C7F0007656E /* Main_iPad.storyboard */; };
 		D6249E5B19162F180059F44B /* DXSemiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6249E5619162F180059F44B /* DXSemiTableViewController.m */; };
 		D6249E5C19162F180059F44B /* DXSemiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6249E5819162F180059F44B /* DXSemiViewController.m */; };
@@ -71,6 +71,7 @@
 		D62DCCE5191767A2006FF205 /* 面点击效果.png in Resources */ = {isa = PBXBuildFile; fileRef = D62DCCE3191767A2006FF205 /* 面点击效果.png */; };
 		D62DCCE6191767A2006FF205 /* 面点击效果@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D62DCCE4191767A2006FF205 /* 面点击效果@2x.png */; };
 		D63134E518C996C1003DD1C8 /* LayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63134E418C996C1003DD1C8 /* LayerController.m */; };
+		D6318D04191B54A1009A3106 /* ManageLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6318D03191B54A1009A3106 /* ManageLayerController.m */; };
 		D6603FA718C703A300C1E1EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6603FA618C703A300C1E1EA /* Images.xcassets */; };
 		D6603FAE18C7083F00C1E1EA /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = D6603FAD18C7083F00C1E1EA /* Projects.m */; };
 		D6603FB118C70C7D00C1E1EA /* ProjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6603FB018C70C7D00C1E1EA /* ProjectController.m */; };
@@ -309,8 +310,8 @@
 		D62130E818E420570061A10A /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MWPhotoBrowser.bundle; path = MWPhotoBrowser/MWPhotoBrowser.bundle; sourceTree = SOURCE_ROOT; };
 		D623C37018E1369F0007656E /* RecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordController.h; sourceTree = "<group>"; };
 		D623C37118E1369F0007656E /* RecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordController.m; sourceTree = "<group>"; };
-		D623C37618E13B180007656E /* ManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageController.h; sourceTree = "<group>"; };
-		D623C37718E13B180007656E /* ManageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageController.m; sourceTree = "<group>"; };
+		D623C37618E13B180007656E /* ManageRecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageRecordController.h; sourceTree = "<group>"; };
+		D623C37718E13B180007656E /* ManageRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageRecordController.m; sourceTree = "<group>"; };
 		D623C37A18E13C7F0007656E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		D6249E5519162F180059F44B /* DXSemiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXSemiTableViewController.h; sourceTree = "<group>"; };
 		D6249E5619162F180059F44B /* DXSemiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSemiTableViewController.m; sourceTree = "<group>"; };
@@ -326,6 +327,8 @@
 		D62DCCE4191767A2006FF205 /* 面点击效果@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面点击效果@2x.png"; sourceTree = "<group>"; };
 		D63134E318C996C1003DD1C8 /* LayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerController.h; sourceTree = "<group>"; };
 		D63134E418C996C1003DD1C8 /* LayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerController.m; sourceTree = "<group>"; };
+		D6318D02191B54A1009A3106 /* ManageLayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageLayerController.h; sourceTree = "<group>"; };
+		D6318D03191B54A1009A3106 /* ManageLayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageLayerController.m; sourceTree = "<group>"; };
 		D6603FA618C703A300C1E1EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D6603FAC18C7083F00C1E1EA /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
 		D6603FAD18C7083F00C1E1EA /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
@@ -691,8 +694,10 @@
 				D63134E418C996C1003DD1C8 /* LayerController.m */,
 				D6854BB518D824F7008E638A /* ImageController.h */,
 				D6854BB618D824F7008E638A /* ImageController.m */,
-				D623C37618E13B180007656E /* ManageController.h */,
-				D623C37718E13B180007656E /* ManageController.m */,
+				D6318D02191B54A1009A3106 /* ManageLayerController.h */,
+				D6318D03191B54A1009A3106 /* ManageLayerController.m */,
+				D623C37618E13B180007656E /* ManageRecordController.h */,
+				D623C37718E13B180007656E /* ManageRecordController.m */,
 				D6249E69191643C40059F44B /* AttributeController.h */,
 				D6249E6A191643C40059F44B /* AttributeController.m */,
 				D6603FA618C703A300C1E1EA /* Images.xcassets */,
@@ -1147,12 +1152,13 @@
 				D60663A718D6C705004E0A7A /* GPXTrackSegment.m in Sources */,
 				D6603FB118C70C7D00C1E1EA /* ProjectController.m in Sources */,
 				D606639718D6C705004E0A7A /* GPXConst.m in Sources */,
+				D6318D04191B54A1009A3106 /* ManageLayerController.m in Sources */,
 				D6B0A87119079DAC005904F1 /* PSDirectoryPickerController.m in Sources */,
 				D6603FAE18C7083F00C1E1EA /* Projects.m in Sources */,
 				D6249E5D19162F180059F44B /* DXSemiViewControllerCategory.m in Sources */,
 				D63134E518C996C1003DD1C8 /* LayerController.m in Sources */,
 				D6854A5C18D73120008E638A /* Project.mm in Sources */,
-				D623C37818E13B180007656E /* ManageController.m in Sources */,
+				D623C37818E13B180007656E /* ManageRecordController.m in Sources */,
 				D6B0A87219079DAC005904F1 /* PSDirectoryPickerEntry.m in Sources */,
 				D606639E18D6C705004E0A7A /* GPXParser.m in Sources */,
 				D60663A618D6C705004E0A7A /* GPXTrackPoint.m in Sources */,

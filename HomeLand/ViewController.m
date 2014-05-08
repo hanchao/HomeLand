@@ -733,7 +733,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"LayerSegue"]) {
+    if ([segue.identifier isEqualToString:@"LayerSegue"] ||
+        [segue.identifier isEqualToString:@"ManageSegue"]) {
         
         UIStoryboardPopoverSegue *popoverSegue;
         popoverSegue=(UIStoryboardPopoverSegue *)segue;
@@ -745,7 +746,7 @@
 
         CGRect rect=[[UIScreen mainScreen] bounds];
 
-        popoverController.popoverContentSize = CGSizeMake(rect.size.width/2, rect.size.height*3/5);
+        popoverController.popoverContentSize = CGSizeMake(rect.size.width/2, rect.size.height*4/5);
     }
     
 //    UIViewController * destinationViewController = (UIViewController *)segue.destinationViewController;
