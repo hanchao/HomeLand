@@ -34,39 +34,11 @@
     }
     return self;
 }
-//- (void)encodeWithCoder:(NSCoder *)aCoder {
-////    [aCoder encodeObject:city forKey:@"city"];
-////    [aCoder encodeObject:circle forKey:@"circle"];
-////    [aCoder encodeObject:detail forKey:@"detail"];
-////    [aCoder encodeObject:userName forKey:@"username"];
-////    [aCoder encodeObject:telephone forKey:@"telephone"];
-////    [aCoder encodeFloat:SetAsDefault forKey:@"setasdefault"];
-//}
-//
-//- (id)initWithCoder:(NSCoder *)aDecoder {
-//    if (self = [super init]) {
-////        self.city = [aDecoder decodeObjectForKey:@"city"];
-////        self.circle = [aDecoder decodeObjectForKey:@"circle"];
-////        self.detail = [aDecoder decodeObjectForKey:@"detail"];
-////        self.userName = [aDecoder decodeObjectForKey:@"username"];
-////        self.telephone = [aDecoder decodeObjectForKey:@"telephone"];
-////        self.SetAsDefault = [aDecoder decodeFloatForKey:@"setasdefault"];
-//    }
-//    return self;
-//}
-//
-//#pragma mark NSCoping
-//- (id)copyWithZone:(NSZone *)zone {
-//    LayerDefinition *copy = [[[self class] allocWithZone:zone] init];
-////    copy.city = self.city;
-////    copy.circle = [self.circle copyWithZone:zone];
-////    copy.detail = [self.detail copyWithZone:zone];
-////    copy.userName = [self.userName copyWithZone:zone];
-////    copy.telephone = [self.telephone copyWithZone:zone];
-////    copy.SetAsDefault = self.SetAsDefault;
-//    return copy;
-//}
+@end
 
+@implementation SearchResult
+@synthesize layerName;
+@synthesize graphics;
 @end
 
 @implementation Project
@@ -1752,19 +1724,39 @@
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
     NSMutableArray *resultlayer = [self search:key Layer:HL_POINT];
-    [result addObjectsFromArray:resultlayer];
+    if (resultlayer.count > 0) {
+        SearchResult *searchResult = [SearchResult new];
+        searchResult.layerName = HL_POINT;
+        searchResult.graphics = resultlayer;
+        [result addObject:searchResult];
+    }
     
     resultlayer = [self search:key Layer:HL_LINE];
-    [result addObjectsFromArray:resultlayer];
+    if (resultlayer.count > 0) {
+        SearchResult *searchResult = [SearchResult new];
+        searchResult.layerName = HL_LINE;
+        searchResult.graphics = resultlayer;
+        [result addObject:searchResult];
+    }
     
     resultlayer = [self search:key Layer:HL_REGION];
-    [result addObjectsFromArray:resultlayer];
+    if (resultlayer.count > 0) {
+        SearchResult *searchResult = [SearchResult new];
+        searchResult.layerName = HL_REGION;
+        searchResult.graphics = resultlayer;
+        [result addObject:searchResult];
+    }
     
     NSArray *baseLayernames = [self allBaseLayerName];
     for(int i=0;i<baseLayernames.count;i++){
         NSString *layername = [baseLayernames objectAtIndex:i];
         resultlayer = [self searchBase:key Layer:layername];
-        [result addObjectsFromArray:resultlayer];
+        if (resultlayer.count > 0) {
+            SearchResult *searchResult = [SearchResult new];
+            searchResult.layerName = layername;
+            searchResult.graphics = resultlayer;
+            [result addObject:searchResult];
+        }
     }
     
     return result;

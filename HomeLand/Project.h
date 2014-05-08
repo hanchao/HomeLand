@@ -29,6 +29,11 @@
 @property (nonatomic) BOOL visible;
 @end
 
+@interface SearchResult : NSObject
+@property (nonatomic) NSString* layerName;
+@property (nonatomic) NSMutableArray* graphics;
+@end
+
 @interface Project : NSObject
 {
     sqlite3 *_basehandle;

@@ -47,24 +47,33 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return self.searchResults.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     // Return the number of rows in the section.
-    return self.graphics.count;
+    SearchResult *searchResult = (SearchResult *)[self.searchResults objectAtIndex:section];
+
+    return searchResult.graphics.count;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    SearchResult *searchResult = (SearchResult *)[self.searchResults objectAtIndex:section];
+    return searchResult.layerName;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier
                                                             forIndexPath: indexPath];
-
-    AGSGraphic *graphic = (AGSGraphic *)[self.graphics objectAtIndex:indexPath.row];
+    
+    //return cell;
+    SearchResult *searchResult = (SearchResult *)[self.searchResults objectAtIndex:indexPath.section];
+    
+    AGSGraphic *graphic = (AGSGraphic *)[searchResult.graphics objectAtIndex:indexPath.row];
     
     int fid = 0;
     if ([graphic hasAttributeForKey:@"id"]) {
@@ -98,7 +107,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-        AGSGraphic *graphic = (AGSGraphic *)[self.graphics objectAtIndex:indexPath.row];
+    SearchResult *searchResult = (SearchResult *)[self.searchResults objectAtIndex:indexPath.section];
+    
+    AGSGraphic *graphic = (AGSGraphic *)[searchResult.graphics objectAtIndex:indexPath.row];
         
         UIStoryboard * storyBoard;
         AttributeController *projectController;

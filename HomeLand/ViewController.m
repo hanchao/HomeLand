@@ -795,7 +795,7 @@
             
             recordController = [storyBoard instantiateViewControllerWithIdentifier:@"RecordController"];
             
-            recordController.graphics = result;
+            recordController.searchResults = result;
             [self.navigationController pushViewController:recordController animated:YES];
         });
     });

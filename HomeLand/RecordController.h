@@ -13,6 +13,6 @@
 
 @interface RecordController : UITableViewController
 
-@property (nonatomic) NSMutableArray* graphics;
+@property (nonatomic) NSMutableArray* searchResults;
 
 @end
