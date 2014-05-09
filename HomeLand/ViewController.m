@@ -43,6 +43,10 @@
         _locationManager = [[CLLocationManager alloc] init];
         
         _locationManager.delegate = self;
+        
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+        _locationManager.distanceFilter = 10.0f;
+        
         // 开始定位
         [_locationManager startUpdatingLocation];
     }
@@ -429,6 +433,16 @@
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
+    
+    if (newLocation.horizontalAccuracy < 0) {
+        NSLog(@"Bad returned accuracy, ignoring update.");
+        return;
+    }
+    
+    if (newLocation.speed < 0) {
+        NSLog(@"Bad returned speed, ignoring update.");
+        return;
+    }
     
     GPSLayer *gpsLayer = (GPSLayer *)[self.mapView mapLayerForName:@"GPS layer"];
     if (gpsLayer.enableLogger) {
@@ -833,6 +847,7 @@
 // The method that should be called when the notification arises
 - (void)respondToEnvChange: (NSNotification*) notification {
     
+    return;
     //create the string containing the new map extent NSString*
     NSString* theString = [[NSString alloc] initWithFormat:@"xmin = %f,\nymin = %f,\nxmax = %f,\nymax = %f", _mapView.visibleAreaEnvelope.xmin,
                            _mapView.visibleAreaEnvelope.ymin, _mapView.visibleAreaEnvelope.xmax,
