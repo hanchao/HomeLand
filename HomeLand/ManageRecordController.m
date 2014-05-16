@@ -32,6 +32,9 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = FALSE;
     
+    CGRect rect=[[UIScreen mainScreen] bounds];
+    
+    self.contentSizeForViewInPopover = CGSizeMake(rect.size.width/2, rect.size.height*4/5);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -165,6 +168,7 @@
     projectController = [storyBoard instantiateViewControllerWithIdentifier:@"AttributeController"];
     projectController.graphic = graphic;
     projectController.isQuery = YES;
+    projectController.isInPop = YES;
     //NSLog(@"%@ %d",graphic.layer.name, indexPath.row);
     
     [self.navigationController pushViewController:projectController animated:YES];

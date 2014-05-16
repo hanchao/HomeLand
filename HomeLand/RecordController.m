@@ -120,7 +120,6 @@
         projectController = [storyBoard instantiateViewControllerWithIdentifier:@"AttributeController"];
         projectController.graphic = graphic;
     projectController.isQuery = YES;
-    //NSLog(@"%@ %d",graphic.layer.name, indexPath.row);
     
         [self.navigationController pushViewController:projectController animated:YES];
     

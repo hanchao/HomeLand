@@ -928,7 +928,7 @@
 }
 
 
--(BOOL) open:(NSString *)path
+-(BOOL) open:(NSString *)path IsAllLayer:(BOOL) isAllLayer
 {
     NSString *dataPath = [path stringByAppendingPathComponent:@"data.db"];
     
@@ -967,7 +967,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *layers = (NSArray *)[defaults objectForKey:@"Layers"];
-    if (layers != nil) {
+    if (layers != nil && !isAllLayer) {
         for( NSData *date in layers)
         {
             LayerDefinition *layerDefinition = (LayerDefinition *)[NSKeyedUnarchiver unarchiveObjectWithData:date];
@@ -1781,7 +1781,13 @@
     int blob_size;
     int geom_type;
     
-    sprintf (sql, "SELECT * FROM %s where name like \'%%%s%%\'", name.UTF8String, key.UTF8String);
+    if (key.length == 0) {
+        sprintf(sql, "SELECT * FROM %s",name.UTF8String);
+    }
+    else{
+        sprintf (sql, "SELECT * FROM %s where name like \'%%%s%%\'", name.UTF8String, key.UTF8String);
+    }
+    
     
     ret = sqlite3_prepare_v2 (_handle, sql, strlen (sql), &stmt, NULL);
     if (ret != SQLITE_OK)
@@ -2248,6 +2254,9 @@
 -(NSMutableArray *)allLayerName
 {
     NSMutableArray *layerNames = [self allBaseLayerName];
+    if (layerNames == nil) {
+        layerNames = [NSMutableArray new];
+    }
     [layerNames addObject:HL_POINT];
     [layerNames addObject:HL_LINE];
     [layerNames addObject:HL_REGION];
@@ -2474,17 +2483,24 @@
     int blob_size;
     int geom_type;
     
-    if ([name compare:@"DMD"] == NSOrderedSame ||
-        [name compare:@"diming"] == NSOrderedSame) {
-        sprintf (sql, "SELECT * FROM %s where NAME like \'%%%s%%\'", name.UTF8String, key.UTF8String);
-    }else if ([name compare:@"WPZFTB"] == NSOrderedSame){
-        sprintf (sql, "SELECT * FROM %s where TBBH like \'%%%s%%\'", name.UTF8String, key.UTF8String);
-    }else if ([name compare:@"GHJBNT"] == NSOrderedSame){
-        sprintf (sql, "SELECT * FROM %s where BSM like \'%%%s%%\'", name.UTF8String, key.UTF8String);
-    }else if ([name compare:@"TDPW"] == NSOrderedSame ||
-              [name compare:@"zhengzhuanpiwen"] == NSOrderedSame) {
-        sprintf (sql, "SELECT * FROM %s where SPZWH like \'%%%s%%\'", name.UTF8String, key.UTF8String);
+    if (key.length == 0) {
+        sprintf(sql, "SELECT * FROM %s",name.UTF8String);
     }
+    else{
+        if ([name compare:@"DMD"] == NSOrderedSame ||
+            [name compare:@"diming"] == NSOrderedSame) {
+            sprintf (sql, "SELECT * FROM %s where NAME like \'%%%s%%\'", name.UTF8String, key.UTF8String);
+        }else if ([name compare:@"WPZFTB"] == NSOrderedSame){
+            sprintf (sql, "SELECT * FROM %s where TBBH like \'%%%s%%\'", name.UTF8String, key.UTF8String);
+        }else if ([name compare:@"GHJBNT"] == NSOrderedSame){
+            sprintf (sql, "SELECT * FROM %s where BSM like \'%%%s%%\'", name.UTF8String, key.UTF8String);
+        }else if ([name compare:@"TDPW"] == NSOrderedSame ||
+                  [name compare:@"zhengzhuanpiwen"] == NSOrderedSame) {
+            sprintf (sql, "SELECT * FROM %s where SPZWH like \'%%%s%%\'", name.UTF8String, key.UTF8String);
+        }
+    }
+    
+
     
     //sprintf (sql, "SELECT * FROM %s where name like \'%%%s%%\'", name.UTF8String, key.UTF8String);
     

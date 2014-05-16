@@ -62,7 +62,7 @@
     
     NSString* title = [[Projects sharedProjects].projects objectAtIndex: indexPath.row];
     
-    if(![[Projects sharedProjects] openProject:title])
+    if(![[Projects sharedProjects] openProject:title IsAllLayer:NO])
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"打开工程失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
@@ -89,7 +89,7 @@
     
     NSString* title = [[sender titleLabel] text];
 
-    if(![[Projects sharedProjects] openProject:title])
+    if(![[Projects sharedProjects] openProject:title IsAllLayer:NO])
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"打开工程失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];

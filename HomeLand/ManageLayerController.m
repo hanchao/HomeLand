@@ -30,6 +30,10 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = FALSE;
     
+    CGRect rect=[[UIScreen mainScreen] bounds];
+    
+    self.contentSizeForViewInPopover = CGSizeMake(rect.size.width/2, rect.size.height*4/5);
+
     _layerName = [[Projects sharedProjects].curProject allLayerName];
     
 }
@@ -93,6 +97,11 @@
 //    _curLayerName = [_layerName objectAtIndex:row];
 //    self.selectlayerEdit.text = _curLayerName;
 //    [self.recordTable reloadData];
+//}
+
+//-(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+//{
+//    viewController.contentSizeForViewInPopover = navigationController.topViewController.view.frame.size;
 //}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

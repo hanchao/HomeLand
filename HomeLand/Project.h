@@ -48,7 +48,7 @@
 - (id)init;
 
 -(BOOL) create:(NSString *)path;
--(BOOL) open:(NSString *)path;
+-(BOOL) open:(NSString *)path IsAllLayer:(BOOL) isAllLayer;
 -(BOOL) save;
 -(BOOL) close;
 

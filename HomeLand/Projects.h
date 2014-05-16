@@ -21,7 +21,7 @@
 - (void) initDirectory;
 
 - (BOOL) createProject:(NSString *) name;
-- (BOOL) openProject:(NSString *) name;
+- (BOOL) openProject:(NSString *) name IsAllLayer:(BOOL) isAllLayer;
 - (BOOL) deleteProjectByIndex:(int) index;
 - (BOOL) deleteProjectByName:(NSString *) name;
 @property (weak, nonatomic) AGSMapView *mapView;

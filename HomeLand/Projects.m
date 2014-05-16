@@ -181,9 +181,9 @@
 //        [self createProject:@"DefaultProject"];
 //        [self openProject:@"DefaultProject"];
 //    }
-    if (![self openProject:@"Project"]) {
+    if (![self openProject:@"Project" IsAllLayer:NO]) {
         [self createProject:@"Project"];
-        [self openProject:@"Project"];
+        [self openProject:@"Project" IsAllLayer:NO];
     }
 }
 
@@ -225,7 +225,7 @@
     return TRUE;
 }
 
-- (BOOL) openProject:(NSString *) name
+- (BOOL) openProject:(NSString *) name IsAllLayer:(BOOL) isAllLayer
 {
     [self.curProject close];
     
@@ -242,7 +242,7 @@
     
     Project *project = [[Project alloc] init];
     project.mapView = self.mapView;
-    [project open:curprojectDir];
+    [project open:curprojectDir IsAllLayer:isAllLayer];
     
     self.curProject = project;
     

@@ -541,10 +541,10 @@
 //    
 //    [self.navigationController pushViewController:projectController animated:YES];
     
-    if(![[Projects sharedProjects] openProject:@"Project"])
+    if(![[Projects sharedProjects] openProject:@"Project" IsAllLayer:YES])
     {
         [[Projects sharedProjects] createProject:@"Project"];
-        if(![[Projects sharedProjects] openProject:@"Project"]){
+        if(![[Projects sharedProjects] openProject:@"Project"  IsAllLayer:YES]){
 //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"打开工程失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
 //            [alert show];
             _HUD.yOffset = 300;

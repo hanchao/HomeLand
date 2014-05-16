@@ -23,6 +23,7 @@
 @synthesize isQuery;
 @synthesize isAddNew;
 @synthesize graphic;
+@synthesize isInPop;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -194,10 +195,17 @@
             continue;
         }
         
+        NSString *key = [Projects enname:label.text];
+        NSString *value = testField.text;
+        
+        if (value == nil) {
+            value = @"";
+        }
+        
         if(self.isAddNew)
-            [dict setObject:testField.text forKey:[Projects enname:label.text]];
+            [dict setObject:value forKey:key];
         else
-            [self.graphic setValue:testField.text forKey:[Projects enname:label.text]];
+            [self.graphic setValue:value forKey:key];
         
     }
     
@@ -234,6 +242,11 @@
     AGSEnvelope * envelope = self.graphic.geometry.envelope;
     [[Projects sharedProjects].curProject.mapView zoomToEnvelope:envelope animated:NO];
     [[Projects sharedProjects].curProject.mapView.callout showCalloutAtPoint:envelope.center forFeature:self.graphic layer:self.graphic.layer animated:NO];
+    
+    if (self.isInPop) {
+        return;
+    }
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
